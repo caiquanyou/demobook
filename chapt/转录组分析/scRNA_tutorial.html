@@ -1,0 +1,1689 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Single-Cell RNA Sequencing Analysis &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="空间转录组" href="%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html" />
+    <link rel="prev" title="单细胞测序比对流程" href="scRNA_mapping.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3">
+      <a class="reference internal" href="scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/JiekaiLab/Jiekai_tw/main?urlpath=tree/chapt/转录组分析/scRNA_tutorial.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/转录组分析/scRNA_tutorial.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   2. Preparation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software">
+     2.1 Software
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     2.2 Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start">
+   3. Start
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages">
+     3.1 Load Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-the-seurat-object">
+     3.2 Setup the Seurat Object
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-pre-processing">
+   4. Data pre-processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qc-and-selecting-cells">
+     4.1 QC and selecting cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalizing-the-data">
+     4.2 Normalizing the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identifying-high-variable-genes">
+     4.3 Identifying high variable genes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling-the-data">
+     4.4 Scaling the data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-dimensional-reduction">
+   5. Linear dimensional reduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca">
+     5.1 PCA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determine-dimensionality-of-pcs">
+     5.2 Determine dimensionality of PCs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering">
+   6. Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-tabset-tabset-fade-tabset-pills">
+   7. Visualization {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-function-runumap">
+     call function
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RunUMAP
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-function-runtsne">
+     call function
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RunTSNE
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentially-expressed-genes">
+   8. Differentially expressed genes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identify-the-cell-types-tabset-tabset-fade-tabset-pills">
+   9. Identify the cell types {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-and-nk">
+     B and NK
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cd14-mono-and-naive-cd4-t">
+     CD14+Mono and Naive CD4+T
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dc-and-fcgr3a-mono">
+     DC and FCGR3A+ Mono
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory-cd4-cd8-t-and-platelet">
+     Memory CD4+, CD8+ T and Platelet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-cell-types">
+   10. plotting the cell types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enrichment-analysis-tabset-tabset-fade-tabset-pills">
+   11. Enrichment Analysis {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#go-enrichment">
+     GO enrichment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pa-enrichment">
+     PA enrichment
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Single-Cell RNA Sequencing Analysis</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   1. Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#preparation">
+   2. Preparation
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#software">
+     2.1 Software
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#data">
+     2.2 Data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#start">
+   3. Start
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#load-packages">
+     3.1 Load Packages
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#setup-the-seurat-object">
+     3.2 Setup the Seurat Object
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-pre-processing">
+   4. Data pre-processing
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#qc-and-selecting-cells">
+     4.1 QC and selecting cells
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#normalizing-the-data">
+     4.2 Normalizing the data
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#identifying-high-variable-genes">
+     4.3 Identifying high variable genes
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaling-the-data">
+     4.4 Scaling the data
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#linear-dimensional-reduction">
+   5. Linear dimensional reduction
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pca">
+     5.1 PCA
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#determine-dimensionality-of-pcs">
+     5.2 Determine dimensionality of PCs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#clustering">
+   6. Clustering
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#visualization-tabset-tabset-fade-tabset-pills">
+   7. Visualization {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-function-runumap">
+     call function
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RunUMAP
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#call-function-runtsne">
+     call function
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RunTSNE
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#differentially-expressed-genes">
+   8. Differentially expressed genes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#identify-the-cell-types-tabset-tabset-fade-tabset-pills">
+   9. Identify the cell types {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#b-and-nk">
+     B and NK
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#cd14-mono-and-naive-cd4-t">
+     CD14+Mono and Naive CD4+T
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dc-and-fcgr3a-mono">
+     DC and FCGR3A+ Mono
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#memory-cd4-cd8-t-and-platelet">
+     Memory CD4+, CD8+ T and Platelet
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plotting-the-cell-types">
+   10. plotting the cell types
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#enrichment-analysis-tabset-tabset-fade-tabset-pills">
+   11. Enrichment Analysis {.tabset .tabset-fade .tabset-pills}
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#go-enrichment">
+     GO enrichment
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pa-enrichment">
+     PA enrichment
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <style type="text/css">
+body{ /* Normal  */
+     font-family: times, serif;
+     font-size:16px;
+     }
+.author{ /* author */
+        font-style:italic
+        }
+.date{ /* date */
+      font-style:italic
+      }
+td{ /* Table */ 
+   font-size: 8px;
+   }
+code.r{ /* Code block */
+       font-size: 14px;
+       }
+pre{ /* Code block - determines code spacing between lines */
+    font-size: 14px;
+    }
+</style><section class="tex2jax_ignore mathjax_ignore" id="single-cell-rna-sequencing-analysis">
+<h1>Single-Cell RNA Sequencing Analysis<a class="headerlink" href="#single-cell-rna-sequencing-analysis" title="Permalink to this headline">#</a></h1>
+<section id="introduction">
+<h2>1. Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>This tutorial provides an approach to basic analysis for single-cell RNA sequencing data:</p>
+<ol class="simple">
+<li><p>Data pre-processing</p></li>
+</ol>
+<ul class="simple">
+<li><p>QC and selecting cells</p></li>
+<li><p>Normalizing the data</p></li>
+<li><p>Identifying high variable genes(feature selection)</p></li>
+<li><p>Scaling the data</p></li>
+</ul>
+<ol class="simple">
+<li><p>Linear dimensional reduction</p></li>
+</ol>
+<ul class="simple">
+<li><p>PCA</p></li>
+<li><p>Determine dimensionality of PCs</p></li>
+</ul>
+<ol class="simple">
+<li><p>Cluster the cells</p></li>
+<li><p>Visualization</p></li>
+<li><p>Differentially expressed genes</p></li>
+<li><p>Identify the cell types</p></li>
+<li><p>Enrichment analysis</p></li>
+</ol>
+<ul class="simple">
+<li><p>Gene Ontology</p></li>
+<li><p>Pathway Enrichment</p></li>
+</ul>
+<p>This tutorial refers to <a class="reference external" href="https://satijalab.org/seurat/v3.0/pbmc3k_tutorial.html">Seurat</a>, a software(package) for analyzing single-cell RNA seq data in R.</p>
+<p>Feel free to contact me if you have any questions.
+Email: <a class="reference external" href="mailto:feng_huijian&#37;&#52;&#48;gibh&#46;ac&#46;cn">feng_huijian<span>&#64;</span>gibh<span>&#46;</span>ac<span>&#46;</span>cn</a>
+Wechat: rick__sanchez__</p>
+</section>
+<section id="preparation">
+<h2>2. Preparation<a class="headerlink" href="#preparation" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<section id="software">
+<h3>2.1 Software<a class="headerlink" href="#software" title="Permalink to this headline">#</a></h3>
+<p>All the anaylsis below relies on the <code class="docutils literal notranslate"><span class="pre">R</span></code> environment. Please download R and related software before the coures.</p>
+<p>We select the tsinghua mirror to download R</p>
+<ol class="simple">
+<li><p>Download and install <a class="reference external" href="https://mirrors.tuna.tsinghua.edu.cn/CRAN/">R</a></p></li>
+</ol>
+<ul class="simple">
+<li><p>Windows user: Please click <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">R</span> <span class="pre">for</span> <span class="pre">Windows</span></code>, and then click <code class="docutils literal notranslate"><span class="pre">install</span> <span class="pre">R</span> <span class="pre">for</span> <span class="pre">the</span> <span class="pre">first</span> <span class="pre">time</span></code>.</p></li>
+<li><p>Mac user: Please click <code class="docutils literal notranslate"><span class="pre">Download</span> <span class="pre">R</span> <span class="pre">for</span> <span class="pre">(Mac)</span> <span class="pre">OS</span> <span class="pre">X</span></code>, and then click <code class="docutils literal notranslate"><span class="pre">R-3.6.1.pkg</span></code>.</p></li>
+</ul>
+<ol>
+<li><p>Download and install <a class="reference external" href="https://www.rstudio.com/products/rstudio/download/">Rstudio</a>, and then select <code class="docutils literal notranslate"><span class="pre">RStudio</span> <span class="pre">Desktop</span> <span class="pre">Open</span> <span class="pre">Source</span> <span class="pre">License</span> <span class="pre">FREE</span></code> to download Windows Version <code class="docutils literal notranslate"><span class="pre">RStudio</span> <span class="pre">1.3.1056</span> <span class="pre">-</span> <span class="pre">Windows</span> <span class="pre">7+</span> <span class="pre">(64-bit)</span></code> or Mac Version <code class="docutils literal notranslate"><span class="pre">RStudio</span> <span class="pre">1.3.1056</span> <span class="pre">-</span> <span class="pre">macOS</span> <span class="pre">10.13+</span> <span class="pre">(64-bit)</span></code></p></li>
+<li><p>Install the R packages for the following analysis.</p>
+<p>We also use the tsinghua mirror to download R packages for saving times and avoiding the unnecessary Error. Open the areadly installed Rstudio. Paste and execute
+the code elow in the Console panel:</p>
+</li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># rcran</span>
+<span class="nf">options</span><span class="p">(</span><span class="s">&quot;repos&quot;</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">CRAN</span><span class="o">=</span><span class="s">&quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&quot;</span><span class="p">))</span>
+
+<span class="c1"># install bioconductor library.</span>
+<span class="nf">options</span><span class="p">(</span><span class="s">&quot;repos&quot;</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">CRAN</span><span class="o">=</span><span class="s">&quot;https://mirrors.tuna.tsinghua.edu.cn/CRAN/&quot;</span><span class="p">))</span>
+<span class="nf">if </span><span class="p">(</span><span class="o">!</span><span class="nf">requireNamespace</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">))</span>
+  <span class="nf">install.packages</span><span class="p">(</span><span class="s">&quot;BiocManager&quot;</span><span class="p">)</span>
+<span class="c1"># bioconductor</span>
+<span class="nf">options</span><span class="p">(</span><span class="n">useHTTPS</span><span class="o">=</span><span class="kc">FALSE</span><span class="p">,</span> <span class="n">BioC_mirror</span><span class="o">=</span><span class="s">&quot;http://mirrors.tuna.tsinghua.edu.cn/bioconductor/&quot;</span><span class="p">)</span>
+
+<span class="c1"># A function: intalling the packages to R -&gt;IPR</span>
+<span class="n">IPR</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> 
+                <span class="n">sources</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;RCran&quot;</span><span class="p">,</span> <span class="s">&quot;Bioconductor&quot;</span><span class="p">,</span> <span class="s">&quot;Github&quot;</span><span class="p">)){</span>
+  <span class="n">installedpackages</span> <span class="o">&lt;-</span> <span class="nf">installed.packages</span><span class="p">()[</span> <span class="p">,</span><span class="s">&quot;Package&quot;</span><span class="p">]</span>
+  <span class="n">existpackages</span> <span class="o">&lt;-</span> <span class="nf">intersect</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">installedpackages</span><span class="p">)</span>
+  <span class="nf">if</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">existpackages</span><span class="p">)</span> <span class="o">!=</span> <span class="m">0</span><span class="p">){</span>
+    <span class="nf">print</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;Packages &quot;</span><span class="p">,</span> <span class="n">existpackages</span><span class="p">,</span> <span class="s">&quot; have been installed&quot;</span><span class="p">))</span>
+    <span class="p">}</span>
+  <span class="n">newpackages</span> <span class="o">&lt;-</span> <span class="nf">setdiff</span><span class="p">(</span><span class="n">packages</span><span class="p">,</span> <span class="n">installedpackages</span><span class="p">)</span>
+  <span class="nf">if</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">newpackages</span><span class="p">)</span> <span class="o">!=</span> <span class="m">0</span><span class="p">){</span>
+    <span class="nf">if</span><span class="p">(</span><span class="n">sources</span> <span class="o">==</span> <span class="s">&quot;RCran&quot;</span><span class="p">){</span>
+      <span class="nf">install.packages</span><span class="p">(</span><span class="n">newpackages</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="nf">if</span><span class="p">(</span><span class="n">sources</span> <span class="o">==</span> <span class="s">&quot;Bioconductor&quot;</span><span class="p">){</span>
+      <span class="n">BiocManager</span><span class="o">::</span><span class="nf">install</span><span class="p">(</span><span class="n">newpackages</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="nf">if</span><span class="p">(</span><span class="n">sources</span> <span class="o">==</span> <span class="s">&quot;Github&quot;</span><span class="p">){</span>
+      <span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="n">newpackages</span><span class="p">)</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># R CRAN packages</span>
+<span class="c1"># rpkg &lt;- c(&quot;dplyr&quot;,&quot;ggplot2&quot;,&quot;matrixStats&quot;,&quot;pheatmap&quot;,&quot;DT&quot;,&quot;data.table&quot;, &quot;Seurat&quot;)</span>
+<span class="c1"># IPR(packages = rpkg, sources = &quot;RCran&quot;)</span>
+
+<span class="c1"># Bioconductor packages</span>
+<span class="c1"># biopkg &lt;- c(&quot;clusterProfiler&quot;, &quot;org.Mm.eg.db&quot;, &quot;org.Hs.eg.db&quot;, &quot;genefilter&quot;, &quot;ReactomePA&quot;)</span>
+<span class="c1"># IPR(packages = biopkg, sources = &quot;Bioconductor&quot;)</span>
+   
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
+</section>
+<section id="data">
+<h3>2.2 Data<a class="headerlink" href="#data" title="Permalink to this headline">#</a></h3>
+<p>In this tutorial, we provide a dataset Peripheral Blood Mononuclear Cells(PBMC) freely available from <a class="reference external" href="https://www.10xgenomics.com/">10X Genomics</a>. There are ~5k single cells that were sequencing on the Illumina NextSeq500. You can download the data from the 10X Genomics.</p>
+<ol class="simple">
+<li><p>Open 10X official website for <a class="reference external" href="https://www.10xgenomics.com/10x-university/single-cell/">downloading data</a>.</p></li>
+<li><p>Select section <code class="docutils literal notranslate"><span class="pre">DATASETS</span></code> and <code class="docutils literal notranslate"><span class="pre">click</span> <span class="pre">View</span> <span class="pre">all</span></code>.</p></li>
+<li><p>When you enter this page, you should fill in the relevant information: <code class="docutils literal notranslate"><span class="pre">Name</span></code>, <code class="docutils literal notranslate"><span class="pre">Your</span> <span class="pre">Email</span></code>, <code class="docutils literal notranslate"><span class="pre">Institution</span></code>, <code class="docutils literal notranslate"><span class="pre">Country</span></code>. Click no for “receive update” and agree the “Privacy Policy”.</p></li>
+<li><p>Select <strong>5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor (v3 chemistry)</strong>. And then select <code class="docutils literal notranslate"><span class="pre">Feature</span> <span class="pre">/</span> <span class="pre">cell</span> <span class="pre">matrix</span> <span class="pre">(filtered)</span></code>. <strong>Warning</strong>: This Object size is 41.21 MB.</p></li>
+</ol>
+<p>And then you should extract the <strong>compressed file</strong> into a directory, such as <code class="docutils literal notranslate"><span class="pre">D:/Tutorial/scRNA_seq_tutorial/counts/filtered_feature_bc_matrix</span></code>(this directory need to be created).</p>
+<p>Then, we can check how the 10X single-cell RNA seq data is stored. we open the directory<code class="docutils literal notranslate"><span class="pre">D:/Tutorial/scRNA_seq_tutorial/counts/filtered_feature_bc_matrix</span></code>, and we will find that three compressed files store their respective files:</p>
+<ul class="simple">
+<li><p>barcodes.tsv.gz is used to store the information of each cell barcode. In general, it store the name of each single-cell.</p></li>
+<li><p>features.tsv.gz is used to store the genetic information obtained by sequencing.</p></li>
+<li><p>matrix.mtx.gz is used to store the data of single-cell expressed genes, and it is a storage format for sparse matrices using the Coordinate Format(<span class="xref myst">COO</span> If you are interested in this format, click it.)</p></li>
+</ul>
+</section>
+</section>
+<section id="start">
+<h2>3. Start<a class="headerlink" href="#start" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<section id="load-packages">
+<h3>3.1 Load Packages<a class="headerlink" href="#load-packages" title="Permalink to this headline">#</a></h3>
+<p>We load the packages by calling <code class="docutils literal notranslate"><span class="pre">library()</span></code> at firt.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="nf">library</span><span class="p">(</span><span class="n">Seurat</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span> 
+<span class="nf">library</span><span class="p">(</span><span class="n">ggplot2</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">RColorBrewer</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">cowplot</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">clusterProfiler</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">genefilter</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">ReactomePA</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">DT</span><span class="p">)</span>
+<span class="nf">library</span><span class="p">(</span><span class="n">plotly</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span>Error in library(clusterProfiler): there is no package called ‘clusterProfiler’
+Traceback:
+
+1. library(clusterProfiler)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="setup-the-seurat-object">
+<h3>3.2 Setup the Seurat Object<a class="headerlink" href="#setup-the-seurat-object" title="Permalink to this headline">#</a></h3>
+<p>At first, We have to set a correct working directory.</p>
+<p>Then we can load the data by calling <code class="docutils literal notranslate"><span class="pre">Read10X()</span></code>. This function can read the three files(barcodes.tsv.gz, features.tsv.gz, matrix.mtx.gz) in the directory at once.</p>
+<p>Then we can setup the seurat object by calling <code class="docutils literal notranslate"><span class="pre">CreateSeuratObject()</span></code>.</p>
+<p>We highly encourage querying the detail of a function by calling <code class="docutils literal notranslate"><span class="pre">help(function_name)</span></code> or<code class="docutils literal notranslate"><span class="pre">?function_name</span></code>, such as <code class="docutils literal notranslate"><span class="pre">help(CreateSeuratObject)</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## Example for set working directory</span>
+<span class="c1">## setwd(&quot;D:/singlecell_pratice&quot;)</span>
+
+<span class="c1">## loading the data </span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">Read10X</span><span class="p">(</span><span class="s">&quot;./counts/filtered_feature_bc_matrix&quot;</span><span class="p">)</span>
+
+<span class="c1">## create the seurat object</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">CreateSeuratObject</span><span class="p">(</span><span class="n">counts</span> <span class="o">=</span> <span class="n">adata</span><span class="p">,</span> 
+                            <span class="n">project</span> <span class="o">=</span> <span class="s">&quot;sc_tutorial&quot;</span><span class="p">,</span>
+                            <span class="n">min.cells</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span>
+                            <span class="n">min.features</span> <span class="o">=</span> <span class="m">200</span><span class="p">)</span>
+<span class="c1"># parameter counts : input the &quot;raws gene expression marix&quot;</span>
+<span class="c1"># parameter project : input the &quot;name of our project&quot;</span>
+<span class="c1"># parameter min.cells : exclude some &quot;genes&quot; which are expressed in less than 3 cells</span>
+<span class="c1"># parameter min.features : exclude some &quot;cells&quot; which are expressing less then 200 genes</span>
+
+<span class="c1">## view the data</span>
+<span class="n">adata</span>
+
+<span class="c1">## An object of class Seurat </span>
+<span class="c1">## 19037 features across 5100 samples within 1 assay </span>
+<span class="c1">## Active assay: RNA (19037 features)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="data-pre-processing">
+<h2>4. Data pre-processing<a class="headerlink" href="#data-pre-processing" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>These workflow represent the selection and filtration of cells based on QC metrics, data normalization and data scaling, and the detection of highly variable genes.</p>
+<section id="qc-and-selecting-cells">
+<h3>4.1 QC and selecting cells<a class="headerlink" href="#qc-and-selecting-cells" title="Permalink to this headline">#</a></h3>
+<p>Seurat provides simple QC metrics and allow you to filter cells based on user-defined criterion. A few <a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4758103/">QC metrics</a> include commonly:</p>
+<ul class="simple">
+<li><p>The number of unique genes detected in each cell(each droplet):</p>
+<ul>
+<li><p>Low-quality cells or empty droplets will often have very few gene</p></li>
+<li><p>Cell doublets or multiplets may have an aberrantly high gene count</p></li>
+</ul>
+</li>
+<li><p>The above assumptions also apply to the total number of molecules in each cell(each droplet).</p></li>
+<li><p>The percentage of reads that map to the mitochondrial genome</p>
+<ul>
+<li><p>Low-quality or dying cells often exhibit extensive mitochondrial contamination</p></li>
+</ul>
+</li>
+</ul>
+<p>we call <code class="docutils literal notranslate"><span class="pre">PercentageFeatureSet</span></code> to caculate the percentage of mitochondrial genes. Mitochondrial genes are a set genes which can be captured by matching the prefix <code class="docutils literal notranslate"><span class="pre">MT-</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## caculate the percentage of mitochondrial genes</span>
+<span class="n">adata</span><span class="p">[[</span><span class="s">&quot;percent.mt&quot;</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="nf">PercentageFeatureSet</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                                             <span class="n">pattern</span> <span class="o">=</span> <span class="s">&quot;^MT-&quot;</span><span class="p">)</span>
+<span class="c1"># The [[ operator can add columns to object metadata. You can use &quot;adata[[]]&quot; to check object metadata.</span>
+<span class="c1"># parameter pattern : match regular expression. &quot;^MT-&quot; means that the gene with prefix &quot;MT-&quot;</span>
+
+<span class="c1">## function head() allow us to check the first 6 rows of data frame</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">adata</span><span class="p">[[]])</span>
+<span class="c1">##                   orig.ident nCount_RNA nFeature_RNA percent.mt</span>
+<span class="c1">## AAACCCAAGACAGCTG sc_tutorial       8384         2550   9.148378</span>
+<span class="c1">## AAACCCAAGTTAACGA sc_tutorial      11768         3017   6.296737</span>
+<span class="c1">## AAACCCACAGTCGCAC sc_tutorial       6947         2033   5.570750</span>
+<span class="c1">## AAACCCAGTAGCTTGT sc_tutorial       9354         2193   7.750695</span>
+<span class="c1">## AAACCCATCTGCCCTA sc_tutorial       8970         2630   7.781494</span>
+<span class="c1">## AAACGAAAGCAATTAG sc_tutorial       9291         2286  11.634916</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this data, we visualize the QC metric and use these filter cells.</p>
+<p><code class="docutils literal notranslate"><span class="pre">nCount_RNA</span></code> means that the total number of reads per cells map to the genome.
+<code class="docutils literal notranslate"><span class="pre">nFeature_RNA</span></code> means that the total number of genes expressed per cell.
+<code class="docutils literal notranslate"><span class="pre">percent.mt</span></code> means that the percentage of mitochondrial genes per cell.</p>
+<ul class="simple">
+<li><p>we filter cells that have nFeature_RNA over 5000</p></li>
+<li><p>we filter cells that have nFeature_RNA less than 200</p></li>
+<li><p>we filter cells that have <a class="reference external" href="http://percent.mt">percent.mt</a> over 20%</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## Check the distribution of the three QC metric</span>
+<span class="nf">VlnPlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+        <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;nFeature_RNA&quot;</span><span class="p">,</span> <span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span> <span class="s">&quot;percent.mt&quot;</span><span class="p">),</span> 
+        <span class="n">ncol</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/19.png" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## parameter</span>
+<span class="n">nfeature_min</span> <span class="o">=</span> <span class="m">200</span>
+<span class="n">nfeature_max</span> <span class="o">=</span> <span class="m">5000</span>
+<span class="n">percent_mt</span> <span class="o">=</span> <span class="m">20</span>
+
+<span class="c1">## Check the distribution of the three QC metric</span>
+<span class="n">plot1</span> <span class="o">&lt;-</span> <span class="nf">FeatureScatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">feature1</span> <span class="o">=</span> <span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span> <span class="n">feature2</span> <span class="o">=</span> <span class="s">&quot;percent.mt&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span> <span class="o">=</span> <span class="n">percent_mt</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;#ae0404&quot;</span><span class="p">)</span>
+
+<span class="n">plot2</span> <span class="o">&lt;-</span> <span class="nf">FeatureScatter</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">feature1</span> <span class="o">=</span> <span class="s">&quot;nCount_RNA&quot;</span><span class="p">,</span> <span class="n">feature2</span> <span class="o">=</span> <span class="s">&quot;nFeature_RNA&quot;</span><span class="p">)</span> <span class="o">+</span> 
+  <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span> <span class="o">=</span> <span class="n">nfeature_min</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;#04ae59&quot;</span><span class="p">)</span><span class="o">+</span> 
+  <span class="nf">geom_hline</span><span class="p">(</span><span class="n">yintercept</span> <span class="o">=</span> <span class="n">nfeature_max</span><span class="p">,</span> <span class="n">linetype</span><span class="o">=</span><span class="s">&quot;dotted&quot;</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">colour</span> <span class="o">=</span> <span class="s">&quot;#04ae59&quot;</span><span class="p">)</span>
+<span class="c1">## plot </span>
+<span class="nf">plot_grid</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span> <span class="n">plot2</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img src="./image/scRNA/2.png" alt="Drawing" style="zoom:50%" align="left"/>
+We can find that samples is 4591 now, before QC samples is 5100.<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## QC </span>
+<span class="c1"># 200&lt; nFeature_RNA &lt; 5000 &amp; percent.mt &lt; 20%</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">subset</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                <span class="n">subset</span> <span class="o">=</span> <span class="n">nFeature_RNA</span> <span class="o">&lt;</span> <span class="n">nfeature_max</span> <span class="o">&amp;</span> <span class="n">nFeature_RNA</span> <span class="o">&gt;</span> <span class="n">nfeature_min</span> <span class="o">&amp;</span> <span class="n">percent.mt</span> <span class="o">&lt;</span> <span class="n">percent_mt</span><span class="p">)</span>
+<span class="c1">## check data</span>
+<span class="n">adata</span>
+<span class="c1">## An object of class Seurat </span>
+<span class="c1">## 19037 features across 4591 samples within 1 assay </span>
+<span class="c1">## Active assay: RNA (19037 features)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="normalizing-the-data">
+<h3>4.2 Normalizing the data<a class="headerlink" href="#normalizing-the-data" title="Permalink to this headline">#</a></h3>
+<p>After moving unwanted cells, the next step is to normalize the data. We employ a global-scaling normalizaiton method <code class="docutils literal notranslate"><span class="pre">LogNormalize</span></code> that normalizes the feature expression measurements for each cell by the total expression, multiplies this by a <code class="docutils literal notranslate"><span class="pre">size</span> <span class="pre">factor</span></code>(10,000 by default), and log-transforms the result. Normalized values are stored in the <code class="docutils literal notranslate"><span class="pre">adata[[&quot;RNA&quot;]]&#64;data</span></code> which is another sparse matrix.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># normalizing data </span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">NormalizeData</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                       <span class="n">normalization.method</span> <span class="o">=</span> <span class="s">&quot;LogNormalize&quot;</span><span class="p">,</span> 
+                       <span class="n">scale.factor</span> <span class="o">=</span> <span class="m">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="identifying-high-variable-genes">
+<h3>4.3 Identifying high variable genes<a class="headerlink" href="#identifying-high-variable-genes" title="Permalink to this headline">#</a></h3>
+<p>We next caculate a subset of geens that exhibit high cell-to-cell variation in the data(they are highly expressed in some cells,and lowly expressed in others). The <a class="reference external" href="https://www.nature.com/articles/nmeth.2645">high varialble genes</a> can highlight biological signal in single-cell data. we can find high variable genes(HVGs) by calling FindVariableFeature() function. By default, we return <strong>top 3000 HVGs</strong> in single-cell data. These genes will be used in downstream analysis, like PCA. The resluts are stored in <code class="docutils literal notranslate"><span class="pre">adata[[&quot;RNA&quot;]]&#64;var.features</span></code>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">##  caculates hvgs in single-cell data</span>
+<span class="n">hvgs</span> <span class="o">=</span> <span class="m">3000</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">FindVariableFeatures</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                              <span class="n">selection.method</span> <span class="o">=</span> <span class="s">&quot;vst&quot;</span><span class="p">,</span> 
+                              <span class="n">nfeatures</span> <span class="o">=</span> <span class="n">hvgs</span><span class="p">)</span>
+<span class="c1"># &quot;vst&quot; is a method that model the mean-variance relationship in single-cell data.</span>
+<span class="c1"># parameter nfeatures is to select top genes</span>
+
+<span class="c1">## plot top 3000 HVGs</span>
+<span class="n">plot1</span> <span class="o">&lt;-</span> <span class="nf">VariableFeaturePlot</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+<span class="n">plot1</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/33.png" />
+</section>
+<section id="scaling-the-data">
+<h3>4.4 Scaling the data<a class="headerlink" href="#scaling-the-data" title="Permalink to this headline">#</a></h3>
+<p>Next, we apply a linear transformation(“scaling”) that is a standard pre-processing step prior to dimensional reduction techniques like PCA. The <code class="docutils literal notranslate"><span class="pre">scaleData</span></code> function:</p>
+<ul class="simple">
+<li><p>Shift the expression of each gene, so that the mean expressiong across cells is 0</p></li>
+<li><p>Scales the expression of each gene, so that the variance across cells is 1 The results are stored in the <code class="docutils literal notranslate"><span class="pre">adata[[&quot;RNA&quot;]]&#64;scale.data</span></code></p></li>
+<li><p>why? This step is to prevent some values that are too large to capture biological information stably. But there are also agruments that is better reuslt without scale.</p></li>
+</ul>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select top 3000 HVGs and perform the scale function</span>
+<span class="n">tgenes</span> <span class="o">&lt;-</span> <span class="n">adata</span><span class="p">[[</span><span class="s">&quot;RNA&quot;</span><span class="p">]]</span><span class="o">@</span><span class="n">var.features</span>
+<span class="c1"># tgenes &lt;- rownames(adata[[&quot;RNA&quot;]])</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">ScaleData</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                   <span class="n">features</span> <span class="o">=</span> <span class="n">tgenes</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Brief summary</strong></p>
+<p>In the data pre-processing workflow, we do</p>
+<ol class="simple">
+<li><p>QC and selecting cells This step is to remove th low-quality or outlier cells.</p></li>
+<li><p>Normalizing the data This step is to smooth gene expression, so that the highly-expressed genes are not “so high”</p></li>
+<li><p>Identifying high variable genes(feature selection) This step is to highlight biological signal in single-cell data</p></li>
+<li><p>Scaling the data This step gives equal weight in downstream analyses, so that highly-expressed genes do not dominate</p></li>
+</ol>
+</section>
+</section>
+<section id="linear-dimensional-reduction">
+<h2>5. Linear dimensional reduction<a class="headerlink" href="#linear-dimensional-reduction" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<section id="pca">
+<h3>5.1 PCA<a class="headerlink" href="#pca" title="Permalink to this headline">#</a></h3>
+<p>Next, we perform PCA on the <code class="docutils literal notranslate"><span class="pre">scale.data</span></code>. By default, only the previously detemined variable features are used as input. we select the top 3000 HVGs as input.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1">## perform the PCA by input top 3000 HVGs</span>
+<span class="c1"># tgenes &lt;- adata[[&quot;RNA&quot;]]@var.features</span>
+<span class="n">npcs</span> <span class="o">=</span> <span class="m">50</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">RunPCA</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                <span class="n">features</span> <span class="o">=</span> <span class="n">tgenes</span><span class="p">,</span>
+                <span class="n">npcs</span> <span class="o">=</span> <span class="n">npcs</span><span class="p">,</span> 
+                <span class="n">verbose</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+<span class="c1"># parameter features to input user-defined genes</span>
+<span class="c1"># parameter npcs, the number of PCA </span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="determine-dimensionality-of-pcs">
+<h3>5.2 Determine dimensionality of PCs<a class="headerlink" href="#determine-dimensionality-of-pcs" title="Permalink to this headline">#</a></h3>
+<p>PCA is feature selection techniques whose purpose is to reduce noise, extract features, data compression, increase computing speed and so on. Each PC is linear combination that combines information across a correlated gene set. The top PCs therefore represent a robust comprassion of the dataset. How many components should we choose to include? 10? 20? 100? We can call function ElblowPlot to generates a elbow plot: a ranking of the PCs based on the percentages of variance. In this dataset, we can observe an “elbow” around PC20, suggesting that the majority features are captured in the first 20 PCs.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata &lt;- JackStraw(adata, num.replicate = 100, dims = 30)</span>
+<span class="nf">ElbowPlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+          <span class="n">ndims</span> <span class="o">=</span> <span class="n">npcs</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/43.png" />
+</section>
+</section>
+<section id="clustering">
+<h2>6. Clustering<a class="headerlink" href="#clustering" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>Seurat applies a graph-based clustering approach. 1. They first construct a NN graph based on the Euclidean distance in PCA space, and refine the edge weights between any two cells based on the shared overlap in their local neighborhoods. Call <code class="docutils literal notranslate"><span class="pre">FindNeighbors()</span></code> to construct a NN graph. 2. To cluster the cells, they apply the modularity optimization algorithm ( <a class="reference external" href="https://iopscience.iop.org/article/10.1088/1742-5468/2008/10/P10008/fulltext/">Louvain algorithm</a>, default) to cluster the cells. We can call <code class="docutils literal notranslate"><span class="pre">FindClusters()</span></code> to do this step. And a parameter <code class="docutils literal notranslate"><span class="pre">resolution</span></code> is set in the <code class="docutils literal notranslate"><span class="pre">FindClusters()</span></code>, with increased values leading to a greater number of clusters.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># selcet the first 10 PCs</span>
+<span class="n">pcs</span> <span class="o">=</span> <span class="m">20</span>
+<span class="c1"># create nn graph </span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">FindNeighbors</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                       <span class="n">dims</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">pcs</span><span class="p">,</span> 
+                       <span class="n">k.param</span> <span class="o">=</span> <span class="m">20</span><span class="p">)</span>
+<span class="c1"># louvain cluster</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">FindClusters</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+                      <span class="n">resolution</span> <span class="o">=</span> <span class="m">0.4</span><span class="p">)</span>
+
+<span class="c1">## Modularity Optimizer version 1.3.0 by Ludo Waltman and Nees Jan van Eck</span>
+<span class="c1">## </span>
+<span class="c1">## Number of nodes: 4591</span>
+<span class="c1">## Number of edges: 162469</span>
+<span class="c1">## </span>
+<span class="c1">## Running Louvain algorithm...</span>
+<span class="c1">## Maximum modularity in 10 random starts: 0.9151</span>
+<span class="c1">## Number of communities: 13</span>
+<span class="c1">## Elapsed time: 0 seconds</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># check the metadata</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">adata</span><span class="p">[[]])</span>
+
+<span class="c1">##                   orig.ident nCount_RNA nFeature_RNA percent.mt</span>
+<span class="c1">## AAACCCAAGACAGCTG sc_tutorial       8384         2550   9.148378</span>
+<span class="c1">## AAACCCAAGTTAACGA sc_tutorial      11768         3017   6.296737</span>
+<span class="c1">## AAACCCACAGTCGCAC sc_tutorial       6947         2033   5.570750</span>
+<span class="c1">## AAACCCAGTAGCTTGT sc_tutorial       9354         2193   7.750695</span>
+<span class="c1">## AAACCCATCTGCCCTA sc_tutorial       8970         2630   7.781494</span>
+<span class="c1">## AAACGAAAGCAATTAG sc_tutorial       9291         2286  11.634916</span>
+<span class="c1">##                  RNA_snn_res.0.4 seurat_clusters</span>
+<span class="c1">## AAACCCAAGACAGCTG               2               2</span>
+<span class="c1">## AAACCCAAGTTAACGA               1               1</span>
+<span class="c1">## AAACCCACAGTCGCAC               0               0</span>
+<span class="c1">## AAACCCAGTAGCTTGT               8               8</span>
+<span class="c1">## AAACCCATCTGCCCTA               6               6</span>
+<span class="c1">## AAACGAAAGCAATTAG               6               6</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization-tabset-tabset-fade-tabset-pills">
+<h2>7. Visualization {.tabset .tabset-fade .tabset-pills}<a class="headerlink" href="#visualization-tabset-tabset-fade-tabset-pills" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>Seurat offers several <strong>non-linear dimensional reduction techniques</strong>, such as tSNE and UMAP, to visualize and explore these datasets. The goal of these algorithms is to learn the underlying manifold of the data in order to place similar cells together in low-dimensional space.</p>
+<section id="call-function-runumap">
+<h3>call function <code class="docutils literal notranslate"><span class="pre">RunUMAP</span></code><a class="headerlink" href="#call-function-runumap" title="Permalink to this headline">#</a></h3>
+<p>If you haven’t installed UMAP, you can do so via <code class="docutils literal notranslate"><span class="pre">reticulate::py_install(packages</span> <span class="pre">=</span> <span class="pre">'umap-learn')</span></code></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># UMAP</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">RunUMAP</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span>
+                 <span class="n">dims</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">pcs</span><span class="p">)</span>
+<span class="c1"># individual clusters </span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">DimPlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+              <span class="n">reduction</span> <span class="o">=</span> <span class="s">&quot;umap&quot;</span><span class="p">,</span> 
+              <span class="n">label</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+<span class="nf">ggplotly</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="jupyter" src="../../_images/53.png" /></p>
+</section>
+<section id="call-function-runtsne">
+<h3>call function <code class="docutils literal notranslate"><span class="pre">RunTSNE</span></code><a class="headerlink" href="#call-function-runtsne" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># TSNE</span>
+<span class="n">adata</span> <span class="o">&lt;-</span> <span class="nf">RunTSNE</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span>
+                 <span class="n">dims</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="n">pcs</span><span class="p">)</span>
+<span class="c1"># individual clusters </span>
+<span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">DimPlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+              <span class="n">reduction</span> <span class="o">=</span> <span class="s">&quot;tsne&quot;</span><span class="p">,</span> 
+              <span class="n">label</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+ 
+<span class="nf">ggplotly</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="jupyter" src="../../_images/63.png" /></p>
+</section>
+</section>
+<section id="differentially-expressed-genes">
+<h2>8. Differentially expressed genes<a class="headerlink" href="#differentially-expressed-genes" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>Seurat can help you find markers that define clusters via differential expression.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># find markers for every cluster compared to all remaining cells, report only the positive ones</span>
+<span class="n">adata_marker</span> <span class="o">&lt;-</span> <span class="nf">FindAllMarkers</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span>
+                               <span class="n">only.pos</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+                               <span class="n">min.pct</span> <span class="o">=</span> <span class="m">0.25</span><span class="p">,</span>
+                               <span class="n">logfc.threshold</span> <span class="o">=</span> <span class="m">0.25</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>DoHeatmap generates an expression heatmap for given cells and features. In this case, we are plotting the top 10 markers (or all markers if less than 10) for each cluster.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># select top 10 markers for each cluster.</span>
+<span class="n">top10</span> <span class="o">&lt;-</span> <span class="n">adata_marker</span> <span class="o">%&gt;%</span> <span class="nf">group_by</span><span class="p">(</span><span class="n">cluster</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">top_n</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">wt</span> <span class="o">=</span> <span class="n">avg_logFC</span><span class="p">)</span>
+<span class="c1"># heatmap the top 10 markers for each cluster.</span>
+<span class="nf">DoHeatmap</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+          <span class="n">features</span> <span class="o">=</span> <span class="n">top10</span><span class="o">$</span><span class="n">gene</span><span class="p">,</span> 
+          <span class="n">raster</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span>
+          <span class="n">label</span> <span class="o">=</span> <span class="bp">F</span><span class="p">,</span>
+          <span class="n">size</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">+</span> 
+  <span class="nf">theme</span><span class="p">(</span><span class="n">axis.text.y</span> <span class="o">=</span> <span class="nf">element_blank</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/73.png" />
+</section>
+<section id="identify-the-cell-types-tabset-tabset-fade-tabset-pills">
+<h2>9. Identify the cell types {.tabset .tabset-fade .tabset-pills}<a class="headerlink" href="#identify-the-cell-types-tabset-tabset-fade-tabset-pills" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>In this PBMC data, we can use the canonical markers to identify cell types and to mach the cell clusters.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><font size=4>Cell Clusters</font></p></th>
+<th class="head"><p><font size=4>Gene Markers</font></p></th>
+<th class="head"><p><font size=4>Cell Types</font></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><font size=4>5,6</font></p></td>
+<td><p><font size=4>MS4A1</font></p></td>
+<td><p><font size=4>B</font></p></td>
+</tr>
+<tr class="row-odd"><td><p><font size=4>4</font></p></td>
+<td><p><font size=4>GNLY, NKG7</font></p></td>
+<td><p><font size=4>NK</font></p></td>
+</tr>
+<tr class="row-even"><td><p><font size=4>1</font></p></td>
+<td><p><font size=4>CD14, LYZ</font></p></td>
+<td><p><font size=4>CD14+ Mono</font></p></td>
+</tr>
+<tr class="row-odd"><td><p><font size=4>0,8,9</font></p></td>
+<td><p><font size=4>IL7R, CCR7</font></p></td>
+<td><p><font size=4>Naive CD4+T</font></p></td>
+</tr>
+<tr class="row-even"><td><p><font size=4>10,12</font></p></td>
+<td><p><font size=4>FCER1A, CST3</font></p></td>
+<td><p><font size=4>DC</font></p></td>
+</tr>
+<tr class="row-odd"><td><p><font size=4>7</font></p></td>
+<td><p><font size=4>MS4A7, FCGR3A</font></p></td>
+<td><p><font size=4>FCGR3A+ Mono</font></p></td>
+</tr>
+<tr class="row-even"><td><p><font size=4>3</font></p></td>
+<td><p><font size=4>IL7R, S100A4</font></p></td>
+<td><p><font size=4>Memory CD4+</font></p></td>
+</tr>
+<tr class="row-odd"><td><p><font size=4>2</font></p></td>
+<td><p><font size=4>CD8A</font></p></td>
+<td><p><font size=4>CD8+ T</font></p></td>
+</tr>
+<tr class="row-even"><td><p><font size=4>11</font></p></td>
+<td><p><font size=4>PPBP</font></p></td>
+<td><p><font size=4>Platelet</font></p></td>
+</tr>
+</tbody>
+</table>
+<section id="b-and-nk">
+<h3>B and NK<a class="headerlink" href="#b-and-nk" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># B, NK </span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+            <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;MS4A1&quot;</span><span class="p">,</span> <span class="c1"># B</span>
+                         <span class="s">&quot;GNLY&quot;</span><span class="p">,</span> <span class="s">&quot;NKG7&quot;</span><span class="p">),</span> <span class="c1"># NK</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">),</span> 
+            <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/82.png" />
+</section>
+<section id="cd14-mono-and-naive-cd4-t">
+<h3>CD14+Mono and Naive CD4+T<a class="headerlink" href="#cd14-mono-and-naive-cd4-t" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># CD14+Mono, Naive CD4+T</span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+            <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;CD14&quot;</span><span class="p">,</span> <span class="s">&quot;LYZ&quot;</span><span class="p">,</span> <span class="c1"># CD14+Mono</span>
+                         <span class="s">&quot;IL7R&quot;</span><span class="p">,</span> <span class="s">&quot;CCR7&quot;</span><span class="p">),</span> <span class="c1"># Naive CD4+T</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">),</span> 
+            <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/91.png" />
+</section>
+<section id="dc-and-fcgr3a-mono">
+<h3>DC and FCGR3A+ Mono<a class="headerlink" href="#dc-and-fcgr3a-mono" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># DC, FCGR3A+ Mono</span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+            <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;FCER1A&quot;</span><span class="p">,</span> <span class="s">&quot;CST3&quot;</span><span class="p">,</span> <span class="c1"># DC </span>
+                         <span class="s">&quot;MS4A7&quot;</span><span class="p">,</span> <span class="s">&quot;FCGR3A&quot;</span><span class="p">),</span> <span class="c1"># FCGR3A+ Mono</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">),</span> 
+            <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/101.png" />
+</section>
+<section id="memory-cd4-cd8-t-and-platelet">
+<h3>Memory CD4+, CD8+ T and Platelet<a class="headerlink" href="#memory-cd4-cd8-t-and-platelet" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Memory CD4+, CD8+ T, Platelet</span>
+<span class="nf">FeaturePlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+            <span class="n">features</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;IL7R&quot;</span><span class="p">,</span> <span class="s">&quot;S100A4&quot;</span><span class="p">,</span> <span class="c1"># Memory CD4+</span>
+                         <span class="s">&quot;CD8A&quot;</span><span class="p">,</span> <span class="c1"># CD8+T</span>
+                         <span class="s">&quot;PPBP&quot;</span><span class="p">),</span> <span class="c1"># Platelet</span>
+            <span class="n">cols</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;grey&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">,</span> <span class="s">&quot;red&quot;</span><span class="p">),</span> 
+            <span class="n">ncol</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/112.png" />
+</section>
+</section>
+<section id="plotting-the-cell-types">
+<h2>10. plotting the cell types<a class="headerlink" href="#plotting-the-cell-types" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>So we can plot the cell types labels on the each cluster</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="p">[[</span><span class="s">&quot;cell_types&quot;</span><span class="p">]]</span> <span class="o">&lt;-</span> <span class="s">&quot;undetermined&quot;</span>
+<span class="n">adata</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">cell_labels</span> <span class="o">&lt;-</span>  <span class="nf">as.character</span><span class="p">(</span><span class="n">adata</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">seurat_clusters</span><span class="p">)</span>
+<span class="n">celltype_list</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="s">&quot;Naive CD4+ T&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;0&quot;</span><span class="p">,</span><span class="s">&quot;8&quot;</span><span class="p">,</span><span class="s">&quot;9&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;Memory CD4+&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;CD14+ Mono&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;B&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;5&quot;</span><span class="p">,</span><span class="s">&quot;6&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;CD8+ T&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;FCGR3A+ Mono&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;7&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;NK&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;4&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;DC&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;10&quot;</span><span class="p">,</span><span class="s">&quot;12&quot;</span><span class="p">),</span>
+                     <span class="s">&quot;Platelet&quot;</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="s">&quot;11&quot;</span><span class="p">))</span>
+<span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="nf">names</span><span class="p">(</span><span class="n">celltype_list</span><span class="p">)){</span>
+  <span class="n">adata</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">cell_types</span><span class="p">[</span><span class="n">adata</span><span class="o">@</span><span class="n">meta.data</span><span class="o">$</span><span class="n">cell_labels</span> <span class="o">%in%</span> <span class="n">celltype_list</span><span class="p">[[</span><span class="n">i</span><span class="p">]]]</span> <span class="o">&lt;-</span> <span class="n">i</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">p1</span> <span class="o">&lt;-</span> <span class="nf">DimPlot</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> 
+              <span class="n">reduction</span> <span class="o">=</span> <span class="s">&quot;umap&quot;</span><span class="p">,</span> 
+              <span class="n">label</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> 
+              <span class="n">group.by</span> <span class="o">=</span> <span class="s">&quot;cell_types&quot;</span><span class="p">)</span>
+<span class="nf">ggplotly</span><span class="p">(</span><span class="n">p1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p><img alt="jupyter" src="../../_images/121.png" /></p>
+</section>
+<section id="enrichment-analysis-tabset-tabset-fade-tabset-pills">
+<h2>11. Enrichment Analysis {.tabset .tabset-fade .tabset-pills}<a class="headerlink" href="#enrichment-analysis-tabset-tabset-fade-tabset-pills" title="Permalink to this headline">#</a></h2>
+<hr class="docutils" />
+<p>We have to transform the gene <code class="docutils literal notranslate"><span class="pre">SYMBOL</span></code> to <code class="docutils literal notranslate"><span class="pre">ENTREZID</span></code> before enrichment</p>
+<section id="go-enrichment">
+<h3>GO enrichment<a class="headerlink" href="#go-enrichment" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># At first, we select the some cluster to do GO analysis</span>
+<span class="c1"># 11:Platelet, 2:CD8+ T</span>
+<span class="n">marker</span> <span class="o">&lt;-</span> <span class="n">adata_marker</span><span class="p">[</span><span class="nf">as.character</span><span class="p">(</span><span class="n">adata_marker</span><span class="o">$</span><span class="n">cluster</span><span class="p">)</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;2&quot;</span><span class="p">,</span><span class="s">&quot;11&quot;</span><span class="p">),</span> <span class="p">]</span>
+<span class="n">marker</span><span class="o">$</span><span class="n">cluster</span> <span class="o">&lt;-</span> <span class="nf">as.character</span><span class="p">(</span><span class="n">marker</span><span class="o">$</span><span class="n">cluster</span><span class="p">)</span>
+<span class="n">marker</span> <span class="o">&lt;-</span>  <span class="nf">split</span><span class="p">(</span><span class="n">marker</span><span class="o">$</span><span class="n">gene</span><span class="p">,</span> <span class="n">marker</span><span class="o">$</span><span class="n">cluster</span><span class="p">)</span>
+
+<span class="c1"># we can select the top 100 genes.</span>
+<span class="c1"># t100 &lt;- adata_marker %&gt;% group_by(cluster) %&gt;% top_n(n = 100, wt = avg_logFC)</span>
+<span class="c1"># t100 &lt;- split(top20$gene, top20$cluster)</span>
+<span class="n">entrezid</span> <span class="o">&lt;-</span>  <span class="nf">lapply</span><span class="p">(</span><span class="n">marker</span><span class="p">,</span> <span class="nf">function</span><span class="p">(</span><span class="n">gr</span><span class="p">)</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">bitr</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">fromType</span> <span class="o">=</span> <span class="s">&quot;SYMBOL&quot;</span><span class="p">,</span> <span class="n">toType</span> <span class="o">=</span> <span class="s">&quot;ENTREZID&quot;</span><span class="p">,</span> <span class="n">OrgDb</span> <span class="o">=</span> <span class="s">&quot;org.Hs.eg.db&quot;</span><span class="p">)</span><span class="o">$</span><span class="n">ENTREZID</span><span class="p">))</span>
+
+<span class="c1"># PBMC GO</span>
+<span class="n">pvalueCutoff</span> <span class="o">=</span> <span class="m">0.01</span>
+<span class="n">qvalueCutoff</span> <span class="o">=</span> <span class="m">0.01</span>
+<span class="n">pbmc_go</span> <span class="o">&lt;-</span> <span class="nf">compareCluster</span><span class="p">(</span><span class="n">entrezid</span><span class="p">,</span>
+                          <span class="n">OrgDb</span><span class="o">=</span><span class="s">&#39;org.Hs.eg.db&#39;</span><span class="p">,</span>
+                          <span class="n">fun</span><span class="o">=</span><span class="s">&#39;enrichGO&#39;</span><span class="p">,</span>
+                          <span class="n">pvalueCutoff</span> <span class="o">=</span> <span class="n">pvalueCutoff</span><span class="p">,</span>
+                          <span class="n">qvalueCutoff</span> <span class="o">=</span> <span class="n">qvalueCutoff</span><span class="p">,</span>
+                          <span class="n">ont</span> <span class="o">=</span> <span class="s">&quot;BP&quot;</span><span class="p">,</span>
+                          <span class="n">readable</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="c1"># plot the go </span>
+<span class="nf">dotplot</span><span class="p">(</span><span class="n">pbmc_go</span><span class="p">,</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PBMC Gene Ontology (qval &lt; &quot;</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/131.png" />
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># view the go table data</span>
+<span class="n">go_table</span> <span class="o">=</span> <span class="n">pbmc_go</span><span class="o">@</span><span class="n">compareClusterResult</span>
+<span class="nf">datatable</span><span class="p">(</span><span class="n">go_table</span><span class="p">,</span> <span class="n">filter</span><span class="o">=</span><span class="s">&quot;top&quot;</span><span class="p">,</span> <span class="n">options</span><span class="o">=</span><span class="nf">list</span><span class="p">(</span><span class="n">pageLength</span> <span class="o">=</span> <span class="m">10</span><span class="p">))</span>
+<span class="c1"># we can save the GO table as the .html file</span>
+<span class="c1"># datatable(go_table, filter=&quot;top&quot;, options=list(pageLength = 10)) %&gt;% saveWidget(&quot;pbmc_go.html&quot;)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pa-enrichment">
+<h3>PA enrichment<a class="headerlink" href="#pa-enrichment" title="Permalink to this headline">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># And then we can do the pathway analysis</span>
+<span class="n">pbmc_pa</span><span class="o">&lt;-</span> <span class="nf">compareCluster</span><span class="p">(</span><span class="n">entrezid</span><span class="p">,</span>
+                         <span class="n">organism</span> <span class="o">=</span> <span class="s">&quot;human&quot;</span><span class="p">,</span>
+                         <span class="n">fun</span><span class="o">=</span><span class="s">&#39;enrichPathway&#39;</span><span class="p">,</span>
+                         <span class="n">pvalueCutoff</span> <span class="o">=</span> <span class="n">pvalueCutoff</span><span class="p">,</span>
+                         <span class="n">qvalueCutoff</span> <span class="o">=</span> <span class="n">qvalueCutoff</span><span class="p">,</span>
+                         <span class="n">readable</span><span class="o">=</span><span class="bp">T</span><span class="p">)</span>
+<span class="c1"># plot the PA </span>
+<span class="nf">dotplot</span><span class="p">(</span><span class="n">pbmc_pa</span><span class="p">,</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&quot;PBMC Pathway (qval &lt; &quot;</span><span class="p">,</span> <span class="n">qvalueCutoff</span><span class="p">,</span> <span class="s">&quot;)&quot;</span><span class="p">))</span>
+
+<span class="c1"># pa_table = pbmc_pa@compareClusterResult</span>
+</pre></div>
+</div>
+</div>
+</div>
+<img alt="Drawing" class="align-left" src="../../_images/141.png" />
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "r"
+        },
+        kernelOptions: {
+            kernelName: "ir",
+            path: "./chapt/转录组分析"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'ir'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="scRNA_mapping.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">单细胞测序比对流程</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">空间转录组</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

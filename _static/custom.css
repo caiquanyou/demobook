@@ -1,0 +1,764 @@
+
+/* ################################################## */
+/**           MEDIA QUERY WIDTH > 1405px             **/
+/* ################################################## */
+
+@media (min-width: 1405px) {
+    div.container-xl, .container {
+        max-width: 100% !important;
+        padding-left: 0 !important;
+    }
+    div#site-navigation {
+        max-width: 320px;
+        padding: 2rem;
+        transition: all 0.2s ease 0s;
+    }
+    div#site-navigation {
+        margin-bottom: 0 !important;
+        margin-top: 20px;
+    }
+    div#main-content {
+        padding-top: 25px;
+        min-height: 97vh;
+    }
+    button#navbar-toggler {
+        margin-left: 3px !important;
+        outline:none
+    }
+    div.topbar-contents div.site-navigation {
+        display: none;
+    }
+    div.topbar .topbar-main {
+        padding-right: 10px;
+    }
+    footer,
+    
+    #site-navigation {
+        display: flex;
+        flex-direction: column;
+    }
+    #site-navigation nav#bd-docs-nav {
+        flex-grow: 1;
+    }
+}
+
+
+div#site-navigation img.logo{
+    width: 260px !important;
+    margin: 0 !important;
+}
+
+div#site-navigation a.navbar-brand,
+div#site-navigation .navbar-brand-box {
+    width: auto;
+}
+
+div#site-navigation li.active {
+    border-left: 0 !important
+}
+
+#prev-link, #next-link {
+    border-radius: 20px;
+    border: 0;
+    padding: 10px 20px;
+}
+
+#prev-link:hover, #next-link:hover {
+    text-decoration: none;
+    box-shadow: 3px 3px 11px #421C6E;
+}
+
+
+footer.footer p:not(:first-child) {
+    display: none;
+}
+
+.card.setHeight .cardLabel {
+    display: table-cell;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+.card.setHeight {
+    min-height: 145px;
+}
+
+.card.setHeight .card-header{
+    padding:0 !important
+}
+
+.card.setHeight .card-header h4{
+    padding: 10px;
+    width:100%;
+    height:100%;
+}
+
+.card.setHeight .card-body {
+    font-weight: bold;
+    text-align: center;
+}
+
+
+/* ################################################## */
+/**                   EASY COLORS                    **/
+/* ################################################## */
+
+/** BORDERS **/
+hr,
+li.c-sidebar__divider {
+  border-top: 1px solid #fc7a4a;
+}
+
+li.active {
+    border-left: 1px solid #fc7a4a;
+}
+
+img.imageez {
+	border: 1px solid black !important;
+}
+
+details table tr td,
+details table tr th,
+#authors table tr td,
+#authors table tr th{
+    border-top: 1px solid #fc7a4a;
+}
+
+#authors table tr th,
+details table tr th {
+    border-bottom: 1px solid #fc7a4a;
+}
+
+#authors table tbody,
+details table tbody {
+    border-right: 1px solid #fc7a4a;
+    border-bottom: 1px solid #fc7a4a;
+}
+
+#authors table,
+details table{
+    display: table;
+    border-left: 1px solid #fc7a4a;
+}
+
+div.topbar div.bd-toc {
+    // border-left: 1px solid #fc7a4a !important;
+    margin-left: 1rem;
+}
+nav#bd-toc-nav li.active,
+nav#bd-toc-nav a.active {
+    border-left: 1px solid #FFFFFF !important;
+}
+
+div.topbar div.tocsection {
+    color:#333;
+    min-height: 50px;
+    border-left: 1px solid #0072BC;
+    //border: 0 !important;
+}
+
+.c-page__nav,
+.c-page__nav__next,
+.c-page__nav__prev{
+	border-color: darkgrey;
+}
+
+.card.FAIRcard #findablePrinciple .bigLetter {
+    border-color: #fc7a4a;
+}
+
+.card.FAIRcard #accessiblePrinciple .bigLetter {
+    border-color: #8038D1;
+}
+
+.card.FAIRcard #interoperablePrinciple .bigLetter {
+    border-color: #300861;
+}
+
+.card.FAIRcard #reusablePrinciple .bigLetter {
+    border-color: #7E0038;
+}
+
+.card.FAIRcard .cardTitle p {
+    margin-bottom: 0;
+}
+
+.miniCards .FAIRcard .bigLetter {
+    padding: 10px 0 0 0 !important;
+    height: 60px;
+    width: 60px;
+    text-align: center;
+    margin-right: 0;
+}
+
+.miniCards .FAIRcard .cardTitle {
+    padding-left: 15px;
+}
+
+.miniCards .FAIRcard .card-header {
+    overflow: hidden;
+    word-break: break-word;
+    padding: 10px;
+}
+
+@media (max-width: 1481px) {
+    .miniCards .FAIRcard .cardTitle * {
+        font-size: 1.2rem;
+    }
+}
+
+img.avatar-style {
+    border: 4px solid #fc7a4a;
+    display: block;
+    margin: auto;
+}
+
+
+/** TEXT COLORS **/
+li.toc-list-item__active,
+a.toc-linknode-name--H2,
+code,
+.c-sidebar__entry--active.c-sidebar__entry--active,
+ul.toc__menu a {
+	color: #E83E8C;
+}
+
+
+li.toc-list-item-active,
+li.toc-list-itme-active,
+span.caption-text {
+	color: #444444;
+    text-transform: none;
+    font-size: 0.97rem;
+    font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
+    letter-spacing: 0.5px;
+}
+
+
+main.c-textbook__page {
+   color:black;
+}
+
+div.col-12.col-md-3.bd-sidebar.site-navigation.show,
+nav.c-textbook__sidebar {
+    color:gray;
+}
+
+#prev-link, #next-link {
+    color: white !important;
+}
+
+#authors table tr th,
+details table tr th {
+    color: white;
+    background: #fc7a4a;
+    border-bottom: 0 !important;
+    min-width: 100px;
+}
+
+
+/** BACKGROUND COLORS **/
+nav.c-textbook__sidebar,
+div.col-12.col-md-3.bd-sidebar.site-navigation.show {
+  background-image: linear-gradient(#f1f1f1, #f1f1f1);
+}
+
+
+.card.setHeight .card-body {
+    background: #F1F1F1;
+}
+
+div.topbar {
+    position: fixed;
+    background: #EFEFEF;
+    z-index: 2001;
+    height: 50px;
+}
+
+
+/* ################################################## */
+/**                  RECIPE CARDS                    **/
+/* ################################################## */
+
+
+.bd-topbar-whitespace {
+    max-height:45px;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(1.5em + 0.75rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #EFEFEF;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.bd-toc-item.active {
+    /* margin-bottom: 1rem; */
+    padding: 1.5rem;
+    padding-top: 0rem;
+    padding-bottom: 0rem;
+}
+
+#navbar-toggler {
+    position: inherit;
+    margin-right: 0.4em;
+    margin-left: 0.5em;
+    color: #5A5A5A;
+    transition: all 0.2s ease-in-out;
+    font-size: 1.2rem;
+    -webkit-text-stroke: 1.5px #EFEFEF;
+    outline:none;
+}
+
+main.bd-content #main-content>div>div>div.section, main.bd-content #main-content .prev-next-bottom {
+    padding-right: 1em;
+    // padding-left: 1em;
+    padding-top: 0.5em;
+}
+
+p {
+    text-align: justify;
+    font-size: 0.92em;
+    color: #444;
+    line-height: 1.8rem;
+}
+
+div.cell_output table.dataframe {
+    /* make pandas dataframes smaller */
+    font-size: 80%;
+}
+
+h3 {
+    font-size: 1.45em;
+}
+
+
+h2 {
+
+    font-size: 1.9em;
+    font-weight: 500;
+    margin-bottom: 1.2em;
+}
+
+h1 {
+  font-size: 2.3em;
+    color: #0072BC;
+    font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
+    font-weight: 500;
+    margin-bottom: 1em;
+}
+
+.qe-sidebar {
+    top: 0px;
+    left: 0px;
+    z-index: 1;
+    background-color: #efefef;
+    padding: 2rem;
+    margin: 0;
+    border-right: 1px solid #ccc;
+    width: 250px;
+    transform: translate3d(0px, 0px, 0px);
+    visibility: visible;
+    transition: all 0.2s ease 0s;
+    height: 100vh;
+    overflow-y: scroll;
+    position: fixed;
+    padding-top: 5rem;
+}
+
+.bd-toc nav>.nav {
+    border-left: 1px solid #eee;
+    padding-top: 0.5rem;
+}
+
+.bd-toc .toc-entry a {
+    padding: 0.125rem 1.5rem !important;
+    margin-top: 0.2rem;
+}
+
+.bd-toc .tocsection {
+    padding: 0.7rem 0 0.5rem 1rem !important;
+}
+
+
+.topbar, .topbar-contents, .topbar-main {
+    height: 50px;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+
+.bd-search {
+    position: relative;
+    padding: 1rem 15px;
+    margin-right: -15px;
+    margin-left: 2px;
+    margin-top: -5px;
+}
+
+.bd-search .icon {
+    position: absolute;
+    color: #a4a6a7;
+    left: 25px;
+    top: 27px;
+}
+
+img{
+    vertical-align: middle;
+
+}
+
+svg {
+    vertical-align: middle;
+    height: 20px;
+    width: 20px;
+    outline:none;
+}
+
+
+#navbar-toggler i {
+    transition: opacity .3s, transform .3s;
+    position: absolute;
+    top: 13%;
+    left: 0;
+    display: block;
+    font-size: 1.02em;
+    padding-top: inherit;
+}
+
+@media (min-width: 768px){
+#navbar-toggler i.fa-arrow-left {
+    display: inherit;
+    padding-left: 0.3rem;
+}}
+
+
+#navbar-toggler i.fa-bars {
+    opacity: 0;
+    transform: rotate(
+180deg) scale(0.5);
+    padding-left: 0.3rem;
+}
+
+/*去掉左边留白*/
+.container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+    width: 100%;
+    padding-right: 15px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@media (min-width: 768px){
+.bd-sidebar {
+    // max-width: 320px;
+}}
+
+
+@media (min-width: 1600px){
+div#site-navigation {
+    max-width: 350px;
+}}
+
+#site-navigation nav ul.nav li a, #site-navigation nav ul.nav ul li a {
+    font-size: 0.88rem;
+    color: #5a5a5a;
+    letter-spacing: 0.1px;
+    font-family: PingFang SC,Hiragino Sans GB,Arial,Microsoft YaHei,Verdana,Roboto,Noto,Helvetica Neue,sans-serif;
+}
+
+footer {
+    // width: 72.2%;
+    // border-top: 1.5px solid gray;
+    border-top: 5px solid #0072bc;
+    padding: 1rem 0 0 0;
+    opacity: 0.9;
+    // margin: 2rem;
+}
+
+#site-navigation div.navbar_extra_footer {
+    text-align: center;
+    font-size: .9em;
+    color: #5a5a5a;
+    margin-bottom: 1em;
+}
+
+/*收回目录不折叠*/
+#site-navigation.collapse {
+    visibility: hidden;
+    margin-left: 0px;
+    opacity: 0;
+    display: block;
+    transform: translate3d(-100%, 0px, 0px);
+    transition: all 0.2s ease 0s;
+}
+
+#site-navigation.collapse.show {
+    visibility: visible;
+    margin-left: 0;
+    opacity: 1;
+    transform: translate3d(0px, 0px, 0px);
+    transition: all 0.2s ease 0s;
+}
+
+
+#site-navigation nav ul.nav a:hover, #site-navigation nav ul.nav li.active>a, #site-navigation nav ul.nav li.active>a:hover {
+    color: rgba(var(--pst-color-sidebar-link-active),1);
+}
+
+main.bd-content #main-content h1, main.bd-content #main-content h2, main.bd-content #main-content h3, main.bd-content #main-content h4, main.bd-content #main-content h5 {
+    color: #0072BC;
+}
+
+main.bd-content #main-content h3, main.bd-content #main-content h4, main.bd-content #main-content h5 {
+    color: #333333;
+}
+
+main.bd-content #main-content a, main.bd-content #main-content a:visited {
+    color: #0072BC;
+}
+
+body div.cell div.cell_input {
+    border-left-color: #0072bc;
+}
+
+div.dropdown-buttons-trigger div.dropdown-buttons button.topbarbtn {
+    padding-top: 0.35rem;
+    padding-bottom: 0.35rem;
+    min-width: 120px !important;
+    border: 1px white solid !important;
+    background-color: #5a5a5a;
+    color: white;
+    font-size: 0.8em;
+}
+
+.qe-page__toc-footer {
+	position: sticky;
+	top: 6rem;
+	// margin: 2rem 0 0 0;
+	font-size: 0.9rem
+}
+
+.qe-page__toc-footer a {
+	color: #444;
+	opacity: 0.8;
+	text-decoration: none
+}
+
+.qe-page__toc-footer a:hover {
+	color: #0072bc;
+	opacity: 1
+}
+
+。powered {
+	font-size: 0.8rem
+}
+
+cite, code, tt {
+    letter-spacing: 0.01rem;
+    font-style: normal;
+    // border: 1px solid #cccccc;
+    // border-radius: 4px;
+    padding: 1.5px 3px;;
+    overflow-wrap: break-word;
+}
+
+
+
+
+.qe-page__header {
+    border-bottom: 5px solid #0072bc;
+    // width: 72.2%;
+    // margin: 2rem;
+    margin-bottom: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.main-index .qe-page__header {
+	display: none
+}
+
+.qe-page__header-copy {
+	display: flex
+}
+
+@media (max-width:768px) {
+	.qe-page__header-copy {
+		flex-direction: column-reverse
+	}
+
+}
+
+.qe-page__header-heading {
+    margin: 0 0.5rem 0 0;
+	font-weight: 700;
+	flex-shrink: 0
+}
+
+.qe-page__header-heading a {
+	color: #444 !important
+}
+
+@media (max-width:768px) {
+	.qe-page__header-heading {
+		font-weight: 400;
+		font-size: 0.9rem
+	}
+
+}
+
+.qe-page__header-subheading {
+	margin: 0
+}
+
+@media (max-width:768px) {
+	.qe-page__header-subheading {
+		margin: 0 0 0.5rem 0;
+		font-weight: 700
+	}
+
+}
+
+.qe-page__header-authors {
+	margin: 0.25rem 0 0 0;
+	font-size: 0.8rem
+}
+
+@media (max-width:768px) {
+	.qe-page__header-authors {
+		font-size: 0.8rem
+	}
+
+}
+
+
+main.bd-content #main-content {
+    padding-top: 1em;
+}
+
+main.bd-content #main-content .prev-next-bottom .right-next .prevnext-title, main.bd-content #main-content .prev-next-bottom .left-prev .prevnext-title {
+    font-size: 1em;
+    color: rgba(var(--pst-color-link), 1);
+    font-weight: 500;
+}
+
+.bd-toc .nav .nav {
+    display: block;
+}
+
+blockquote {
+    margin: 1rem 0;
+    padding: 0.2em 1.5em;
+    border-left: 5px solid #1665ad;
+}
+
+blockquote div>p {
+    margin-bottom: 0.5em;
+    color: #6a737d;
+}
+
+@media (min-width: 720px){
+.pl-md-3, .px-md-3 {
+    padding-left: 1rem!important;
+    padding-right: 2rem !important;
+    padding-top: 2rem;
+}}
+
+
+.bd-sidebar label i {
+    display: inline-block;
+    font-size: .75rem;
+    text-align: center;
+    opacity: 0.7;
+}
+
+
+.bd-toc .nav .nav .nav {
+    display: none;
+}
+
+.table td, .table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+    width: 400px;
+}
+
+th > :last-child, td > :last-child {
+    margin-bottom: 0px;
+}
+
+div.figure> a > img{
+    border: 2px solid #6C6C6C;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+#site-navigation h1.site-logo {
+    margin: 0.5em 0 0 0;
+    font-size: 1.1em;
+    color: black;
+    text-align: center;
+    display: none;
+}
+
+
+/* ###############0414修改a标签高亮####################### */
+a:hover {
+    color: #004979 !important;
+}
+/* ################################################## */
+
+/* ###############0415修改右侧目录字体大小####################### */
+.toc-h2 {
+    font-size: .85rem;
+}
+/* ################################################## */
+
+/* ###############0415修改正文和目录的边距####################### */
+/* ###############还需要修改1447行####################### */
+.bd-toc {
+    overflow-y: unset;
+    margin-top: 3em;
+    margin-left: 2.5em;
+}
+
+/* 设置表格样式 */
+/* TABLES
+=============================================================================*/
+table {
+    width: 100%; /*表格宽度*/
+    max-width: 65em; /*表格最大宽度，避免表格过宽*/
+    border: 1px solid #dedede; /*表格外边框设置*/
+    margin: 15px auto; /*外边距*/
+    border-collapse: collapse; /*使用单一线条的边框*/
+    empty-cells: show; /*单元格无内容依旧绘制边框*/
+}
+table th {
+    white-space: nowrap; /*表头内容强制在一行显示*/
+    font-weight: bold; /*加粗*/
+    text-align: center; /*内容居中，加上 !important 避免被 Markdown 样式覆盖*/
+    background: rgba(158,188,226,0.2); /*背景色*/
+}
+table td {
+  box-sizing: border-box;
+  text-align: center;/*表格文字居中*/
+}
+table tbody tr:nth-child(2n) {
+    background: rgba(158,188,226,0.12); /*设置偶数行背景颜色*/
+}
+table tr:hover {
+    background: #efefef; /*鼠标悬停颜色*/
+}
+table td:nth-child(1) {
+    white-space: nowrap; 
+}

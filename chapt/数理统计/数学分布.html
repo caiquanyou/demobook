@@ -1,0 +1,1460 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>数学分布(汇总) &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="高等数学基础" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html" />
+    <link rel="prev" title="R可视化" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   数理统计基础
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/数理统计/数学分布.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   目的：
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   0. 基础概念：
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     0.1.离散型随机变量：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     0.2.连续型随机变量：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     0.3.统计分布的均值和方差的计算公式：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     0.4.多元高斯分布的小结：
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standardized-gaussian-distribution">
+       0.4.1.标准高斯分布（一元）：Standardized Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gaussian-distribution">
+       0.4.2.一般高斯分布（一元）：Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multivariate-gaussian-distribution">
+       0.4.3.独立分多元高斯分布：Multivariate Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#decorrelation">
+       0.5.去相关性的推导 decorrelation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standard-deviation-and-standard-error-of-mean">
+       0.6. standard deviation and standard error of mean
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bernoulli-distribution">
+   1. 伯努利分布 Bernoulli Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binomial-distribution">
+   2. 二项分布 Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#negative-binomial-distribution">
+   3. 负二项分布 Negative Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-distribution">
+   4. 泊松分布 Poisson Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-distribution">
+   5. 指数分布 Exponential Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gamma-distribution">
+   6. 伽马分布 Gamma Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   7.待续
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>数学分布(汇总)</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   目的：
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   0. 基础概念：
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     0.1.离散型随机变量：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     0.2.连续型随机变量：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     0.3.统计分布的均值和方差的计算公式：
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     0.4.多元高斯分布的小结：
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standardized-gaussian-distribution">
+       0.4.1.标准高斯分布（一元）：Standardized Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#gaussian-distribution">
+       0.4.2.一般高斯分布（一元）：Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#multivariate-gaussian-distribution">
+       0.4.3.独立分多元高斯分布：Multivariate Gaussian Distribution
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#decorrelation">
+       0.5.去相关性的推导 decorrelation
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#standard-deviation-and-standard-error-of-mean">
+       0.6. standard deviation and standard error of mean
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#bernoulli-distribution">
+   1. 伯努利分布 Bernoulli Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#binomial-distribution">
+   2. 二项分布 Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#negative-binomial-distribution">
+   3. 负二项分布 Negative Binomial Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson-distribution">
+   4. 泊松分布 Poisson Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#exponential-distribution">
+   5. 指数分布 Exponential Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#gamma-distribution">
+   6. 伽马分布 Gamma Distribution
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id8">
+   7.待续
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>数学分布(汇总)<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>by hjfeng&#64;<a href="https://github.com/fenghuijian" target="_blank"><img alt="https://img.shields.io/github/stars/fenghuijian?style=social" src="https://img.shields.io/github/stars/fenghuijian?style=social" /></a></p>
+<section id="id2">
+<h2>目的：<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<p>由于现在对于数学中随机变量的分布知道的太少，如果将来要自己写代码可能会受到影响。所以计划将之前遇到过的数据分布汇总，并作出详细的解释。<strong>所以本文会出现大量的公式，希望可以做形象的解释，并联系到能解什么问题</strong>。同时，希望本文可以持续的更新，学习更多有趣的东西。</p>
+<p><strong>有机会在把分布对应的检验方法讲一下</strong></p>
+<p>那么就直接进入主题。。。</p>
+<p><strong>参考资料：</strong></p>
+<p>概率论与数理统计（陈希孺）</p>
+<p>Hand-book on STATISTICAL DISTRIBUTIONS for experimentalists</p>
+<p>PROBABILITY AND MATHEMATICAL STATISTICS</p>
+<p>Introduction to Probability</p>
+</section>
+<section id="id3">
+<h2>0. 基础概念：<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<section id="id4">
+<h3>0.1.离散型随机变量：<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<p><a class="reference external" href="https://www.jianshu.com/p/b570b1ba92bb">参考网址</a></p>
+<blockquote>
+<div><p>研究一个随机变量，不只是要看它能取哪些值，更重要的是它取各种值的概率如何！</p>
+</div></blockquote>
+<ul>
+<li><p><strong>概率函数</strong>：就是用<strong>函数的形式来表达概率。</strong></p>
+<p>也有称为<strong>概率质量函数</strong>， 离散随机变量在各特定取值上的概率：</p>
+</li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p_i 
+= P(X = a_i) \qquad (i = 1,2,3,4,5,6)  \tag{0.1.1}
+\]</div>
+<p>这个简单的概率函数中，自变量 <span class="math notranslate nohighlight">\(X\)</span> 是<strong>随机变量</strong>的<strong>取值</strong>，因变量<span class="math notranslate nohighlight">\(p_i\)</span>取值的<strong>概率</strong>。</p>
+<ul>
+<li><p><strong>概率分布</strong>：顾名思义就是<strong>概率的分布</strong></p>
+<p>以下的表可以叫作<strong>离散型随机变量的概率分布</strong>，严格来说叫做<strong>离散型随机变量的值分布和值的概率分布列表</strong>。列表中，<strong>是把所有的可能出现的情况都列出来，包括取值与取值对应的概率</strong>，也就是所谓的<strong>概率分布。</strong></p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="head"><p><span class="math notranslate nohighlight">\(X\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_1\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_2\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_3\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(x_n\)</span></p></th>
+<th class="head"><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><span class="math notranslate nohighlight">\(p_i\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(p_1\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(p_2\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(p_3\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(p_n\)</span></p></td>
+<td><p><span class="math notranslate nohighlight">\(\ldots\)</span></p></td>
+</tr>
+</tbody>
+</table>
+</li>
+<li><p><strong>概率分布函数</strong>：就是把概率函数的取值的累加结果，也叫做<strong>累积概率函数</strong></p>
+<p><span class="math notranslate nohighlight">\(P\{X = X_i\} = p_i, i = 1,2,3,\ldots\)</span> ，则 ，<span class="math notranslate nohighlight">\(F(x) = P(X \leq x) = \sum_{x_i \leq x}\ P_i\)</span>。因为<span class="math notranslate nohighlight">\(F(x)\)</span>是<span class="math notranslate nohighlight">\(X\leq x\)</span>在的诸值<span class="math notranslate nohighlight">\(x_i\)</span>的概率之和，又<span class="math notranslate nohighlight">\(F(x)\)</span>称为<strong>累积概率函数</strong>。</p>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3>0.2.连续型随机变量：<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<p>连续型随机变量也有<strong>概率函数</strong>和<strong>概率分布函数</strong>，</p>
+<p>但是连续型随机变量的“概率函数“，换了名字，叫做<strong>概率密度函数</strong>。</p>
+<p><strong>概率分布函数</strong>也叫<strong>累积概率函数</strong></p>
+<p><img alt="概率密度函数和累积概率函数" src="chapt/数理统计/B:/Mathematical_Model/Mathematical_Distribution/pictures/p1.PNG" /></p>
+</section>
+<section id="id6">
+<h3>0.3.统计分布的均值和方差的计算公式：<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ol>
+<li><p>均值（means）：用来描述样本集合的中间点</p>
+<p>离散型随机变量：设<span class="math notranslate nohighlight">\(P(x)\)</span>是<strong>离散型概率质量函数</strong>，其均值被定义为：</p>
+<div class="math notranslate nohighlight">
+\[
+   {\Bbb E}(x)
+   = \sum_{k = 1}^\infty x_kp_k \tag{0.3.1}
+   \]</div>
+<p>连续型随机变量：设<span class="math notranslate nohighlight">\(P(x)\)</span>是<strong>连续型概率密度函数</strong>，其均值被定义为：</p>
+<div class="math notranslate nohighlight">
+\[
+   {\Bbb E}(x)
+   = \int_{-\infty}^{+\infty} xp(x) \, {\rm d}x \tag{0.3.2}
+   \]</div>
+<p>性质：1，线性运算；2，函数期望；3，乘积期望</p>
+</li>
+<li><p>方差（variance）：用来描述样本的离散程度。</p>
+<p>方差是一种特殊的期望：</p>
+<div class="math notranslate nohighlight">
+\[
+   {\Bbb D}(x)
+   = {\Bbb E} ((x - {\Bbb E}(x))^2) \tag{0.3.3}
+   \]</div>
+<p>离散型方差：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+   {\Bbb D}(x) &amp;=&amp; {\Bbb E}((x - {\Bbb E}(x))^2) \\
+   &amp;=&amp; \sum_{i = 1}^n (x_i - {\Bbb E}(x))^2 P(x_i) \\
+   &amp;=&amp; \sum_{i = 1}^n (P_i \cdot x_i^2) - {\Bbb E}^2(x) \\
+   &amp;=&amp; {\Bbb E}(x^2) - {\Bbb E}^2(x) \tag{0.3.4}
+   \end{align} 
+   \end{split}\]</div>
+<p>连续型方差：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+  \begin{align}
+   {\Bbb D}(x) &amp;=&amp; \sigma \\
+   &amp;=&amp; \int_{-\infty}^{+\infty} ((x - {\Bbb E}(x))^2p(x) \, {\rm d}x) \\
+   &amp;=&amp; \int_{-\infty}^{+\infty} x^2p(x) \, {\rm d}x - {\Bbb E}^2 (x) \\
+   &amp;=&amp; {\Bbb E}(x^2) - {\Bbb E}^2(x) \tag{0.3.5}
+   \end{align} 
+   \end{split}\]</div>
+<p>两种不同随机变量的计算方法基本上是一样。接下来我们推到方差的计算公式：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   {\Bbb D}(X) &amp;=&amp; {\Bbb E}\{(X - {\Bbb E}(X))^2\} \\
+   &amp;=&amp; {\Bbb E}\{X^2 - 2X{\Bbb E}(X) + [{\Bbb E}(X)]^2\} \\
+   &amp;=&amp; {\Bbb E}(X^2) - {\Bbb E}[2X{\Bbb E}(X)] + 
+   {\Bbb E}[{\Bbb E}^2(X)] \\
+   &amp;=&amp; {\Bbb E}(X^2) - 2{\Bbb E}(X){\Bbb E}(X) + {\Bbb E}^2(X) \\
+   &amp;=&amp; {\Bbb E}(X^2) - {\Bbb E}^2(X) \tag{0.3.6}
+   \end{align} 
+   \end{split}\]</div>
+</li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<section id="id7">
+<h3>0.4.多元高斯分布的小结：<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h3>
+<section id="standardized-gaussian-distribution">
+<h4>0.4.1.标准高斯分布（一元）：Standardized Gaussian Distribution<a class="headerlink" href="#standardized-gaussian-distribution" title="Permalink to this headline">#</a></h4>
+<p><strong>概率密度函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[
+f(x) 
+= \frac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}} \tag{0.4.1}
+\]</div>
+</section>
+<section id="gaussian-distribution">
+<h4>0.4.2.一般高斯分布（一元）：Gaussian Distribution<a class="headerlink" href="#gaussian-distribution" title="Permalink to this headline">#</a></h4>
+<p><strong>概率密度函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[
+f(x) 
+= \frac{1}{\sqrt{2\pi} \cdot \sigma} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \tag{0.4.2}
+\]</div>
+<p>我们可以利用z-score的方法，一般的高斯分布进行标准化，<span class="math notranslate nohighlight">\(z = \frac{x - \mu}{\sigma}\)</span> 这种标准化的方法。可以将原始的分布转化为标准正态分布。</p>
+</section>
+<section id="multivariate-gaussian-distribution">
+<h4>0.4.3.独立分多元高斯分布：Multivariate Gaussian Distribution<a class="headerlink" href="#multivariate-gaussian-distribution" title="Permalink to this headline">#</a></h4>
+<p><strong>推导公式的过程：理解（在机器学习中，这个多元的高斯分布是很重要的，以这个多元高斯分布理解，有助于我们理解其他类型的多元分布。</strong></p>
+<ol>
+<li><p>先假<span class="math notranslate nohighlight">\(n\)</span>个变量 <span class="math notranslate nohighlight">\(\vec{x} = [x_1, x_2, x_3,\cdots,x_n ]^T\)</span>他们的分量各自<strong>互不相关</strong>， 而且每个分量服从正态分布的（维度不相关的多元正态分布），各个维度的均值<span class="math notranslate nohighlight">\({\Bbb E}(x) = [\mu_1,\mu_2,\mu_3,\cdots,\mu_n]^T\)</span>。标准差为<span class="math notranslate nohighlight">\(\sigma(x) = [\sigma_1,\sigma_2,\sigma_3,\cdots,\sigma_n]^T\)</span>。</p></li>
+<li><p>我们再根据<strong>联合概率密度公式</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   f(x) 
+   &amp;=&amp; p(x_1, x_2, x_3, \cdots, x_n) \\
+   &amp;=&amp; p(x_1)p(x_2)p(x_3) \cdots p(x_n) \\
+   &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\sigma_1\sigma_2\sigma_3\cdots\sigma_n}
+   e^{{-\frac{(x_1-\mu_1)^2}{2\sigma_1^2}}{-\frac{(x_2-\mu_2)^2}{2\sigma_2^2}}{-\frac{(x_3-\mu_3)^2}{2\sigma_3^2}}\cdots {-\frac{(x_n-\mu_n)^2}{2\sigma_n^2}}} \tag{0.4.3}
+   \end{eqnarray} 
+   \end{split}\]</div>
+<p>当我们令：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   z^2 &amp;=&amp; {\frac{(x_1-\mu_1)^2}{2\sigma_1^2}} + {\frac{(x_2-\mu_2)^2}{2\sigma_2^2}} + {\frac{(x_3-\mu_3)^2}{2\sigma_3^2}}\cdots + {\frac{(x_n-\mu_n)^2}{2\sigma_n^2}} \\
+   \sigma_z &amp;=&amp; \sigma_1\sigma_2\sigma_3\cdots\sigma_n \tag{0.4.4}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>这样的多元正态分布又可以写成一元那种漂亮的形式</p>
+<div class="math notranslate nohighlight">
+\[
+   f(z) = \frac{1}{(\sqrt{2\pi})^n\sigma_z}e^{-\frac{z^2}{2}} \tag{0.4.5}
+   \]</div>
+<p>因为多元正态分布有着很强的<strong>几何思想</strong>，代数的角度我们很难看出<span class="math notranslate nohighlight">\(z\)</span>的概率分布规律，但是转化为矩阵的形式就可能比较好一点：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   z^2 &amp;=&amp; z^Tz  \tag{0.4.6} \\
+   &amp;=&amp; 
+   [x_1-\mu_1, x_2-\mu_2, x_3-\mu_3, \cdots, x_n-\mu_n] \begin{bmatrix} 
+   \frac{1}{\sigma_1^2} &amp; 0 &amp; \cdots &amp; 0 \\
+   0 &amp; \frac{1}{\sigma_2^2} &amp; 0 &amp; 0 \\
+   0 &amp; 0 &amp; \frac{1}{\sigma_3^2} &amp; 0 \\
+   \vdots &amp; \cdots &amp; \cdots &amp;\vdots \\
+   0 &amp; 0 &amp; 0 &amp; \frac{1}{\sigma_n^2}
+   \end{bmatrix}
+   [x_1-\mu_1, x_2-\mu_2, x_3-\mu_3, \cdots, x_n-\mu_n] ^T
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>这样的公式比较长，我们继续做一个变量的替换，</p>
+<div class="math notranslate nohighlight">
+\[
+   \vec{x} - \vec{\mu_x} = [x_1-\mu_1, x_2-\mu_2,x_3-\mu_3,\cdots,x_n-\mu_n]^T \tag{0.4.7}
+   \]</div>
+<p>定义一个符号<span class="math notranslate nohighlight">\(\Sigma\)</span> , 它为多维变量 <span class="math notranslate nohighlight">\(\vec{x}\)</span> 的<strong>协方差矩阵</strong>。因为<span class="math notranslate nohighlight">\(\vec{x}\)</span>各个分量是相互独立的所以，除了对角元素之外，其他的值都是为0；对角元素为<span class="math notranslate nohighlight">\(x_i\)</span>的方差。矩阵的i行j列的元素值表示<span class="math notranslate nohighlight">\(x_i\)</span> 和 <span class="math notranslate nohighlight">\(x_j\)</span> 的<strong>协方差</strong>。协方差是用来描述两个变量之间的相关程度，这个概念有这样的解释。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \Sigma =
+      \begin{bmatrix} 
+      \sigma_1^2 &amp; 0 &amp; \cdots &amp; 0 \\
+      0 &amp; \sigma_2^2 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; \sigma_3^2 &amp; 0 \\
+      \vdots &amp; \cdots &amp; \cdots &amp;\vdots \\
+      0 &amp; 0 &amp; 0 &amp; \sigma_n^2 
+      \end{bmatrix}
+   \end{split}\]</div>
+<p>那么它对应的<strong>逆矩阵</strong>为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \Sigma^{-1} = 
+      \begin{bmatrix} 
+      \frac{1}{\sigma_1^2} &amp; 0 &amp; \cdots &amp; 0 \\
+      0 &amp; \frac{1}{\sigma_2^2} &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; \frac{1}{\sigma_3^2} &amp; 0 \\
+      \vdots &amp; \cdots &amp; \cdots &amp;\vdots \\
+      0 &amp; 0 &amp; 0 &amp; \frac{1}{\sigma_n^2} 
+      \end{bmatrix}
+   \end{split}\]</div>
+<p>对角矩阵的<strong>行列式</strong> = <strong>对角元素</strong>的乘积：</p>
+<div class="math notranslate nohighlight">
+\[
+   \mid \Sigma \mid 
+      = \sigma_1^2 \sigma_2^2 \sigma_3^2 \cdots \sigma_n^2 \tag{0.4.10}
+   \]</div>
+<p>所以有：</p>
+<div class="math notranslate nohighlight">
+\[
+   \sigma_z 
+      = \mid \Sigma \mid^{\frac{1}{2}} 
+      = \sqrt{\mid \Sigma \mid}
+      = \sqrt{\sigma_1^2 \sigma_2^2 \sigma_3 ^2 \cdots \sigma_n^2}
+      = \sigma_1 \sigma_2 \sigma_3 \cdots \sigma_n \tag{0.4.11}
+   \]</div>
+<p>利用上述公式<span class="math notranslate nohighlight">\((0.4.5), (0.4.6),(0.4.11)\)</span>我们可以得到</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+      z^Tz &amp;=&amp; (\vec{x} - \vec{\mu_x})^T \Sigma^{-1} (\vec{x} - \vec{\mu_x}) \tag{0.4.6} \\
+      \sigma_z &amp;=&amp; \mid \Sigma \mid^{\frac{1}{2}} \tag{0.4.11} \\
+      \\
+      f(z) &amp;=&amp; \frac{1}{(\sqrt{2\pi})^n\sigma_z}e^{-\frac{z^2}{2}} \tag{0.4.5} \\
+      \downarrow &amp;\downarrow&amp; \downarrow \\
+      f(\vec{x}) &amp;=&amp; \frac{1}{(\sqrt{2\pi})^n\mid\Sigma\mid^{\frac{1}{2}}}
+      e^{-\frac{(\vec{x} - \vec{\mu_x})^T \Sigma^{-1} (\vec{x} - \vec{\mu_x})}{2}}  \tag{0.4.12}
+      \end{eqnarray}
+   \end{split}\]</div>
+<p>所以，现在的<span class="math notranslate nohighlight">\(f(\vec{x})\)</span> 为独立多元高斯分布的公式。</p>
+<p>注意一下前面的系数变化：</p>
+<p>1、从非标准正态分布 <span class="math notranslate nohighlight">\(\rightarrow\)</span>标准正态分布，需要<strong>概率密度函数</strong>的高度压缩<span class="math notranslate nohighlight">\(\mid \Sigma \mid^{\frac{1}{2}} \)</span>倍。</p>
+<p>2、从一维 <span class="math notranslate nohighlight">\(\rightarrow\)</span><span class="math notranslate nohighlight">\(n\)</span>维，<strong>每增加一维</strong>，高度将被压缩<span class="math notranslate nohighlight">\(\sqrt{2\pi}\)</span>倍。</p>
+<p><strong>前提条件是<span class="math notranslate nohighlight">\(\vec{x}\)</span>的各个分量是相互独立的。</strong></p>
+</li>
+<li><p><strong>有相关性的多元高斯分布</strong></p>
+<p>前面的多元正态分布的前提是多元变量之间是相互独立的，事实上，在很多的情况下，<strong>变量于变量之间是有关联的</strong>。</p>
+<p>当多元变量之间是由相关性的，那么可我们可以利用线性变换，将原来的变量转化为相互独立的新变量，一般来说变量是可以进行线性变换，从而将变量转化为相互独立的新变量。</p>
+<p>在<strong>去相关性的推导</strong>那部分已经说明了，相关性矩阵是可以进行decorrelation的操作的，而且是有解的。这个过程可以理解为，坐标轴的转换。</p>
+<p>以二维向量为例子。假设新坐标系为<span class="math notranslate nohighlight">\(x'_{1} =[u_{x1}^0, u_{x1}^1,]^T, \; x'_{2}=[u_{x2}^0, u_{x2}^1,]^T\)</span>那么原坐标系上的任意一点<span class="math notranslate nohighlight">\([x_1, x_2]^T\)</span>投影到新的坐标系上的结果为：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{bmatrix}
+   x'_{1} \\ 
+   x'_{2} \\ 
+   \end{bmatrix} 
+   =
+   \begin{bmatrix}
+   u_{x1}^0 &amp; u_{x1}^1 \\ 
+   u_{x2}^0 &amp; u_{x2}^1 \\ 
+   \end{bmatrix}
+   \begin{bmatrix}
+   x_1 \\ 
+   x_2 \\ 
+   \end{bmatrix}
+   \end{split}\]</div>
+<p>所以我们可以定义一个变换矩阵<span class="math notranslate nohighlight">\(U\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   U = 
+   \begin{bmatrix}
+   u_{x1}^0 &amp; u_{x2}^0 \\ 
+   u_{x1}^1 &amp; u_{x2}^1 \\ 
+   \end{bmatrix}
+   \end{split}\]</div>
+<p><span class="math notranslate nohighlight">\(U\)</span>的列空间有新坐标向量组成，坐标映射之后：<span class="math notranslate nohighlight">\(X' = U^{T}X\)</span></p>
+<p>那么我们现在的<span class="math notranslate nohighlight">\(X'\)</span>就是相互独立的了，满足了维度不相关的高斯分布模型，我们就可以套用公式了：</p>
+<div class="math notranslate nohighlight">
+\[
+   \begin{eqnarray}
+   f(\vec{x}) &amp;=&amp; \frac{1}{(\sqrt{2\pi})^n\mid\Sigma\mid^{\frac{1}{2}}}
+      e^{-\frac{(\vec{x} - \vec{\mu_x})^T \Sigma^{-1} (\vec{x} - \vec{\mu_x})}{2}} \tag{0.4.12}
+   \end{eqnarray}
+   \]</div>
+<p><span class="math notranslate nohighlight">\(\vec{x} \to \vec{x'}\)</span>和<span class="math notranslate nohighlight">\(\vec{\mu_{x} }\to \vec{\mu_{x'}}\)</span>，这两个参数的转变是比较简单的，对<span class="math notranslate nohighlight">\(\Sigma'\)</span>是未知，它是<span class="math notranslate nohighlight">\(X'\)</span>的协方差矩阵，我们从定义出发，求解出<span class="math notranslate nohighlight">\(\Sigma'\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   \vec{x} \to \vec{x'}, &amp;\quad&amp; \vec{x'} = U^{T}\vec{x} \tag{0.4.13} \\
+   \vec{\mu_{x}} \to \vec{\mu_{x'}}, &amp;\quad&amp; \vec{\mu_{x'}} = {\Bbb E}(U^{T}\vec{x}) = U^T{\Bbb E}(\vec{x}) = U^{T}\vec{\mu_{x}} \tag{0.4.14}
+   \end{eqnarray}
+   \end{split}\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   {\Bbb D}(X') 
+   &amp;=&amp; {\Bbb E}[(X' - \mu_{X'})(X' - \mu_{X'})^{T}] \\
+   &amp;=&amp; {\Bbb E}[(X' - \mu_{X'})(X'^{T} - \mu_{X'}^{T})] \\
+   &amp;=&amp; {\Bbb E}[X'X'^{T} - \mu_{X'}X'^{T} - X'\mu_{X'}^{T} + \mu_{X'}\mu_{X'}^{T}] \\
+   &amp;=&amp; {\Bbb E}[U^{T}XX^{T}U - {\Bbb E}[U^{T}X]X^{T}U - 
+   U^{T}X{\Bbb E}[U^{T}X]^{T} + {\Bbb E}[U^{T}X]{\Bbb E}[U^{T}X]^{T}] \\
+   &amp;=&amp; {\Bbb E}[U^{T}XX^{T}U - U^{T}{\Bbb E}[X]X^{T}U - 
+   U^{T}X{\Bbb E}[X]^{T}U + U^{T}{\Bbb E}[X]{\Bbb E}[X]^{T}U] \\
+   &amp;=&amp; U^{T}{\Bbb E}[XX^{T} - {\Bbb E}[X]X^{T} - X{\Bbb E}[X]^{T} + {\Bbb E}[X]{\Bbb E}[X]^{T}]U \\
+   &amp;=&amp; U^{T}{\Bbb D}(X) U  \tag{0.4.15}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>所以我们可以由上述公式得到：经过坐标映射后的协方差矩阵是满足关系：</p>
+<p>我们先整理一下<span class="math notranslate nohighlight">\(U\)</span>这个变换矩阵的特性，首先他是一个<strong>正交矩阵</strong>，<strong>列向量</strong>为<strong>单位向量</strong>。所以会有<span class="math notranslate nohighlight">\(U^{T} = U^{-1}\)</span>这样的特性。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   (\Sigma)_{\vec{x'}} &amp;=&amp; U^{T}(\Sigma)_{\vec{x}}U \tag{0.4.16} \\
+   (\Sigma)_{\vec{x'}} &amp;=&amp; U^{-1}(\Sigma)_{\vec{x}}U \tag{0.4.17} 
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>由<span class="math notranslate nohighlight">\((0.4.17)\)</span>我们可以得到<span class="math notranslate nohighlight">\((\Sigma)_{\vec{x'}}\)</span>和<span class="math notranslate nohighlight">\((\Sigma)_{\vec{x}}\)</span>是<strong>相似矩阵</strong>，而相似矩阵的<strong>行列式</strong>是相等的。即：</p>
+<div class="math notranslate nohighlight">
+\[
+   |(\Sigma)_{\vec{x'}}| = |(\Sigma)_{\vec{x}}| \tag{0.4.18}
+   \]</div>
+<p>另外，我们还可以推导出：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   (\Sigma)_{\vec{x'}}^{-1}
+   &amp;=&amp; (U^{T}(\Sigma)_{\vec{x}}U)^{-1} \\
+   &amp;=&amp; (U^{-1}(\Sigma)_{\vec{x}}U)^{-1} \\
+   &amp;=&amp; U^{-1}(\Sigma)_{\vec{x}}U \\
+   &amp;=&amp; U^{T}(\Sigma)_{\vec{x}}U \tag{0.4.19}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>有了上述的<span class="math notranslate nohighlight">\((0.4.13, \ 0.4.14, \ 0.4.16,\ 0.4.17, \ , 0.4.18, \ , 0.4.19)\)</span>我们就可以套入上面的独立的高斯分布的公式<span class="math notranslate nohighlight">\((0.4.12)\)</span>中了。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   f(\vec{x}) &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\mid(\Sigma)_{\vec{x}}\mid^{\frac{1}{2}}}
+   e^{-\frac{(\vec{x} - \vec{\mu_{x}})^{T}(\Sigma)_{x}^{-1} (\vec{x} - \vec{\mu_{x}})}{2}} \\
+   \downarrow &amp;\downarrow&amp; \downarrow \\
+   f(\vec{x'}) &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\mid(\Sigma)_{\vec{x'}}\mid^{\frac{1}{2}}}
+   e^{-\frac{(\vec{x'} - \vec{\mu_{x'}})^{T} (\Sigma)_{x'}^{-1} (\vec{x'} - \vec{\mu_{x'}})}{2}} \\
+   f(\vec{x}) &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\mid(\Sigma)_{\vec{x}}\mid^{\frac{1}{2}}}
+   e^{-\frac{(U^{T}\vec{x} - U^{T}\vec{\mu_{x}})^{T} 
+   U^{T}(\Sigma)_{x}^{-1}U (U^{T}\vec{x} - U^{T}\vec{\mu_{x}})}{2}} \\
+   f(\vec{x}) &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\mid(\Sigma)_{\vec{x}}\mid^{\frac{1}{2}}}
+   e^{-\frac{(\vec{x} - \vec{\mu_{x}})^{T}
+   UU^{T}(\Sigma)_{x}^{-1}U U^{T}(\vec{x} - \vec{\mu_{x}})}{2}} \\
+   f(\vec{x}) &amp;=&amp; 
+   \frac{1}{(\sqrt{2\pi})^n\mid(\Sigma)_{\vec{x}}\mid^{\frac{1}{2}}}
+   e^{-\frac{(\vec{x} - \vec{\mu_{x}})^{T}(\Sigma)_{x}^{-1} (\vec{x} - \vec{\mu_{x}})}{2}} \tag{0.4.12}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>显然，虽然我们通过了公式的推导，得到的结果依然是公式<span class="math notranslate nohighlight">\((0.4.12)\)</span>，<strong>所以多元高斯分布的一般形式是不区分当前的矩阵<span class="math notranslate nohighlight">\(X\)</span>是否独立</strong>，它适用于所有的多元高斯分布。但是推导的原理<strong>还是基于多元独立变量</strong>推导的，这是<strong>原则条件</strong>。</p>
+<p>总结一下：</p>
+<p>1、我们先是定义一个新的坐标系，通过矩阵<span class="math notranslate nohighlight">\(U^{T}\)</span>的映射，将原来的的元素映射得到新的坐标系，<strong>目的是去相关性</strong></p>
+<p>2、在新的坐标下，我们可以相应定义出新的期望，新的协方差，新的协方差的逆，它们都是可以通过<span class="math notranslate nohighlight">\(U\)</span>和<span class="math notranslate nohighlight">\(U^{T}\)</span>计算得到，当然我们是可以不用计算的。其实这个<span class="math notranslate nohighlight">\(U = E^{T}\)</span></p>
+<p>3、套用公式，我们得到的结果，其实与<span class="math notranslate nohighlight">\(U，U^{T}\)</span>无关的。为什么会这样？</p>
+<p>其实可以很好理解，首先我们的条件：概率模型在矩阵<span class="math notranslate nohighlight">\(X\)</span>的条件下，已经存在的，只是我们不知道长什么样子。但是它是客观存在的。</p>
+<p>所以在这样一个分布下，对应的点，不管更换怎么样的坐标系，其概率都是固定的，而且只会受到原来数据的影响。</p>
+</li>
+<li><p>待续</p></li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<section id="decorrelation">
+<h4>0.5.去相关性的推导 decorrelation<a class="headerlink" href="#decorrelation" title="Permalink to this headline">#</a></h4>
+<p>在数据分析中，我们遇到的很多数据都基本上是有相关性的，但是这样的相关性有好有坏，好处是，这样的相关性是反映了数据的真实情况。而坏处是，有相关性的数据，不利于我们进行分析，个人观点，相关性的数据是会将数据分析变复杂的，而且不好利用模型去分析。</p>
+<p>那么在这里简单学习一下去相关性 decorrelation的证明过程。<strong>由于网上找到的资料十分有限，（网上的资料那是真的少），所以这个推导过程还不是十分的完善：</strong></p>
+<p>对于一个<span class="math notranslate nohighlight">\(K\)</span>个维度，<span class="math notranslate nohighlight">\(n\)</span>个观测变量的矩阵<span class="math notranslate nohighlight">\(X\)</span>，它的协方差矩阵<span class="math notranslate nohighlight">\(\Sigma\)</span>如下：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\Sigma 
+&amp;=&amp; Cov(X) \\ 
+&amp;=&amp; {\Bbb E}(XX^T) \\
+&amp;\approx&amp; \frac{XX^T}{n} \tag{0.5.1}
+\end{eqnarray}
+\end{split}\]</div>
+<p>然后对协方差矩阵做特征值分解：Eigenvalue Decomposition</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+\Sigma &amp;=&amp; EDE^{-1} \tag{0.5.2} \\
+E^{-1}\Sigma E &amp;=&amp; D \tag{0.5.3} \\
+\end{eqnarray}
+\end{split}\]</div>
+<p>其中我们知道<span class="math notranslate nohighlight">\(E\)</span>为<span class="math notranslate nohighlight">\([K \times K]\)</span>的正交矩阵，<span class="math notranslate nohighlight">\(D\)</span>是对角矩<span class="math notranslate nohighlight">\([K \times K]\)</span>阵。</p>
+<p>那么我们现在的目的是让<span class="math notranslate nohighlight">\(X\)</span>这个有相关性的矩阵，经过线性变换，转化为一个没有相关性的矩阵<span class="math notranslate nohighlight">\(Y\)</span>。<strong>没有相关性矩阵<span class="math notranslate nohighlight">\(Y\)</span>的协方差矩阵是一个对角矩阵</strong>，那么怎么找到这样一个线性变换<span class="math notranslate nohighlight">\(W_D\)</span>呢，这就要利用我们上面的三个公式的特点了<span class="math notranslate nohighlight">\((0.5.1), \ (0.5.2), \ (0.5.3)\)</span>。</p>
+<p>显然<span class="math notranslate nohighlight">\(D\)</span>它是一个对角矩阵，所以我们可以想办法构建一个<span class="math notranslate nohighlight">\(W_D\)</span>：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+Y &amp;=&amp; W_D X \tag{0.5.4} \\
+\\
+D &amp;=&amp; Cov(Y) = {\Bbb E}(YY^T) \tag{0.5.5}) \\
+\\
+D &amp;=&amp; \frac{W_DX(W_DX)T}{n} \\
+&amp;=&amp; W_D\Sigma W_D^T \tag{0.5.6}
+\end{eqnarray}
+\end{split}\]</div>
+<p>根据公式<span class="math notranslate nohighlight">\((0.5.3)\)</span>, 同时我们知道</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+E^{-1} \Sigma E &amp;= &amp;W_D \Sigma W_D^T \tag{0.5.7} \\
+\end{eqnarray}
+\end{split}\]</div>
+<p>然后不知道怎么推导最后就得到了：</p>
+<div class="math notranslate nohighlight">
+\[
+W_D = E^T
+\]</div>
+<p>也就是说去相关性的那个变换矩阵就是<span class="math notranslate nohighlight">\(X\)</span>协方差矩阵的特征值分解得到的那个特征矩阵的转置。</p>
+</section>
+<section id="standard-deviation-and-standard-error-of-mean">
+<h4>0.6. standard deviation and standard error of mean<a class="headerlink" href="#standard-deviation-and-standard-error-of-mean" title="Permalink to this headline">#</a></h4>
+<p>这个内容是用来说一下standard deviation 和 standard error的区别，顺便吐槽一下，中文的翻译真的操蛋，还有一旦查询一些深一点的知识，中文资料是真的不可靠。</p>
+<ol>
+<li><p>SD是一个比较清晰的概念，<strong>它是用来描述总体（可以用来描述样本，其实在大数据上，个人认为总体和样本的界限分的不是很清晰）的离散程度</strong></p>
+<p>所以但是值得注意一下，自由度的<span class="math notranslate nohighlight">\(n-1\)</span>的问题，其实在大样本的情况下，这个问题就显得没那么重要了。</p>
+</li>
+<li><p>SE是一个比较蛋疼的概念，首先<strong>它是用来描述样本均值的离散程度</strong>，注意<strong>是样本均值</strong>。所以这样就与SD有了本质的区别了，<strong>SD是针对总体的</strong>，<strong>SE是针对样本均值的总体</strong>。</p>
+<p>计算的来源：</p>
+<p>首先我们要知道<strong>抽样是怎么来的</strong>。假设有总体mean为<span class="math notranslate nohighlight">\(\mu\)</span>，SD为<span class="math notranslate nohighlight">\(\sigma\)</span>。然后<span class="math notranslate nohighlight">\(X_1, X_2, X_3,\cdots, X_n\)</span>为我们从这个总体中随机抽样得到的<span class="math notranslate nohighlight">\(n\)</span>个独立的观测值，<strong>而这些观测值又是随机变量，只是这样的随机变量是我们已经知道的。</strong></p>
+<p>而这些随机变量的SD为<span class="math notranslate nohighlight">\(\sigma\)</span>，另外我们可以计算随机变量之和的方差：</p>
+<p><span class="math notranslate nohighlight">\(T = X_1+X_2+X_3+\cdots+X_n\)</span>的方差为<span class="math notranslate nohighlight">\(n\sigma^2\)</span>。</p>
+<p>而对于<strong>抽样样本的均值</strong>：<span class="math notranslate nohighlight">\(\frac{T}{n}\)</span>， 的方差为：<span class="math notranslate nohighlight">\(\frac{1}{n_2}n\sigma^2 = \frac{\sigma^2}{n}\)</span> ； 对应的SD为<span class="math notranslate nohighlight">\(\frac{\sigma}{\sqrt{n}}\)</span></p>
+<p>所以我们要理解SE，可以把他描述为对于<strong>样本均值的标准差</strong>，在做假设检验和区间估计我们处理的对象是<strong>样本均值</strong>，所以其对应的SD就是<span class="math notranslate nohighlight">\(\frac{\sigma}{\sqrt{n}}\)</span>，现在就对于SE有了一个比较清晰的理解。</p>
+<p>当然，我们是基本不知道总体mean为<span class="math notranslate nohighlight">\(\mu\)</span>，SD为<span class="math notranslate nohighlight">\(\sigma\)</span>。所以就会用样本均值的<span class="math notranslate nohighlight">\(\overline{x}\)</span>和样本SD的<span class="math notranslate nohighlight">\(s\)</span>来做估计，这个过程是不冲突的。</p>
+</li>
+<li><p>首先我们，</p></li>
+</ol>
+</section>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bernoulli-distribution">
+<h2>1. 伯努利分布 Bernoulli Distribution<a class="headerlink" href="#bernoulli-distribution" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>简介：</p>
+<p>伯努利分布 是一种<strong>离散分布</strong>,有两种可能的结果。</p>
+<p><strong>1</strong>表示成功，出现的概率为<span class="math notranslate nohighlight">\(p,\ 0&lt;p&lt;1\)</span></p>
+<p><strong>0</strong>表示失败，出现的概率为<span class="math notranslate nohighlight">\(q=1-p\)</span>。</p>
+</li>
+<li><p><strong>概率质量函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   p(r;p) = \begin{cases}
+   p&amp;if&amp;r=1&amp;(success)\\
+   1-p=q&amp;if&amp;r=0&amp;(failure)
+   \end{cases}
+   \end{split}\]</div>
+</li>
+<li><p>应用：</p>
+<p>这种分布在人工智能里很有用，比如你问机器今天某飞机是否起飞了，它的回复就是Yes或No，非常明确，这个分布在分类算法里使用比较多，因此在这里先学习 一下。</p>
+</li>
+<li><p>现在遇到有关<strong>伯努利分布</strong>的<strong>生物学数据分析的文章</strong>，在这里提一下<strong>scVI</strong>和<strong>ZIFA</strong>。</p></li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="binomial-distribution">
+<h2>2. 二项分布 Binomial Distribution<a class="headerlink" href="#binomial-distribution" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>简介：</p>
+<p>二项分布的基本描述：<strong>（离散型随机变量）</strong></p>
+<p>在每次独立试验中只有取两个值，表示成功的值的概率为<span class="math notranslate nohighlight">\(p\)</span>，那么表示试验不成功的概率为<span class="math notranslate nohighlight">\(1-p\)</span>。这样一种判断成功和失败的二值试验又叫做<strong>伯努利试验</strong>。</p>
+<p>在概率论和统计学里面，带有参数**<span class="math notranslate nohighlight">\(n\)</span>和<span class="math notranslate nohighlight">\(p\)</span>的二项分布**表示的是<span class="math notranslate nohighlight">\(n\)</span>次独立试验的成功次数的概率分布。</p>
+<p> </p>
+<p><strong>二项分布</strong>频繁地用于对以下描述的一种实验进行建模：</p>
+<p>从<strong>总数量大小为N</strong>的两个事物中进行<span class="math notranslate nohighlight">\(n\)</span>次放回抽样，以<strong>某一事物A</strong>为基准，计算成功抽取<strong>这个事物A</strong>的<strong>次数</strong>的<strong>概率</strong>。要注意的是必须进行的是<strong>放回抽样</strong>，对于<strong>不放回抽样我们一般用超几何分布来对这样的实验进行建模</strong>。</p>
+</li>
+<li><p>公式：</p>
+<p>一般来说，如果一个<strong>随机变量X</strong>满足二项分布的话，那么它一定有一个参数<span class="math notranslate nohighlight">\(n\inℕ\)</span>且还有一个参数<span class="math notranslate nohighlight">\(p\in [0,1]\)</span>。这样的话，我们可以把关于X的二项分布写成<span class="math notranslate nohighlight">\(X \thicksim B(n, p)\)</span>。</p>
+<p> </p>
+<p><strong>概率质量函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   p(r;n,p)=p(X=r)= \begin{pmatrix}n\\ r\end{pmatrix}
+   p^r(1-p)^{n-r} 
+   \end{split}\]</div>
+<p>其中，<span class="math notranslate nohighlight">\(r = 1,2,3,\ldots,n\)</span>，圆括号是组合的表示形式，组合的计算公式：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{pmatrix}n\\ r\end{pmatrix}=\frac{n!}{r!(n-r)!}
+   \end{split}\]</div>
+<p><strong>这个公式表示的从<span class="math notranslate nohighlight">\(n\)</span>个数中取<span class="math notranslate nohighlight">\(r\)</span>个数构成一个组合能有多少种不同的取法</strong>。整个二项分布我们可以描述为求<span class="math notranslate nohighlight">\(n\)</span>次独立的<strong>伯努利试验</strong>，<strong>成功r次的概率是多少</strong>。</p>
+</li>
+<li><p>二项分布的均值和方差公式：</p>
+<p>均值和方差：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{align}
+   E(r) &amp;=&amp; np \tag{2.3}\\
+   V(r) &amp;=&amp; np(1-p) \tag{2.4}
+   \end{align}
+   \end{split}\]</div>
+</li>
+<li><p>由于一次成功的概率是已知的，因此我们必须求出<span class="math notranslate nohighlight">\(n\)</span>次试验中，成功<span class="math notranslate nohighlight">\(r\)</span>次可能发生在哪次试验中，一共有多少种可能都要求出来，因此求的就是<span class="math notranslate nohighlight">\(n\)</span>取<span class="math notranslate nohighlight">\(k\)</span>组合数目。</p></li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="negative-binomial-distribution">
+<h2>3. 负二项分布 Negative Binomial Distribution<a class="headerlink" href="#negative-binomial-distribution" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>简介：</p>
+<p>负二项分布也是有<strong>伯努利试验</strong>得到的。<strong>（离散型随机变量）</strong></p>
+<p>伯努利试验哪（0-1，失败与成功）。所以对于描述<strong>成功</strong>和描述<strong>失败</strong>的时候可以对<strong>负二项分布</strong>提供两个方向的解释。</p>
+</li>
+<li><p>概率质量函数：对于<strong>成功</strong>的描述，<strong>其变量是<span class="math notranslate nohighlight">\(r\)</span>, <span class="math notranslate nohighlight">\(r\)</span>为试验的总数</strong>。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   P(X = r | k,p) &amp;=&amp; p(r;k,p)\\
+   &amp;=&amp; \begin{pmatrix}r-1\\ k-1\end{pmatrix} p^k(1-p)^{r-k} \tag{3.1}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>这个概率质量函数的意思是：<strong>进行了<span class="math notranslate nohighlight">\(r\)</span>伯努利试验的尝试，终于有<span class="math notranslate nohighlight">\(k\)</span>次实验是成功的, <span class="math notranslate nohighlight">\(p\)</span>是成功事件的概率.</strong></p>
+<p><strong>根据这样的解释，我们不难发现，第<span class="math notranslate nohighlight">\(k\)</span>次是必定发生成功事件的，在<span class="math notranslate nohighlight">\(r-1\)</span>次做<span class="math notranslate nohighlight">\(k-1\)</span>次的组合</strong></p>
+<p>所以可以把上面的公式还原最初的来源的形式：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   p(r;k,p)&amp;=&amp;\begin{pmatrix}r-1\\ k-1\end{pmatrix}p^k(1-p)^{r-k}\\
+   &amp;=&amp;\begin{pmatrix}r-1\\ k-1\end{pmatrix}p^{k-1}(1-p)^{(r-1)-(k-1)}p \tag{3.2}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p>概率质量函数：对于<strong>失败</strong>的描述， <strong>其变量为<span class="math notranslate nohighlight">\(n\)</span>， <span class="math notranslate nohighlight">\(n\)</span>为失败的次数</strong></p>
+<p>这个概率质量函数的意思是：<strong>进行了<span class="math notranslate nohighlight">\(r\)</span>伯努利试验的尝试，终于有<span class="math notranslate nohighlight">\(k\)</span>次实验是成功的, <span class="math notranslate nohighlight">\(p\)</span>是成功事件的概率.</strong></p>
+<p><strong>根据这样的解释，我们不难发现，第<span class="math notranslate nohighlight">\(k\)</span>次是必定发生成功事件的，令在这之前经历过的失的次数<span class="math notranslate nohighlight">\(n = r-k\)</span></strong>。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   P(X = n | k,p) &amp;=&amp; p(n;k,p) \\
+   &amp;=&amp; \begin{pmatrix}n+k-1\\ n\end{pmatrix}p^k(1-p)^{n} \tag{3.3}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p><strong>对于负二项分布，在生物数据中是时常用到的，但是，为什么生物学数据，如RNA-seq就是符合负二项分布呢？这是我现在不太清楚的。</strong></p></li>
+<li><p>负二项分布的均值和方差公式：</p>
+<p>对于公式<span class="math notranslate nohighlight">\((3.1)\)</span>最后只与成功的次数<span class="math notranslate nohighlight">\(k\)</span>和成功的概率<span class="math notranslate nohighlight">\(p\)</span>有关系。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   E(r) &amp;=&amp; \frac kp \tag{3.4} \\
+   D(r) &amp;=&amp; \frac{k(1-p)}{p^2} \tag{3.5}
+   \end{eqnarray}
+   \end{split}\]</div>
+<p>对于公式<span class="math notranslate nohighlight">\((3.3)\)</span>均值公式不一样，方差和<span class="math notranslate nohighlight">\((3.1)\)</span>一样。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   E(n) &amp;=&amp; E(r) - k = \frac{k(1-p)}{p} \tag{3.6} \\
+   D(n) &amp;=&amp; \frac{k(1-p)}{p^2} \tag{3.7}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="poisson-distribution">
+<h2>4. 泊松分布 Poisson Distribution<a class="headerlink" href="#poisson-distribution" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>简介：</p>
+<p>泊松分布可以用来描述某段时间内，事件具体发生的概率。它是一种<strong>离散随机变量</strong>。</p>
+<p>泊松分布描述的是一个<strong>离散随机变量</strong>在<strong>单位时间内</strong>发生的<strong>次数</strong>的<strong>概率</strong>。</p>
+</li>
+<li><p>概率质量函数：</p>
+<div class="math notranslate nohighlight">
+\[
+   p(x = r; \mu) = p(r;\mu)=\frac{\mu^re^{-\mu}}{r!} \tag{4.1}
+   \]</div>
+<p>这个公式符号代表的含义是，</p>
+<p><span class="math notranslate nohighlight">\(\mu\)</span>的意思是我们统计得到的<strong>已知单位时间内发生某事件的平均次数</strong>；</p>
+<p><span class="math notranslate nohighlight">\(r\)</span>的意思是我们在<strong>一次单位时间内，某事件发生<span class="math notranslate nohighlight">\(r\)</span>次</strong></p>
+<p><span class="math notranslate nohighlight">\(p(r;\mu)\)</span>是 <strong>一次单位时间内，某事件发生<span class="math notranslate nohighlight">\(r\)</span>次，的概率有多大。</strong></p>
+</li>
+<li><p>扩展：</p>
+<p>这里对泊松分布做一定的扩展。<strong>泊松分布可以用来描述某段时间内，</strong></p>
+<p><strong>事件具体发生的概率</strong></p>
+<p>具体公式：<span class="math notranslate nohighlight">\(\mu\)</span>上加上事件可以用来描述某段时间，事件的发生次数的概率。</p>
+<div class="math notranslate nohighlight">
+\[
+   p(r;t,\mu)=\frac{(\mu t)^re^{-\mu t}}{r!} \tag{4.2}
+   \]</div>
+</li>
+<li><p>与二项分布的联系：</p>
+<p>[与二项分布的联系:](#二项分布 Binomial Distribution)</p>
+<p>泊松分布可以看作二项分布的极限得到的。这里要满足一些条件。</p>
+<ul class="simple">
+<li><p>二项分布成功事件的概率<span class="math notranslate nohighlight">\(p\)</span>要很小；</p></li>
+<li><p>二项分布试验次数<span class="math notranslate nohighlight">\(N\)</span>要非常大。</p></li>
+</ul>
+<p><img alt="poisson and binomial" src="chapt/数理统计/B:/Mathematical_Model/Mathematical_Distribution/pictures/p2.PNG" /></p>
+<p> </p>
+<p>说到泊松分布，最好是明白：泊松分布是二项分布<span class="math notranslate nohighlight">\(n\)</span>很大而<span class="math notranslate nohighlight">\(p\)</span>很小时的一种极限形式。</p>
+<p>[二项分布](#二项分布 Binomial Distribution)：已知某件事情发生的概率是<span class="math notranslate nohighlight">\(p\)</span>，那么做<span class="math notranslate nohighlight">\(n\)</span>次试验，事情发生的次数就服从二项分布。</p>
+<p><strong>泊松分布式某段连续的时间内事情发生的次数。事情发生的时间是可以忽略的。关注的是事件的发生。泊松分布是离散的变量.</strong>
+这段时间是确定大小的，不是说某两件事件（不知何时发生）的间隔。</p>
+<p><strong>把连续的时间分割层无数小份，那么每个小份之间都是相互独立的。在每个很小的时间区间内，事情可能发生也可能不发生，因此这就是一个<span class="math notranslate nohighlight">\(p\)</span>很小的二项分布。连续的时间分成无数小份，也就意味着<span class="math notranslate nohighlight">\(n\)</span>很大，即：泊松分布是二项分布的一种极限形式。</strong></p>
+<p><strong>此外，二项分布是最简单的发生于不发生的分布，那么与此关系密切的泊松分布自然在生活中很常见也可以理解了。</strong></p>
+<p>泊松分布中的<span class="math notranslate nohighlight">\(\mu\)</span>意义就是：一个时间段内时间平均发生的次数。</p>
+<p>[指数分布](#指数分布 Exponential Distribution)是两件事情发生的平均间隔时间，时间是连续变量。</p>
+<p> </p>
+</li>
+<li><p><strong>泊松分布均值与方差的的公式：</strong></p>
+<p><a class="reference external" href="https://blog.csdn.net/saltriver/article/details/52969014">参考的证明</a></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+   \begin{eqnarray}
+   E(r) &amp;= \mu \tag{4.3} \\
+   D(r) &amp;= \mu \tag{4.4}
+   \end{eqnarray}
+   \end{split}\]</div>
+</li>
+<li><p><strong>对与这个分布是十分重要的。因为它与时间挂钩了，而且它可以应用到RNA-seq的数据分布上，至于为什么可以用到RNA-seq上，这不太清楚</strong></p></li>
+<li><p>待续</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="exponential-distribution">
+<h2>5. 指数分布 Exponential Distribution<a class="headerlink" href="#exponential-distribution" title="Permalink to this headline">#</a></h2>
+<p>指数分布是一种<strong>连续型概率分布</strong>， 它主要应用在<strong>随机事件之间发生的时间间隔</strong>的<strong>概率</strong>问题。</p>
+<p>[泊松分布](#泊松分布 Poisson Distribution)是描述某一个时间内发生随机事件次数的概率，而<strong>指数分布</strong>是描述<strong>两次随机事件发生时间间隔的概率分布</strong>。如旅客进机场的时间间隔，中文维基百科新条目出现的时间间隔。</p>
+<p><strong>概率密度函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[
+f(x; \alpha) = \frac{1}{\alpha}e^{-\frac{x}{\alpha}} \tag{5.1}
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="gamma-distribution">
+<h2>6. 伽马分布 Gamma Distribution<a class="headerlink" href="#gamma-distribution" title="Permalink to this headline">#</a></h2>
+<p>从意义上看，</p>
+<p>指数分布解决的问题是 ”要等到一个随机事件的发生，要经历多久时间。“</p>
+<p>伽马分布解决的问题是 “要等到第n个随机事件的发生，要经历多久时间。”</p>
+<p>伽马分布是一种<strong>连续型概率分布</strong>；</p>
+<p><strong>概率密度函数：</strong></p>
+<div class="math notranslate nohighlight">
+\[
+f(x;a,b) = \frac{a(ax)^{b-1}e{-ax}}{\Gamma(b)} \tag{6.1}
+\]</div>
+<p><strong>gamma function：</strong>，<span class="math notranslate nohighlight">\(\Gamma(x)\)</span>正实数的阶乘。</p>
+<p>当如果<span class="math notranslate nohighlight">\(n \in \{ 1,2,3,...\}\)</span>，那么有：</p>
+<div class="math notranslate nohighlight">
+\[
+\Gamma(n) = (n - 1)! \tag{6.2}
+\]</div>
+<p>更一般的形式：对于一般的正实数：</p>
+<div class="math notranslate nohighlight">
+\[
+\Gamma(\alpha) = \int_0^{\infty} x^{\alpha - 1}e^{-x} {\rm d}x, \qquad for \quad \alpha &gt; 0 \tag{6.3}
+\]</div>
+<p>可以把<span class="math notranslate nohighlight">\(\Gamma(\alpha)\)</span>理解为一个数的阶乘，但是在连续变量中，它会以一种积分的形式展现出来。这样我们可以比较好理解这样一个函数。</p>
+<p><strong>理解Gamma distribution：</strong><span class="math notranslate nohighlight">\(\Gamma\)</span>分布可以理解为Possion分布在正实数集上的连续版本</p>
+<p>回顾一下Possion 分布的扩展模式，符号可能有点变化：</p>
+<div class="math notranslate nohighlight">
+\[
+P(r) = \frac{(\lambda t)^re^{-\lambda t}}{r!} \tag{6.4}
+\]</div>
+<p>具体的意思是：在给定的<span class="math notranslate nohighlight">\(t\)</span>时间端内；<span class="math notranslate nohighlight">\(\lambda\)</span>为我们统计的在单位时间内平均发生的次数；<span class="math notranslate nohighlight">\(P(r)\)</span>是一个概率值，指得是在<span class="math notranslate nohighlight">\(t\)</span>时间端内，发生了<span class="math notranslate nohighlight">\(r\)</span>事件得概率。</p>
+<p><strong>公式的推导：</strong></p>
+<p>利用Possion 分布我们会得到<span class="math notranslate nohighlight">\(k: \)</span> ~  事件发生的概率：</p>
+<div class="math notranslate nohighlight">
+\[
+\sum_{r = 0}^{k-1} P(r) = \sum_{r = 0}^{k-1} \frac{(\lambda t)^re^{-\lambda t}}{r!} \tag{6.5}
+\]</div>
+<p>那么在<span class="math notranslate nohighlight">\(t\)</span>时间段内，至少有<span class="math notranslate nohighlight">\(k\)</span>次事件发生的概率：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+F(t) &amp;=&amp; \sum_{r = 0}^{\infty} P(r) \\
+&amp;=&amp; 1 -\sum_{r = 0}^{k-1} \frac{(\lambda t)^re^{-\lambda t}}{r!} \\
+&amp;=&amp; \int_0^{\lambda t} \frac{z^{k-1}e^{-z}}{(k - 1)!} {\rm d}z \\
+&amp;=&amp; \int_0^t \frac{\lambda^k z^{k-1}e^{-\lambda z}}{(k - 1)!} {\rm d}z \tag{6.6}
+\end{eqnarray}
+\end{split}\]</div>
+<p>当<span class="math notranslate nohighlight">\(a = \lambda, \; b = k\)</span>，这个函数可以看作是Gamma分布的<strong>累计概率函数</strong>。所以我们可以看到出来Gamma分布是用来描述要发生第“k”次事件的时候，所需要的时间。</p>
+<p><strong>Gamma 分布的均值和方差：</strong></p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{eqnarray}
+E(x) &amp;=&amp; \frac{b}{a}, \tag{6.7} \\
+V(x) &amp;=&amp; \frac{b}{a^2} \tag{6.8}
+\end{eqnarray}
+\end{split}\]</div>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2>7.待续<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+</section>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/数理统计"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">R可视化</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">高等数学基础</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

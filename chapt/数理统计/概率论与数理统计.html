@@ -1,0 +1,1177 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>概率论与数理统计 &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="随机过程" href="%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html" />
+    <link rel="prev" title="高等数学基础" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/JiekaiLab/Jiekai_tw/main?urlpath=tree/chapt/数理统计/概率论与数理统计.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/数理统计/概率论与数理统计.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   概率论与数理统计
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.随机事件与概率
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 基础概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 随机事件与概率
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3 条件概率
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     1.4 事件的独立性
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.全概率公式和贝叶斯公式
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.1 全概率公式
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.2 贝叶斯公式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   3.随机变量
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.1 随机变量
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.2 概率分布
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.3 概率密度函数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.4 随机变量的期望
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     3.5 随机变量的方差：
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pi">
+     随机模拟1：
+     <span class="math notranslate nohighlight">
+      \(\pi\)
+     </span>
+     的估值
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     随机模拟2:电子元件寿命问题
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     随机模拟3：三门问题
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>概率论与数理统计</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   概率论与数理统计
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.随机事件与概率
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 基础概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 随机事件与概率
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3 条件概率
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     1.4 事件的独立性
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   2.全概率公式和贝叶斯公式
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.1 全概率公式
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.2 贝叶斯公式
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
+   3.随机变量
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     3.1 随机变量
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.2 概率分布
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.3 概率密度函数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.4 随机变量的期望
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     3.5 随机变量的方差：
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pi">
+     随机模拟1：
+     <span class="math notranslate nohighlight">
+      \(\pi\)
+     </span>
+     的估值
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     随机模拟2:电子元件寿命问题
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     随机模拟3：三门问题
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>概率论与数理统计<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>1.随机事件与概率<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h1>
+<section id="id3">
+<h2>1.1 基础概念<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>随机试验：
+试验是指为了察看某事的结果或某物的性能而从事的某种活动. 在概率论与数理统计中，一个试验如果具有以下3个特点:</p>
+<ul class="simple">
+<li><p>(1) 可重复性: 在相同条件下可以重复进行：</p></li>
+<li><p>(2) 可观察性: 每次试验的可能结果不止一个，并且能事先明确试验的所有可能结果:</p></li>
+<li><p>(3) 不确定性: 一次试验之前，不能预知会出现哪一个结果。 就称这样的试验是一个随机试验，也简称为试验。</p></li>
+</ul>
+<p>样本点和样本空间：<br />
+每次试验的每一个结果称为基本事件，也称作样本点，记作 <span class="math notranslate nohighlight">\(w_{1}, w_{2}, \cdots\)</span> 全部样本点的集合称为样本空间，记作 <span class="math notranslate nohighlight">\(\Omega,\)</span> 则 <span class="math notranslate nohighlight">\(\Omega=\)</span> <span class="math notranslate nohighlight">\(\left\{w_{1}, w_{2}, \cdots\right\}\)</span><br />
+例子:<br />
+投郑一颗均匀股子，观察出现的点数。这是一个随机试验。样本空间 <span class="math notranslate nohighlight">\(\Omega=\{1,2,3,4,5,6\} .\)</span><br />
+随机事件：<br />
+基本事件是不可再分解的、最基本的事件，其他事件均可由它们复合而成，由基本事件复合而成的事件称为随机事件或简称事件。 常用大写字母 <span class="math notranslate nohighlight">\(A, B, \quad C\)</span> 等表示事件。比如 <span class="math notranslate nohighlight">\(A=\{\)</span> 出现的点数为偶数 <span class="math notranslate nohighlight">\(\}=\{2,4,6\} .\)</span></p>
+</section>
+<section id="id4">
+<h2>1.2 随机事件与概率<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>随机事件在一次试验中是否发生虽然不能确定，但让人感兴趣的是随机事件在一次试验中发生的可能性有多大。概率就是用来描述随机事件发生的可能性大小的。比如抛硬币的试验，拖得次数越多，出现正面的次数与投郑次数之间的比例（也叫频率 )愈加趋 于0.5。
+它的数学定义为: = :<br />
+在多次重复试验中，若事件A发生的频率稳定在确定常数 <span class="math notranslate nohighlight">\(p\)</span> 附近摆动，且随着试验次数的增加，这种摆动的幅度是很微小的。 则称确定常数p为事件A发生的概率，记作 <span class="math notranslate nohighlight">\(P(A)=p .\)</span><br />
+思考题<br />
+设一年有365天，求下列事件 <span class="math notranslate nohighlight">\(A, B\)</span> 的概率:<br />
+<span class="math notranslate nohighlight">\(A=\{\)</span>n个人中没有2人同一天生日 <span class="math notranslate nohighlight">\(\}\)</span><br />
+<span class="math notranslate nohighlight">\(B=\{\)</span> n个人中有2人同一天生日 <span class="math notranslate nohighlight">\(\}\)</span><br />
+解<br />
+显然事件 <span class="math notranslate nohighlight">\(A, \quad B\)</span> 是对立事件, <span class="math notranslate nohighlight">\(P(B)=1-P(A)\)</span>. 由于每个人的生日可以是365天的任意一天，因此， <span class="math notranslate nohighlight">\(n\)</span> 个人的生日有 <span class="math notranslate nohighlight">\(365^{n}\)</span> 种可能结果，而且每种结果是等可能的，因而是古典概型，事件A的发生必须是 <span class="math notranslate nohighlight">\(n\)</span> 个不同的生日，因而 <span class="math notranslate nohighlight">\(A\)</span> 的样本点数为从365中取 <span class="math notranslate nohighlight">\(n\)</span> 个的排列数 <span class="math notranslate nohighlight">\(P_{365}^{n},\)</span> 于是<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+P(A)=\frac{P_{365}^{n}}{365^{n}} \\
+P(B)=1-P(A)=1-\frac{P_{365}^{n}}{365^{n}}
+\end{array}
+\)</span>$</p>
+</section>
+<section id="id5">
+<h2>1.3 条件概率<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>定义
+设 <span class="math notranslate nohighlight">\(A, B\)</span> 是两个事件，且 <span class="math notranslate nohighlight">\(P(A)&gt;0,\)</span> 则称<br />
+$<span class="math notranslate nohighlight">\(
+P(B \mid A)=\frac{P(A B)}{P(A)}
+\)</span><span class="math notranslate nohighlight">\(
+为在事件A发生的条件下，事件B的条件概率。                   
+例子                         
+某种元件用满6000h未坏的概率是3/4，用满10000h未坏的概率是1 \)</span>/ 2<span class="math notranslate nohighlight">\( ，现有一个此种元件，已经用过 \)</span>6000 h<span class="math notranslate nohighlight">\( 未坏，试求它能用到10000h的概率。            
+解                
+设A表示\{用满10000h未坏\}, \)</span>B<span class="math notranslate nohighlight">\( 表示\{用满 \)</span>6000 h<span class="math notranslate nohighlight">\( 未坏\}, 则                        
+\)</span><span class="math notranslate nohighlight">\(
+P(B)=3 / 4, P(A)=1 / 2
+\)</span><span class="math notranslate nohighlight">\(                  
+由于 \)</span>A \subset B, A B=A,<span class="math notranslate nohighlight">\( 因而 \)</span>P(A B)=1 / 2,<span class="math notranslate nohighlight">\( 故                   
+\)</span><span class="math notranslate nohighlight">\(
+P(A \mid B)=\frac{P(A B)}{P(B)}=\frac{P(A)}{P(B)}=\frac{\frac{1}{2}}{\frac{3}{4}}=\frac{2}{3}
+\)</span>$</p>
+</section>
+<section id="id6">
+<h2>1.4 事件的独立性<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h2>
+<p>定义
+如果事件B发生的可能性不受事件A发生与否的影响，即
+$<span class="math notranslate nohighlight">\(
+P(B \mid A)=P(B)
+\)</span><span class="math notranslate nohighlight">\(
+则称事件B对于事件A独立.显然，若B对于A独立，则 \)</span>A<span class="math notranslate nohighlight">\( 对于 \)</span>B<span class="math notranslate nohighlight">\( 也一定独立，称事件 \)</span>A<span class="math notranslate nohighlight">\( 与事件 \)</span>B<span class="math notranslate nohighlight">\( 相互独立.
+例子.
+口袋里装有5个黑球与3个白球，从中有放回地取2次，每次取一个，设事件A表示第一次取到黑球，事件B表示第二次取到黑球，则
+有
+\)</span><span class="math notranslate nohighlight">\(
+P(A)=\frac{5}{8}, P(B)=\frac{5}{8}, P(A B)=\frac{5}{8} \times \frac{5}{8}=\frac{25}{64}
+\)</span><span class="math notranslate nohighlight">\(
+因而
+\)</span><span class="math notranslate nohighlight">\(
+P(B \mid A)=\frac{P(A B)}{P(A)}=\frac{5}{8}
+\)</span><span class="math notranslate nohighlight">\(
+因此， \)</span>P(B \mid A)=P(B),<span class="math notranslate nohighlight">\( 事实上还可以算出 \)</span>P(B \mid \bar{A})=P(B)<span class="math notranslate nohighlight">\( 。这表明不论 \)</span>A<span class="math notranslate nohighlight">\( 发是不发生，都对 \)</span>B$ 发生的概率没有影响。即B 与A独立.</p>
+<p>性质：<br />
+事件 <span class="math notranslate nohighlight">\(A\)</span> 和事件 <span class="math notranslate nohighlight">\(B\)</span> 相互独立的充分必要条件是<br />
+$<span class="math notranslate nohighlight">\(
+P(A B)=P(A) P(B)
+\)</span>$</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id7">
+<h1>2.全概率公式和贝叶斯公式<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h1>
+<section id="id8">
+<h2>2.1 全概率公式<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<p>定义：<br />
+如果事件 <span class="math notranslate nohighlight">\(A_{1}, A_{2}, \cdots, A_{n}\)</span> 是一个完备事件组，并且都具有正概率，则有：<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+P(B)=P\left(A_{1}\right) P\left(B \mid A_{1}\right)+P\left(A_{2}\right) P\left(B \mid A_{2}\right)+\cdots+P\left(A_{n}\right) P\left(B \mid A_{n}\right) \\
+=\sum_{i=1}^{n} P\left(A_{i}\right) P\left(B \mid A_{i}\right)
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(                
+对于任何事件 \)</span>B,<span class="math notranslate nohighlight">\( 事件 \)</span>A \bar{A}<span class="math notranslate nohighlight">\( 构成最简单的完备事件组，根据全概率公式得                  
+\)</span><span class="math notranslate nohighlight">\(
+\begin{aligned}
+P(B) &amp;=P(A B+\bar{A} B)=P(A B)+P(\bar{A} B) \\
+&amp;=P(A) P(B \mid A)+P(\bar{A}) P(B \mid \bar{A})
+\end{aligned}
+\)</span>$</p>
+</section>
+<section id="id9">
+<h2>2.2 贝叶斯公式<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<p>定义：<br />
+设 <span class="math notranslate nohighlight">\(A_{1}, A_{2}, \cdots, A_{n}\)</span> 是一完备事件组，则对任一事件 <span class="math notranslate nohighlight">\(B, P(B)&gt;0,\)</span> 有<br />
+$<span class="math notranslate nohighlight">\(
+P\left(A_{i} \mid B\right)=\frac{P\left(A_{i} B\right)}{P(B)}=\frac{P\left(A_{i}\right) P\left(B \mid A_{i}\right)}{\sum_{i=1}^{n} P\left(A_{i}\right) P\left(B \mid A_{i}\right)}
+\)</span>$<br />
+以上公式就叫贝叶斯公式，可由条件概率的定义及全概率公式证得。</p>
+<p>例子:<br />
+市场上供应的某种商品只由甲、乙、丙3个厂生产，甲厂占45%，乙厂占35%，丙厂占20%。如果各厂的次品率依次为 4%, 2%, 5% 。现从市场上购买1件这种商品，发现是次品，试判断它是由甲厂生产的概率。<br />
+设事件 <span class="math notranslate nohighlight">\(A_{1}, A_{2}, A_{3},\)</span> 分别表示“商品为甲、乙、丙厂生产的”，事件 <span class="math notranslate nohighlight">\(B\)</span> 表示“商品为次品”，由题意得到概率<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+P\left(A_{1}\right)=45 \%, P\left(A_{2}\right)=35 \%, P\left(A_{3}\right)=20 \% \\
+P\left(B \mid A_{1}\right)=4 \%, P\left(B \mid A_{2}\right)=2 \%, P\left(B \mid A_{3}\right)=5 \%
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(                
+根据贝叶斯公式，可得:
+\)</span><span class="math notranslate nohighlight">\(
+\begin{aligned}
+P\left(A_{1} \mid B\right) &amp;=\frac{P\left(A_{1}\right) P\left(B \mid A_{1}\right)}{P\left(A_{1}\right) P\left(B \mid A_{1}\right)+P\left(A_{2}\right) P\left(B \mid A_{2}\right)+P\left(A_{3}\right) P\left(B \mid A_{3}\right)} \\
+&amp;=\frac{45 \% \times 4 \%}{45 \% \times 4 \%+35 \% \times 2 \%+20 \% \times 5 \%} \approx 0.514
+\end{aligned}
+\)</span><span class="math notranslate nohighlight">\(
+在“购买一件商品”这个试验中， \)</span>P\left(A_{i}\right)<span class="math notranslate nohighlight">\( 是在试验以前就已经知道的概率，所以习惯地称为先验概率。试验结果出现了次品（即 \)</span>B<span class="math notranslate nohighlight">\( 发 生），这时条件概率 \)</span>P\left(A_{i} \mid B\right)<span class="math notranslate nohighlight">\( 反映了在试验以后对 \)</span>B$ 发生的“来源”(即次品的来源）的各种可能性的大小，通常称为后验概率。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id10">
+<h1>3.随机变量<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h1>
+<section id="id11">
+<h2>3.1 随机变量<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h2>
+<p>把试验的结果与实数对应起来，随试验结果的不同而变化的量就是随机变量，包含离散型随机变量和连续型随机变量。
+例子：<br />
+郑一枚匀称的硬币，观察正面、背面的出现情况。这一试验的样本空间为 <span class="math notranslate nohighlight">\(\Omega=\{H, T\}\)</span>, 其中，H表示”正面朝上”, <span class="math notranslate nohighlight">\(T\)</span> 表示“背面 朝上”。如果引入变量 <span class="math notranslate nohighlight">\(X\)</span> ，对试验的两个结果进行数值化，将 <span class="math notranslate nohighlight">\(X\)</span> 的值分别规定为1和0，即
+$<span class="math notranslate nohighlight">\(
+X=\left\{\begin{array}{ll}
+1 &amp; \text { if } \text { 出现 } H \\
+0 &amp; \text { if } &amp; \text { 出现 } T
+\end{array}\right.
+\)</span><span class="math notranslate nohighlight">\(
+这里的 \)</span>X$ 就叫随机变量，因为它能取的值是离散的，我们就叫它离散型随机变量。</p>
+</section>
+<section id="id12">
+<h2>3.2 概率分布<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<p>定义：设离散型随机变量 <span class="math notranslate nohighlight">\(X\)</span> 的所有可能取值为 <span class="math notranslate nohighlight">\(x_{1}, x_{2}, \cdots, x_{n},\)</span> 称为 <span class="math notranslate nohighlight">\(X\)</span> 的概率分布。<br />
+离散型随机变量 <span class="math notranslate nohighlight">\(X\)</span> 的分布律具有下列基本性质：</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(p_{k} \geq 0, k=1,2, \cdots\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(\sum_{i=1}^{+\infty} p_{k}=1\)</span><br />
+二项分布：<br />
+二项分布是一种离散型的概率分布。二项代表它有两种可能的结果：成功或者不成功。每次试验必须相互独立，重复n次，并且每 次试验成功的概率是相同的，为 <span class="math notranslate nohighlight">\(p \)</span>; 失败的概率也相同，为 <span class="math notranslate nohighlight">\(1-p\)</span>。掷硬币就是一个典型的二项分布。当我们要计算抛硬币吻，恰巧有 <span class="math notranslate nohighlight">\(x\)</span> 次正面朝上的概率，可以使用二项分布的公式:<br />
+$<span class="math notranslate nohighlight">\(
+P\{X=k\}=C_{n}^{k} p^{k}(1-p)^{n-k}
+\)</span>$</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/1.png" /></p>
+<p>泊松分布：<br />
+如果随机变量 <span class="math notranslate nohighlight">\(X\)</span> 的概率分布为
+$<span class="math notranslate nohighlight">\(
+P\{X=k\}=\frac{\lambda^{k}}{k !} e^{-\lambda}, k=0,1,2, \cdots
+\)</span><span class="math notranslate nohighlight">\(
+式中， \)</span>\lambda&gt;0<span class="math notranslate nohighlight">\( 为常数，则称随机变量 \)</span>X<span class="math notranslate nohighlight">\( 服从参数为 \)</span>\lambda<span class="math notranslate nohighlight">\( 的泊松(Possion)分布，记为 \)</span>X \sim P(\lambda)$.</p>
+<p><img alt="jupyter" src="../../_images/2.png" /></p>
+</section>
+<section id="id13">
+<h2>3.3 概率密度函数<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<p>定义：若存在非负函数 <span class="math notranslate nohighlight">\(f(x)\)</span>, 使一个连续型随机变量 <span class="math notranslate nohighlight">\(X\)</span> 取值于任一区间 <span class="math notranslate nohighlight">\((a, b]\)</span> 的概率可以表示为
+$<span class="math notranslate nohighlight">\(
+P\{a&lt;X \leq b\}=\int_{a}^{b} f(x) d_{x}
+\)</span>$</p>
+<p>正态分布：<br />
+正态分布是概率论中最重要的连续型分布，在19世纪前叶由德国数学家高斯（Gauss）加以推广，故又常称为高斯分布。 正态分布的概率密度函数曲线呈钟形，概率密度函数为
+$<span class="math notranslate nohighlight">\(
+f(x)=\frac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{(x-\mu)^{2}}{2 \sigma^{2}}}
+\)</span><span class="math notranslate nohighlight">\(
+具有两个参数 \)</span>\mu<span class="math notranslate nohighlight">\( 和 \)</span>\sigma^{2}<span class="math notranslate nohighlight">\( 。第一参数 \)</span>\mu<span class="math notranslate nohighlight">\( 是代表服从正态分布的随机变量的均值，第二个参数 \)</span>\sigma^{2}<span class="math notranslate nohighlight">\( 是此随机变量的方差。     
+如果一个随机变量 服从均值为 \)</span>\mu,<span class="math notranslate nohighlight">\( 标准差为 \)</span>\sigma<span class="math notranslate nohighlight">\( 的正态分布，数学上记作
+\)</span><span class="math notranslate nohighlight">\(
+X \sim N\left(\mu, \sigma^{2}\right)
+\)</span>$
+我们通常所说的标准正态分布均值为0, 标准差为1的正态分布。</p>
+<p><img alt="jupyter" src="../../_images/3.png" /></p>
+</section>
+<section id="id14">
+<h2>3.4 随机变量的期望<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h2>
+<p>对于一个随机变量，时常要考虑它的平均取什么，期望就是概率中的平均值，对随机变量中心位置的一种度量。
+例子.
+经过长期观察积累，某射手在每次射击中命中的坏数 <span class="math notranslate nohighlight">\(X\)</span> 服从分布：
+$<span class="math notranslate nohighlight">\(
+\begin{array}{|c|c|c|c|c|c|c|c|}
+\hline \mathrm{X} &amp; 0 &amp; 5 &amp; 6 &amp; 7 &amp; 8 &amp; 9 &amp; 10 \\
+\hline p_{i} &amp; 0 &amp; 0.05 &amp; 0.05 &amp; 0.1 &amp; 0.1 &amp; 0.2 &amp; 0.5 \\
+\hline
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+求这个射手平均命中的坏数是多少?                      
+解                         
+一种很自然的考虑是：假定该射击手进行了100次射击，那么，约有5次命中5坏，5次命中6坏，10次命中7坏，10次命中8坏，20 次命中9坏，50次命10，没有脱革，从而在一次射击中，该射手平均命中的坏数为：                        
+\)</span>\frac{1}{100}(10 \times 50+9 \times 20+8 \times 10+7 \times 10+6 \times 5+5 \times 5+0 \times 0)=8.85<span class="math notranslate nohighlight">\(              
+所以，我们可以看到离散型的随机变量的期望值可以表示为：                         
+\)</span>E(X)=\sum_{i=1}^{+\infty} x_{i} p_{k}$</p>
+<p>期望的性质：</p>
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(E(c)=c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X+c)=E(X)+c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(k X)=k E(X)\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(k X+c)=k E(X)+c\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(E(X+Y)=E(X)+E(Y)\)</span></p></li>
+</ol>
+</section>
+<section id="id15">
+<h2>3.5 随机变量的方差：<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h2>
+<p>方差表示了随机变量的变异性，方差越大，随机变量的结果越不稳定。<br />
+定义：随机变量，若
+$<span class="math notranslate nohighlight">\(
+E[X-E(X)]^{2}
+\)</span><span class="math notranslate nohighlight">\(
+存在，则称其为 \)</span>X<span class="math notranslate nohighlight">\( 的方差，记为 \)</span>D(X),<span class="math notranslate nohighlight">\( 即
+\)</span><span class="math notranslate nohighlight">\(
+D(X)=E[X-E(X)]^{2}
+\)</span><span class="math notranslate nohighlight">\(
+而称 \)</span>\sqrt{D(X)}<span class="math notranslate nohighlight">\( 为 \)</span>X<span class="math notranslate nohighlight">\( 的标准差或均方差。
+由方差的定义和数学期望的性质，可以推出方差的计算公式:
+\)</span><span class="math notranslate nohighlight">\(
+D(X)=E\left(X^{2}\right)-[E(X)]^{2}
+\)</span>$</p>
+<p>方差的性质<br />
+(1) <span class="math notranslate nohighlight">\(D(c)=0\)</span><br />
+(2) <span class="math notranslate nohighlight">\(D(X+c)=D(X)\)</span><br />
+(3) <span class="math notranslate nohighlight">\(D(c X)=c^{2} D(X)\)</span></p>
+<p>例子：<br />
+甲、乙两车间生产同一种产品，设1000件产品中的次品数分别为随机变量 <span class="math notranslate nohighlight">\(X, Y,\)</span> 已知他们的分布律如下:<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{ccccc}
+\mathbf{X} &amp; \mathbf{0} &amp; 1 &amp; \mathbf{2} &amp; \mathbf{3} \\
+\hline p_{i} &amp; 0.2 &amp; 0.1 &amp; 0.5 &amp; 0.2
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+与
+\)</span><span class="math notranslate nohighlight">\(
+\begin{array}{|c|c|c|c|c|}
+\hline \mathrm{Y} &amp; 0 &amp; 1 &amp; 2 &amp; 3 \\
+\hline p_{i} &amp; 0.1 &amp; 0.3 &amp; 0.4 &amp; 0.2 \\
+\hline
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+试讨论甲乙两者车厢的质量。            
+解                 
+先计算均值                       
+\)</span><span class="math notranslate nohighlight">\(
+\begin{array}{l}
+E(X)=0 \times 0.2+1 \times 0.1+2 \times 0.5+3 \times 0.2=1.7 \\
+E(Y)=0 \times 0.1+1 \times 0.3+2 \times 0.4+3 \times 0.2=1.7
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+得到：甲、乙两车间次品数的均值相同。 再计算方差：          
+\)</span>D(X)=(0-1.7)^{2} \times 0.2+(1-1.7)^{2} \times 0.1+(2-1.7)^{2} \times 0.1+(2-1.7)^{2} \times 0.5+(3-1.7)^{2} \times 0.2=1.01$</p>
+<p><span class="math notranslate nohighlight">\(D(Y)=(0-1.7)^{2} \times 0.1+(1-1.7)^{2} \times 0.3+(2-1.7)^{2} \times 0.4+(2-1.7)^{2} \times 0.4+(3-1.7)^{2} \times 0.2=0.81\)</span></p>
+<p>得到 <span class="math notranslate nohighlight">\(D(X)&gt;D(Y),\)</span> 说明乙车间的产品质量较稳定。</p>
+</section>
+<section id="pi">
+<h2>随机模拟1：<span class="math notranslate nohighlight">\(\pi\)</span>的估值<a class="headerlink" href="#pi" title="Permalink to this headline">#</a></h2>
+<p><img alt="jupyter" src="../../_images/6.png" />
+<img alt="jupyter" src="../../_images/7.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># pi的估计问题</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="k">def</span> <span class="nf">pi_estimate</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    n为投点的数量</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">n_rand_X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="n">n_rand_Y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="n">n</span><span class="p">)</span>
+    <span class="c1">## 判断是否在圆内</span>
+    <span class="n">distance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">n_rand_X</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">n_rand_Y</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">dis_n</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">distance</span><span class="p">[</span><span class="n">distance</span><span class="o">&lt;=</span><span class="mf">1.0</span><span class="p">]))</span>
+    <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="p">(</span><span class="n">dis_n</span> <span class="o">/</span> <span class="n">n</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="mi">500</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">5000</span><span class="p">,</span><span class="mi">10000</span><span class="p">,</span><span class="mi">50000</span><span class="p">,</span><span class="mi">100000</span><span class="p">,</span><span class="mi">500000</span><span class="p">,</span><span class="mi">10000000</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pi的估计值为&quot;</span><span class="p">,</span><span class="n">pi_estimate</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi的估计值为 2.8
+pi的估计值为 2.8
+pi的估计值为 3.08
+pi的估计值为 3.112
+pi的估计值为 3.132
+pi的估计值为 3.1632
+pi的估计值为 3.1516
+pi的估计值为 3.1388
+pi的估计值为 3.1388
+pi的估计值为 3.138104
+</pre></div>
+</div>
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>pi的估计值为 3.1416736
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>np.random.uniform
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id16">
+<h2>随机模拟2:电子元件寿命问题<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
+<p><img alt="jupyter" src="../../_images/4.png" /><br />
+<img alt="jupyter" src="../../_images/5.png" /></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 电子元件寿命问题</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+
+<span class="k">def</span> <span class="nf">ele_life</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">lamb</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    参数n:模拟实验的次数</span>
+<span class="sd">    参数c:每次试验中的c个元件</span>
+<span class="sd">    参数t:每c个元件中规定的合格品数量</span>
+<span class="sd">    参数h:小时数</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">times</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">c_rand</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">lamb</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+        <span class="n">c_rand_t</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">c_rand</span><span class="p">[</span><span class="n">c_rand</span><span class="o">&gt;</span><span class="n">h</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">c_rand_t</span> <span class="o">&gt;</span> <span class="n">t</span><span class="p">:</span>
+            <span class="n">times</span> <span class="o">=</span> <span class="n">times</span> <span class="o">+</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">times</span> <span class="o">/</span> <span class="n">n</span>  
+
+<span class="n">ele_life</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mi">1000</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mf">0.2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.9133
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">?</span>np.random.exponential
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id17">
+<h2>随机模拟3：三门问题<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h2>
+<p>蒙提霍尔问题：假如你参与一个有主持人的游戏，你会看见三扇关闭了的门，其中一扇的后面有一辆汽车，另外2扇门后面各是一只山羊，你看不见门后面的情况，但主持人知道一切。你被主持人要求在三扇门中选择一扇，但不能打开，在你选定之后主持人开启了另一扇后面有山羊的门，然后你可以坚持原来选定的门，也可以改主意重新选择。问题是：改与不改对选中汽车的概率有影响吗？请使用模拟实验的方法回答该问题。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 三门问题</span>
+<span class="kn">import</span> <span class="nn">numpy.random</span> <span class="k">as</span> <span class="nn">random</span>
+<span class="k">def</span> <span class="nf">MontyHallProblem</span><span class="p">(</span><span class="n">n_test</span><span class="p">):</span>
+    <span class="c1">#测试次数</span>
+     
+    <span class="n">winning_door</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="n">n_test</span><span class="p">)</span>
+    <span class="n">first_get</span>  <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">change_get</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">winning_doors</span> <span class="ow">in</span> <span class="n">winning_door</span><span class="p">:</span>
+        <span class="n">act_door</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">winning_doors</span> <span class="o">==</span> <span class="n">act_door</span><span class="p">:</span>
+            <span class="n">first_get</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">else</span> <span class="p">:</span>
+            <span class="n">change_get</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">first_pro</span>  <span class="o">=</span> <span class="n">first_get</span> <span class="o">/</span> <span class="n">n_test</span>
+    <span class="n">change_pro</span> <span class="o">=</span> <span class="n">change_get</span> <span class="o">/</span> <span class="n">n_test</span>
+    <span class="n">compar1</span>    <span class="o">=</span> <span class="nb">round</span><span class="p">(</span><span class="n">change_get</span> <span class="o">/</span> <span class="n">first_get</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;在</span><span class="si">%d</span><span class="s2">次测试中,坚持原则第一次就选中的次数是</span><span class="si">%d</span><span class="s2">,改变决定选择另一扇门中奖的次数是</span><span class="si">%d</span><span class="s2">&quot;</span><span class="o">%</span> <span class="p">(</span><span class="n">n_test</span><span class="p">,</span><span class="n">first_get</span><span class="p">,</span><span class="n">change_get</span><span class="p">))</span>
+    <span class="nb">print</span> <span class="p">(</span><span class="s2">&quot;概率分别是</span><span class="si">{0}</span><span class="s2">和</span><span class="si">{1}</span><span class="s2">，改变决定选择另一扇门中奖几率是坚持选择的</span><span class="si">{2}</span><span class="s2">倍&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">first_pro</span><span class="p">,</span><span class="n">change_pro</span><span class="p">,</span><span class="n">compar1</span><span class="p">))</span>
+<span class="n">MontyHallProblem</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>在1000000次测试中,坚持原则第一次就选中的次数是333388,改变决定选择另一扇门中奖的次数是666612
+概率分别是0.333388和0.666612，改变决定选择另一扇门中奖几率是坚持选择的2.0倍
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/数理统计"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">高等数学基础</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">随机过程</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,842 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>「文献阅读笔记」Cell2location 方法建模原理详解 &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Jupyter Notebook 进阶技巧" href="../more/jupyter-notebook.html" />
+    <link rel="prev" title="随机过程" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/文献/S1_Cell2location.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mu-s-g">
+   参数
+   <span class="math notranslate nohighlight">
+    \(\mu_{s,g}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#w-s-f">
+     细胞类型在不同位置的绝对丰度：参数
+     <span class="math notranslate nohighlight">
+      \(w_{s,f}\)
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r-z-s-r">
+       组
+       <span class="math notranslate nohighlight">
+        \(r\)
+       </span>
+       在不同位置的丰度:参数
+       <span class="math notranslate nohighlight">
+        \(z_{s, r}\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r-x-r-f">
+       每个细胞类型对组r的贡献:参数
+       <span class="math notranslate nohighlight">
+        \(x_{r,f}\)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#m-g">
+   基因特异的尺度因子
+   <span class="math notranslate nohighlight">
+    \(m_g\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#y-s">
+   位置特异的检测效率因子
+   <span class="math notranslate nohighlight">
+    \(y_s\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#s-e-g">
+   基因加性噪声
+   <span class="math notranslate nohighlight">
+    \(s_{e,g}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-alpha-e-g">
+   dispersion参数
+   <span class="math notranslate nohighlight">
+    \(\alpha_{e,g}\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>「文献阅读笔记」Cell2location 方法建模原理详解</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#mu-s-g">
+   参数
+   <span class="math notranslate nohighlight">
+    \(\mu_{s,g}\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#w-s-f">
+     细胞类型在不同位置的绝对丰度：参数
+     <span class="math notranslate nohighlight">
+      \(w_{s,f}\)
+     </span>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r-z-s-r">
+       组
+       <span class="math notranslate nohighlight">
+        \(r\)
+       </span>
+       在不同位置的丰度:参数
+       <span class="math notranslate nohighlight">
+        \(z_{s, r}\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#r-x-r-f">
+       每个细胞类型对组r的贡献:参数
+       <span class="math notranslate nohighlight">
+        \(x_{r,f}\)
+       </span>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#m-g">
+   基因特异的尺度因子
+   <span class="math notranslate nohighlight">
+    \(m_g\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#y-s">
+   位置特异的检测效率因子
+   <span class="math notranslate nohighlight">
+    \(y_s\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#s-e-g">
+   基因加性噪声
+   <span class="math notranslate nohighlight">
+    \(s_{e,g}\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dispersion-alpha-e-g">
+   dispersion参数
+   <span class="math notranslate nohighlight">
+    \(\alpha_{e,g}\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="cell2location">
+<h1>「文献阅读笔记」Cell2location 方法建模原理详解<a class="headerlink" href="#cell2location" title="Permalink to this headline">#</a></h1>
+<p>2022年1月13日发表在Nature Biotechnology上的 《Cell2location maps fine-grained cell types in spatial transcriptomics》</p>
+<p>这个模型总体是为了解决所谓的解卷积问题，也就是将空间测序中的一个spot解成多个细胞类型的加权组合。这个问题反过来看，就是寻找某一个细胞类型在空间上最有可能出现的位置的频率分布，也就是将cell to location，我猜也是工具名字的来源。</p>
+<p>模型总的流程图如下所示，这篇文章的实从同一个组织区域同时进行了单细胞还有空间测序，利用这样的配对数据帮助空间转录组划分解剖区域和解卷积，另一方面也定位了单细胞在空间中的位置，并找到了最有可能的<strong>细胞类型共表达模式</strong>。注意这里的<strong>细胞类型共表达模式</strong>是文章以及数据建模中比较重要的一个概念，作者在文章附件也提到通过考虑表达模式是他们方法能找到精细结构非常重要的原因，也是这篇工作和其他直接进行解卷积工作的区别之处。</p>
+<p><img alt="1655710686504.png" src="https://s2.loli.net/2022/06/20/Zb3QiWFNyp2vgnq.png" /></p>
+<p>接下来我们直接进入方法部分，首先这是作者模型的概率图模型，是不是很复杂，但等你读完这篇文章，会发现这个图其实画的非常清晰易懂，还可以帮助你加深记忆。</p>
+<p><img alt="1655710718045.png" src="https://s2.loli.net/2022/06/20/qIv2XQOJe8KfxPm.png" /></p>
+<p>我们一步步来推导。首先，作者约定空间转录组数据矩阵<span class="math notranslate nohighlight">\(D=\{d_{s,g}\}\)</span>为<span class="math notranslate nohighlight">\(S \times G\)</span>的矩阵，其中<span class="math notranslate nohighlight">\(S\)</span>为空间位置的总数，<span class="math notranslate nohighlight">\(G\)</span>为基因数，这些空间位置来自于不同的batch，而batch的总数为<span class="math notranslate nohighlight">\(E\)</span>。单细胞测序得到的细胞类型参考矩阵<span class="math notranslate nohighlight">\(G=\{g_{f,g}\}\)</span>为<span class="math notranslate nohighlight">\(F \times G\)</span>的矩阵，其中<span class="math notranslate nohighlight">\(F\)</span>为细胞类型的个数，<span class="math notranslate nohighlight">\(G\)</span>为基因数。这个矩阵就是将原来的单细胞矩阵按照不同细胞类型的归属求取了平均值得到的。</p>
+<p>这里注意到两个矩阵的基因数必须要保证是一样的，但作者没有说明如果单细胞与空间转录组基因数不对齐的话需要用什么办法进行统一。</p>
+<p>然后作者就开始进行建模了。对于每个空间转录组位点里基因g的counts数，作者认为其服从负二项分布，其中均值参数为<span class="math notranslate nohighlight">\(\mu_{s,g}\)</span>，dispersion参数为<span class="math notranslate nohighlight">\(\alpha_{e,g}\)</span>：</p>
+<p><span class="math notranslate nohighlight">\(d_{s,g} \sim NB(\mu_{s,g}, \alpha_{e,g})  \qquad (1)\)</span></p>
+<p>而之所以要建模成负二项分布，一个是从经验上发现符合空间转录组数据特征外，还有就是从理论上，测序技术对于游离的mRNA进行捕获时，得到的counts数可以理解为是从一个概率比较低（p很小），但是次数很多的（n很大）的二项分布中采样得到的，而这样的二项分布我们可以用泊松分布进行代替。但这样做的一个问题是泊松分布的均值和方差是一样的，这和实际情况又不是很相符，于是对于泊松分布的参数<span class="math notranslate nohighlight">\(\lambda\)</span>我们可以认为它服从Gamma分布。这样我们就得到了Poisson-Gamma混合分布，而这样的分布本质上就是负二项分布（详情证明见<a class="reference external" href="https://zhangzhenhu.github.io/blog/glm/source/%E8%B4%9F%E4%BA%8C%E9%A1%B9%E6%A8%A1%E5%9E%8B/content.html">17. 负二项式模型 — 张振虎的博客 张振虎 文档 (zhangzhenhu.github.io)</a>）</p>
+<p>所以，公式(1)可以写作：</p>
+<p><span class="math notranslate nohighlight">\(d_{s,g} \sim Poisson(Gamma(\alpha_{e,g}, \alpha_{e,g} /\mu_{s,g}))  \qquad (2)\)</span></p>
+<p>注意这里作者用的是应该是<span class="math notranslate nohighlight">\(Gamma(\alpha,\theta)\)</span>的形式，也就是说，均值为<span class="math notranslate nohighlight">\(\alpha / \theta\)</span>，代入到上面的式子中，均值是<span class="math notranslate nohighlight">\(\mu_{s,g}\)</span>，和公式1相等。对于这两个参数，作者又用了层次化的建模方法：</p>
+<section id="mu-s-g">
+<h2>参数<span class="math notranslate nohighlight">\(\mu_{s,g}\)</span><a class="headerlink" href="#mu-s-g" title="Permalink to this headline">#</a></h2>
+<p>对于参数<span class="math notranslate nohighlight">\(\mu_{s,g}\)</span>，其服从以下建模：</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{s, g}=(\underbrace{m_{g}}_{\text {technology sensitivity }} \cdot \underbrace{\sum_{f} w_{s, f} g_{f, g}}_{\text {cell type contributions }}+\underbrace{s_{e, g}}_{\text {additive shift }}) \cdot \underbrace{y_s}_{\text {per-location sensitivity }}  \qquad (3)
+\]</div>
+<p>其中<span class="math notranslate nohighlight">\( w_{s, f}\)</span>可以看作是每个细胞类型<span class="math notranslate nohighlight">\(f\)</span>在位置<span class="math notranslate nohighlight">\(s\)</span>上的回归权值，可以理解为细胞类型<span class="math notranslate nohighlight">\(f\)</span>在位置<span class="math notranslate nohighlight">\(s\)</span>的绝对细胞丰度(absolute cell abundance)</p>
+<p>其中<span class="math notranslate nohighlight">\(m_g\)</span>代表基因特异的尺度因子，描绘的是宏观上不同平台带来的测序量的影响。</p>
+<p>其中<span class="math notranslate nohighlight">\(s_{e,g}\)</span>代表数据中的加性偏移，比如游离的RNA</p>
+<p>其中<span class="math notranslate nohighlight">\(y_s\)</span>是位置特异的检测效率尺度因子，描绘的是不同位置上对于捕获RNA的灵敏度差异。</p>
+<p>你问我其中的<span class="math notranslate nohighlight">\(g_{f,g}\)</span>是什么？建议重新找一个安静的时间段再来读这篇方法讲解。我开头的方法部分写的很清楚了。是细胞类型参考矩阵里第f个细胞类型中g基因的表达值。</p>
+<p>那么这些参数本身肯定还服从一个概率分布，否则怎么能算得上多层次概率图模型呢（手动狗头）</p>
+<section id="w-s-f">
+<h3>细胞类型在不同位置的绝对丰度：参数<span class="math notranslate nohighlight">\(w_{s,f}\)</span><a class="headerlink" href="#w-s-f" title="Permalink to this headline">#</a></h3>
+<p>首先这个参数服从Gamma分布：</p>
+<div class="math notranslate nohighlight">
+\[
+w_{s, f} \sim \operatorname{Gamma}\left(\mu_{s, f}^{w} v^{w}, v^{w}\right) \qquad (4)
+\]</div>
+<p>其中的参数<span class="math notranslate nohighlight">\(v^{w}\)</span>是一个固定的超参数，来控制先验的强度。而参数<span class="math notranslate nohighlight">\(\mu_{s, f}\)</span>是由<span class="math notranslate nohighlight">\(R\)</span>个潜在的细胞类型分组线性加和而成的：</p>
+<div class="math notranslate nohighlight">
+\[
+\mu_{s, f}^{w}=\sum_{r} z_{s, r} x_{r, f} \qquad (5)
+\]</div>
+<p>算法中默认<span class="math notranslate nohighlight">\(R=50\)</span>，也就是有50个模式不同的分组。这里所谓的细胞类型分组其实就是组织空间上不同的区域或者域，模式值得就是这些分组在空间上的表达模式不同，而整个组织空间上的基因表达就是所有的这些域的基因表达的叠加组成的。我们也可以从图像作为例子，每一个域就像是图像的一个通道，最终我们看到的图像是所有通道信息的叠加。这也是和直观上理解的解卷积非常不一样的一点：直观上我们认为一个spot里的基因表达就是许多细胞类型的加权和，但作者认为一个spot的基因表达是多个域在这个spot上表达的加权和，而每个域中可能包括了多个细胞类型，一个细胞类型也有可能属于多个域。</p>
+<p>于是在这样的层次结构下，作者又引入了两个重要参数<span class="math notranslate nohighlight">\(z_{s, r}\)</span>和<span class="math notranslate nohighlight">\(x_{r, f}\)</span>。其中<span class="math notranslate nohighlight">\(z_{s, r}\)</span>表示组<span class="math notranslate nohighlight">\(r\)</span>在不同位置的丰度，而和它相乘的是参数<span class="math notranslate nohighlight">\(x_{r,f}\)</span>，代表每个细胞类型对组r的贡献，相乘后再对r求和，我们就得到了细胞类型在不同位置的绝对丰度。下面我们分别来看</p>
+<section id="r-z-s-r">
+<h4>组<span class="math notranslate nohighlight">\(r\)</span>在不同位置的丰度:参数<span class="math notranslate nohighlight">\(z_{s, r}\)</span><a class="headerlink" href="#r-z-s-r" title="Permalink to this headline">#</a></h4>
+<p>作者认为这个参数仍然服从Gamma分布:</p>
+<div class="math notranslate nohighlight">
+\[
+z_{s, r} \sim \operatorname{Gamma}\left(B_{s} / R, 1 /\left(N_{s} / B_{s}\right)\right) \qquad (6)
+\]</div>
+<p>这里的<span class="math notranslate nohighlight">\(N_s\)</span>是在空间位置<span class="math notranslate nohighlight">\(s\)</span>上的平均细胞总数，而<span class="math notranslate nohighlight">\(B_s\)</span>是在这个位置上期望出现的组的个数。这两个参数分别又服从Gamma分布，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+N_{s} \sim \operatorname{Gamma}\left(\hat{N} \cdot v^{n}, v^{n}\right) \qquad (7)\\
+B_{s} \sim \operatorname{Gamma}(\hat{B}, 1) \qquad (8)
+\end{gathered}
+\end{split}\]</div>
+<p>这里的<span class="math notranslate nohighlight">\(\hat{N}\)</span>是用户定义的每个空间位置上期望得到的细胞数，这可以由空间转录组配套的影像进行细胞核分割计数得到，而<span class="math notranslate nohighlight">\(\hat{B}\)</span>是每个位置期望的得到的组数，也是一个超参数，默认规定为7。</p>
+</section>
+<section id="r-x-r-f">
+<h4>每个细胞类型对组r的贡献:参数<span class="math notranslate nohighlight">\(x_{r,f}\)</span><a class="headerlink" href="#r-x-r-f" title="Permalink to this headline">#</a></h4>
+<p>仍然服从Gamma分布：</p>
+<div class="math notranslate nohighlight">
+\[
+x_{r, f} \sim \operatorname{Gamma}\left(K_{r} / R, K_{r}\right) \qquad (9)
+\]</div>
+<p>这里的<span class="math notranslate nohighlight">\(K_{r}\)</span>表示组r包含的细胞类型个数，这是不可知的。我们求一下分布的均值可以发现等于<span class="math notranslate nohighlight">\(1/R\)</span>，这也保证了<span class="math notranslate nohighlight">\(\sum_{r} x_{r, f}=1\)</span>。那么<span class="math notranslate nohighlight">\(K_{r} \)</span>也是服从Gamma分布的：</p>
+<div class="math notranslate nohighlight">
+\[
+K_{r} \sim \operatorname{Gamma}(\hat{A} / \hat{B}, 1) \qquad (10)
+\]</div>
+<p>这里<span class="math notranslate nohighlight">\(\hat{A} \)</span>是超参数，代表每个位置期望的细胞类型，默认为7。而<span class="math notranslate nohighlight">\(\hat{B}\)</span>前面介绍过了，是7。</p>
+<p>至此，对于均值\mu_{s,g}的所有层次概率先验就介绍完毕了。</p>
+</section>
+</section>
+</section>
+<section id="m-g">
+<h2>基因特异的尺度因子<span class="math notranslate nohighlight">\(m_g\)</span><a class="headerlink" href="#m-g" title="Permalink to this headline">#</a></h2>
+<p>作者仍然用了层次的先验概率进行建模，首先是服从Gamma分布。</p>
+<div class="math notranslate nohighlight">
+\[m_{g} \sim \operatorname{Gamma}\left(\alpha^{m}, \alpha^{m} / \mu^{m}\right)\]</div>
+<p>然后又是多层次的先验分布。说实话这里我不太明白为什么需要建立这么多层次，似乎从原理上并不是很好解释。还是说这是统计上的某种标准动作？</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+\alpha^{m}=1 /\left(o^{m}\right)^{2} \\
+o^{m} \sim \text { Exponential }(3) \\
+\mu^{m} \sim \operatorname{Gamma}(1,1)
+\end{gathered}
+\end{split}\]</div>
+</section>
+<section id="y-s">
+<h2>位置特异的检测效率因子<span class="math notranslate nohighlight">\(y_s\)</span><a class="headerlink" href="#y-s" title="Permalink to this headline">#</a></h2>
+<p>首先还是服从Gamma分布，其中的参数<span class="math notranslate nohighlight">\(\alpha^y\)</span>是用户决定的参数。</p>
+<div class="math notranslate nohighlight">
+\[
+y_{s} \sim \operatorname{Gamma}\left(\alpha^{y}, \alpha^{y} / y_{e}\right)
+\]</div>
+<p>而<span class="math notranslate nohighlight">\(y_e\)</span>代表不同batch的影响，服从另一个Gamma分布</p>
+<div class="math notranslate nohighlight">
+\[
+y_{e} \sim \operatorname{Gamma}\left(10,10 / \mu^{y}\right)
+\]</div>
+<p>其中的参数<span class="math notranslate nohighlight">\(\mu^{y}\)</span>用以下公式求得：</p>
+<div class="math notranslate nohighlight">
+\[
+\mu^{y}=\frac{\frac{\sum_{s} \sum_{g} d_{s, g} / S}{\hat{N}}}{\sum_{f} \sum_{g} g_{f, g} / F}
+\]</div>
+<p>其中分子代表空间上每个位置中每个细胞期望的总counts数，而分母为单细胞测序中平均每个细胞的总counts数。</p>
+</section>
+<section id="s-e-g">
+<h2>基因加性噪声<span class="math notranslate nohighlight">\(s_{e,g}\)</span><a class="headerlink" href="#s-e-g" title="Permalink to this headline">#</a></h2>
+<p>这里层次建模的思路是考虑到每个基因在不同batch下的影响是不同的，而代表batch信息的参数又服从固定的gamma分布。</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+s_{e, g} \sim \operatorname{Gamma}\left(\alpha_{e}^{s}, \alpha_{e}^{s} / \mu_{e}^{s}\right) \\
+\mu_{e}^{s} \sim \operatorname{Gamma}(1,100) \\
+\alpha_{e}^{s}=1 / o_{e}^{2} \\
+o_{e} \sim \operatorname{Exponential}\left(\beta^{s}\right) \\
+\beta^{s} \sim \operatorname{Gamma}(9,3)
+\end{gathered}
+\end{split}\]</div>
+</section>
+<section id="dispersion-alpha-e-g">
+<h2>dispersion参数<span class="math notranslate nohighlight">\(\alpha_{e,g}\)</span><a class="headerlink" href="#dispersion-alpha-e-g" title="Permalink to this headline">#</a></h2>
+<p>对于这个参数作者说参考了文献《A Principled, Practical Approach to Constructing Priors. en. Statistical Science》，定义的方法仍然是多层概率图，其中的超参数9和3作者说是通过先前的数据观察到的：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{gathered}
+\alpha_{e, g}=1 / o_{e, g}^{2} \\
+o_{e, g} \sim \operatorname{Exponential}\left(\beta^{o}\right) \\
+\beta^{o} \sim \operatorname{Gamma}(9,3)
+\end{gathered}
+\end{split}\]</div>
+<p>几个疑问是：</p>
+<ol class="simple">
+<li><p>这么多层次的概率图模型到底是如何构建的？</p></li>
+<li><p>这么多参数的消融实验该如何设计？怎么能证明当前模型是最优的呢？那为什么不给上图的每个超参数再加一层先验分布？</p></li>
+<li><p>具体的优化从代码上是如何实现的？</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/文献"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">随机过程</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../more/jupyter-notebook.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Jupyter Notebook 进阶技巧</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
