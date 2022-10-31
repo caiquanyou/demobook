@@ -1,0 +1,69 @@
+{
+  "chapt/more/cheatsheet": {
+    "example_eq": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "example_eq",
+          "mime_prefix": "application/papermill.record/"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "sqrt(x**2 + y**2)",
+        "application/papermill.record/text/latex": "$\\displaystyle \\sqrt{x^{2} + y^{2}}$"
+      }
+    },
+    "glued_text": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "glued_text",
+          "mime_prefix": ""
+        }
+      },
+      "data": {
+        "text/plain": "'here is some text!'"
+      }
+    },
+    "ns_mean": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "ns_mean",
+          "mime_prefix": "application/papermill.record/"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "-0.011572631813274881"
+      }
+    },
+    "ss_mean": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "ss_mean",
+          "mime_prefix": ""
+        }
+      },
+      "data": {
+        "text/plain": "-0.5814074476813963"
+      }
+    },
+    "glued_fig": {
+      "output_type": "display_data",
+      "metadata": {
+        "scrapbook": {
+          "name": "glued_fig",
+          "mime_prefix": "application/papermill.record/"
+        },
+        "filenames": {
+          "image/png": "/home/sc_user/workspace/jkchen/qycai/Mybooks/t1.0/ccla_analytical_pipeline/ccla_analytical_pipeline/_build/jupyter_execute/chapt/more/cheatsheet_7_1.png"
+        }
+      },
+      "data": {
+        "application/papermill.record/text/plain": "<Figure size 432x288 with 1 Axes>",
+        "application/papermill.record/image/png": null
+      }
+    }
+  }
+}

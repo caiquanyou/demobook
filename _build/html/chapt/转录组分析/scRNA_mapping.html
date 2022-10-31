@@ -1,0 +1,938 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>单细胞测序比对流程 &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Single-Cell RNA Sequencing Analysis" href="scRNA_tutorial.html" />
+    <link rel="prev" title="scRNAseq常规分析" href="scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 current active has-children">
+    <a class="reference internal" href="scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul class="current">
+     <li class="toctree-l3 current active">
+      <a class="current reference internal" href="#">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1/%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/转录组分析/scRNA_mapping.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   0.测试数据一般的文件格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1. 批量在自己目录下创建软连接
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-ln-sh">
+     create_ln.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fastqc">
+   2.批量进行fastqc质控
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-fastqc-sh">
+     batch_fastqc.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fastqc-sh">
+     fastqc.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fastp-cleandata">
+   3. 批量进行fastp质控，产生Cleandata
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-fastp-sh">
+     batch_fastp.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fastp-sh">
+     fastp.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   4. 批量进行序列比对
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-starsolo-sh">
+     batch_starsolo.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-starsolo-sh">
+     run_STARsolo.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>单细胞测序比对流程</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   0.测试数据一般的文件格式
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id3">
+   1. 批量在自己目录下创建软连接
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#create-ln-sh">
+     create_ln.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fastqc">
+   2.批量进行fastqc质控
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-fastqc-sh">
+     batch_fastqc.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fastqc-sh">
+     fastqc.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fastp-cleandata">
+   3. 批量进行fastp质控，产生Cleandata
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-fastp-sh">
+     batch_fastp.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#fastp-sh">
+     fastp.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id4">
+   4. 批量进行序列比对
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#batch-starsolo-sh">
+     batch_starsolo.sh
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#run-starsolo-sh">
+     run_STARsolo.sh
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>单细胞测序比对流程<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>[toc]</p>
+<section id="id2">
+<h2>0.测试数据一般的文件格式<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ol>
+<li><p>关于文库：</p>
+<p>一个样本就是一个<strong>文库</strong>。对于每个样本（文库），我们使用<strong>一组index序列</strong>来标志。</p>
+</li>
+<li><p>关于 index：</p>
+<p>Index的概念，直接翻译的话应该理解为索引，标志。简单来讲就是为了<strong>识别测序得到的数据属于哪个样本</strong>。</p>
+<p>为什么一个样本需要一组index序列而不用一种index序列？如果一个lane中，index序列都是一样，那么会影响碱基的测序质量。高通量测序过程中，每次测序，每个独立的Lane中需要保持一定Index的复杂度。尤其对于Illumina和华大的MGI平台，这一要求是必须的。因为这2个平台的测序技术在识别碱基时都是使用的拍照技术，如果Index复杂度不够，可能出现在一个照片视野下，同一颜色的荧光的颜色点密度太高而导致碱基识别质量大大降低，严重影响数据拆分的效率。所以，在上机测序前，需要统计下全部Index每个位置上的碱基占比，尽量保障每个位置上每种碱基的占比为25%。</p>
+<p>我们可观察下面的例子中，一个样本下有4个文件组成。那么这个<strong>样本</strong>是由4个index序列进行标志。4个文件也被称为<strong>子文库</strong>。换句话说用了4个不同的index，进行标志了样本（文库），测序完之后产生了4个文件都是这个样本的。</p>
+<p><img alt="文库组成" src="../../_images/151.png" /></p>
+</li>
+</ol>
+<p><strong>根据上面的fastq文件路径格式设置相应的批量脚本</strong></p>
+</section>
+<section id="id3">
+<h2>1. 批量在自己目录下创建软连接<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<section id="create-ln-sh">
+<h3>create_ln.sh<a class="headerlink" href="#create-ln-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">rootdir</span><span class="o">=</span><span class="nv">$1</span> 
+<span class="nv">result</span><span class="o">=</span><span class="nv">$2</span>
+<span class="k">for</span> sample <span class="k">in</span> <span class="sb">`</span>dir <span class="nv">$rootdir</span><span class="sb">`</span>
+<span class="k">do</span>
+    <span class="k">for</span> index <span class="k">in</span> <span class="sb">`</span>dir <span class="nv">$rootdir</span>/<span class="nv">$sample</span><span class="sb">`</span>
+    <span class="k">do</span>
+        <span class="nv">output</span><span class="o">=</span><span class="si">${</span><span class="nv">result</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>
+        mkdir -p <span class="nv">$output</span>
+        <span class="k">for</span> fq <span class="k">in</span> <span class="sb">`</span>dir <span class="nv">$rootdir</span>/<span class="nv">$sample</span>/<span class="nv">$index</span><span class="sb">`</span>
+	<span class="k">do</span>
+            <span class="k">if</span> <span class="o">[[</span> <span class="nv">$fq</span> <span class="o">=</span>~ <span class="s2">&quot;fq.gz&quot;</span> <span class="o">]]</span>
+            <span class="k">then</span> 
+                ln -s <span class="nv">$rootdir</span>/<span class="nv">$sample</span>/<span class="nv">$index</span>/<span class="nv">$fq</span> <span class="nv">$output</span>
+                <span class="nb">echo</span> <span class="s2">&quot;Create the soft connection to </span><span class="si">${</span><span class="nv">output</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="k">fi</span>
+	<span class="k">done</span>
+    <span class="k">done</span> 
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>用法<code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">create_ln.sh</span> <span class="pre">原始文件目录</span> <span class="pre">目标目录</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh create_ln.sh /public/jiazi/zhufeng/office/fastq/PM-XS01KF2019120513-18/ANNO_XS01KF2019120513_PM-XS01KF2019120513-18_2020-09-30/Rawdata /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/Rawdata_ln
+</pre></div>
+</div>
+</section>
+</section>
+<section id="fastqc">
+<h2>2.批量进行fastqc质控<a class="headerlink" href="#fastqc" title="Permalink to this headline">#</a></h2>
+<section id="batch-fastqc-sh">
+<h3>batch_fastqc.sh<a class="headerlink" href="#batch-fastqc-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">rootdir</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">output</span><span class="o">=</span><span class="nv">$2</span>
+mkdir -p <span class="nv">$output</span>
+
+<span class="k">for</span> sample <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span><span class="sb">`</span>
+<span class="k">do</span>
+    <span class="k">for</span> index <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="sb">`</span>
+    <span class="k">do</span>
+        <span class="k">for</span> fq <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span><span class="sb">`</span>
+        <span class="k">do</span>
+            <span class="k">if</span> <span class="o">[[</span> <span class="nv">$fq</span> <span class="o">=</span>~ <span class="s1">&#39;R1.fq.gz&#39;</span> <span class="o">]]</span>
+            <span class="k">then</span>
+                <span class="nv">fqr1</span><span class="o">=</span><span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fq</span><span class="si">}</span>
+            <span class="k">elif</span> <span class="o">[[</span> <span class="nv">$fq</span> <span class="o">=</span>~ <span class="s1">&#39;R2.fq.gz&#39;</span> <span class="o">]]</span>
+            <span class="k">then</span>
+                <span class="nv">fqr2</span><span class="o">=</span><span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fq</span><span class="si">}</span>
+            <span class="k">fi</span>
+
+        <span class="k">done</span>
+    	qsub -N fastqc.<span class="si">${</span><span class="nv">index</span><span class="si">}</span> -v <span class="nv">index</span><span class="o">=</span><span class="nv">$index</span>,output<span class="o">=</span><span class="nv">$output</span>,fqr1<span class="o">=</span><span class="nv">$fqr1</span>,fqr2<span class="o">=</span><span class="nv">$fqr2</span> fastqc.sh
+    <span class="k">done</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="fastqc-sh">
+<h3><a class="reference external" href="http://fastqc.sh">fastqc.sh</a><a class="headerlink" href="#fastqc-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l walltime=1336:00:00</span>
+<span class="c1">#PBS -l nodes=1:ppn=4</span>
+<span class="c1">#PBS -j oe</span>
+<span class="c1">#PBS -q cv3</span>
+<span class="c1">#PBS -o ${index}.log</span>
+<span class="c1">#PBS -V </span>
+<span class="nv">fastqc</span><span class="o">=</span>/public/software/genomics/approved/FastQC-0.11.2/fastqc
+
+<span class="nv">$fastqc</span> --extract <span class="se">\</span>
+-t <span class="m">8</span> <span class="se">\</span>
+-f fastq <span class="se">\</span>
+-o <span class="si">${</span><span class="nv">output</span><span class="si">}</span> <span class="se">\</span>
+<span class="nv">$fqr1</span> <span class="nv">$fqr2</span>
+</pre></div>
+</div>
+<p>用法<code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">batch_fastqc.sh</span> <span class="pre">原始文件目录</span> <span class="pre">目标文件目录</span>&#160; </code></p>
+<p><strong>log文件会在脚本所在的目录下创建的，所以建议不同功能的脚本，独立开目录</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh batch_fastqc.sh /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/Rawdata_ln /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/fastqc_result
+</pre></div>
+</div>
+</section>
+</section>
+<section id="fastp-cleandata">
+<h2>3. 批量进行fastp质控，产生Cleandata<a class="headerlink" href="#fastp-cleandata" title="Permalink to this headline">#</a></h2>
+<section id="batch-fastp-sh">
+<h3>batch_fastp.sh<a class="headerlink" href="#batch-fastp-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">rootdir</span><span class="o">=</span><span class="nv">$1</span>
+<span class="nv">result</span><span class="o">=</span><span class="nv">$2</span>
+<span class="nv">outdir</span><span class="o">=</span><span class="si">${</span><span class="nv">result</span><span class="si">}</span>/Cleandata
+<span class="nv">report</span><span class="o">=</span><span class="si">${</span><span class="nv">result</span><span class="si">}</span>/Report
+<span class="nv">log</span><span class="o">=</span><span class="si">${</span><span class="nv">result</span><span class="si">}</span>/log
+mkdir -p <span class="nv">$outdir</span>
+mkdir -p <span class="nv">$report</span>
+mkdir -p <span class="nv">$log</span>
+
+<span class="k">for</span> sample <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span><span class="sb">`</span>
+<span class="k">do</span>
+    <span class="k">for</span> index <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="sb">`</span>
+    <span class="k">do</span> 
+        <span class="k">for</span> fq <span class="k">in</span> <span class="sb">`</span>dir <span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span><span class="sb">`</span>
+        <span class="k">do</span> 
+            <span class="k">if</span> <span class="o">[[</span> <span class="nv">$fq</span> <span class="o">=</span>~ <span class="s1">&#39;R1.fq.gz&#39;</span> <span class="o">]]</span>
+            <span class="k">then</span>
+                <span class="nv">fqr1</span><span class="o">=</span><span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fq</span><span class="si">}</span>
+                <span class="nv">fqr1_name</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$fqr1</span> <span class="p">|</span> sed <span class="s1">&#39;s/_R1.fq.gz/_R1.fastq.gz/&#39;</span><span class="sb">`</span>
+            <span class="k">elif</span> <span class="o">[[</span> <span class="nv">$fq</span> <span class="o">=</span>~ <span class="s1">&#39;R2.fq.gz&#39;</span> <span class="o">]]</span>
+            <span class="k">then</span>
+                <span class="nv">fqr2</span><span class="o">=</span><span class="si">${</span><span class="nv">rootdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fq</span><span class="si">}</span>
+                <span class="nv">fqr2_name</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$fqr2</span> <span class="p">|</span> sed <span class="s1">&#39;s/_R2.fq.gz/_R2.fastq.gz/&#39;</span><span class="sb">`</span>
+            <span class="k">fi</span>          
+        <span class="k">done</span>
+	qsub -N fastp.<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span> -v <span class="nv">fqr1</span><span class="o">=</span><span class="nv">$fqr1</span>,fqr2<span class="o">=</span><span class="nv">$fqr2</span>,fqr1_name<span class="o">=</span><span class="nv">$fqr1_name</span>,fqr2_name<span class="o">=</span><span class="nv">$fqr2_name</span>,sample<span class="o">=</span><span class="nv">$sample</span>,index<span class="o">=</span><span class="nv">$index</span>,outdir<span class="o">=</span><span class="nv">$outdir</span>,report<span class="o">=</span><span class="nv">$report</span>,log<span class="o">=</span><span class="nv">$log</span> fastp.sh
+    <span class="k">done</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="fastp-sh">
+<h3><a class="reference external" href="http://fastp.sh">fastp.sh</a><a class="headerlink" href="#fastp-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l walltime=1336:00:00</span>
+<span class="c1">#PBS -l nodes=1:ppn=2</span>
+<span class="c1">#PBS -j oe</span>
+<span class="c1">#PBS -q cv3</span>
+<span class="c1">#PBS -o fastp.${index}.log</span>
+<span class="c1">#PBS -V</span>
+
+<span class="nv">fastp</span><span class="o">=</span>/public/software/anaconda352/envs/py27/bin/fastp
+<span class="nb">cd</span> <span class="nv">$PBS_O_WORKDIR</span>
+<span class="nv">output</span><span class="o">=</span><span class="si">${</span><span class="nv">outdir</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>
+mkdir -p <span class="nv">$output</span>
+<span class="nv">$fastp</span> --thread <span class="m">2</span> <span class="se">\</span>
+      --length_required <span class="m">28</span> <span class="se">\</span>
+      --disable_quality_filtering <span class="se">\</span>
+      --detect_adapter_for_pe <span class="se">\</span>
+      --report_title <span class="s2">&quot;&#39;</span><span class="si">${</span><span class="nv">index</span><span class="si">}</span><span class="s2">&#39;&quot;</span> <span class="se">\</span>
+      --json <span class="si">${</span><span class="nv">report</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>.json <span class="se">\</span>
+      --html <span class="si">${</span><span class="nv">report</span><span class="si">}</span>/<span class="si">${</span><span class="nv">index</span><span class="si">}</span>.html <span class="se">\</span>
+      -i <span class="si">${</span><span class="nv">fqr1</span><span class="si">}</span> <span class="se">\</span>
+      -I <span class="si">${</span><span class="nv">fqr2</span><span class="si">}</span> <span class="se">\</span>
+      -o <span class="si">${</span><span class="nv">output</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fqr1_name</span><span class="si">}</span> <span class="se">\</span>
+      -O <span class="si">${</span><span class="nv">output</span><span class="si">}</span>/<span class="si">${</span><span class="nv">fqr2_name</span><span class="si">}</span>
+</pre></div>
+</div>
+<p>用法<code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">batch_fastp.sh</span> <span class="pre">原始文件</span> <span class="pre">目标文件</span> </code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh batch_fastp.sh /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/Rawdata_ln /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/fastp_result
+</pre></div>
+</div>
+<p>这个脚本<strong>会在…/fastp_result下生成三个文件夹，查看报告结果（Report），质控过后的数据（Cleandata）</strong></p>
+</section>
+</section>
+<section id="id4">
+<h2>4. 批量进行序列比对<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<section id="batch-starsolo-sh">
+<h3>batch_starsolo.sh<a class="headerlink" href="#batch-starsolo-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/sh</span>
+<span class="nv">dataset</span><span class="o">=</span><span class="nv">$1</span>
+<span class="k">for</span> sample <span class="k">in</span> <span class="sb">`</span>dir <span class="nv">$dataset</span><span class="sb">`</span>
+<span class="k">do</span>
+    <span class="nv">i</span><span class="o">=</span><span class="m">0</span>
+    <span class="nv">R1</span><span class="o">=</span><span class="k">$()</span>
+    <span class="nv">R2</span><span class="o">=</span><span class="k">$()</span>
+    <span class="k">for</span> sub_sample <span class="k">in</span> <span class="sb">`</span>dir <span class="nv">$dataset</span>/<span class="nv">$sample</span><span class="sb">`</span>
+    <span class="k">do</span>
+      <span class="nv">sub_folder</span><span class="o">=</span><span class="nv">$dataset</span>/<span class="si">${</span><span class="nv">sample</span><span class="si">}</span>/<span class="si">${</span><span class="nv">sub_sample</span><span class="si">}</span>
+      <span class="k">for</span> f <span class="k">in</span> <span class="si">${</span><span class="nv">sub_folder</span><span class="si">}</span>/*gz
+      <span class="k">do</span>
+        <span class="nv">root</span><span class="o">=</span><span class="sb">`</span>basename <span class="nv">$f</span><span class="sb">`</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="nv">$root</span> <span class="o">==</span> *R1.* <span class="o">]]</span>
+        <span class="k">then</span>
+          R1<span class="o">[</span><span class="nv">$i</span><span class="o">]=</span><span class="nv">$f</span>
+        <span class="k">else</span>
+          R2<span class="o">[</span><span class="nv">$i</span><span class="o">]=</span><span class="nv">$f</span>
+        <span class="k">fi</span>
+      <span class="k">done</span>
+      <span class="nv">i</span><span class="o">=</span>$<span class="o">[</span><span class="nv">$i</span>+1<span class="o">]</span>
+    <span class="k">done</span>
+    <span class="nv">R1</span><span class="o">=</span><span class="k">$(</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">R1</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">)</span>
+    <span class="nv">R2</span><span class="o">=</span><span class="k">$(</span> <span class="nv">IFS</span><span class="o">=</span><span class="s1">&#39;|&#39;</span><span class="p">;</span> <span class="nb">echo</span> <span class="s2">&quot;</span><span class="si">${</span><span class="nv">R2</span><span class="p">[*]</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">)</span>
+    <span class="nb">echo</span> STARsolo <span class="nv">$sample</span>
+    qsub -N STARsolo.<span class="si">${</span><span class="nv">sample</span><span class="si">}</span> -v <span class="nv">sample</span><span class="o">=</span><span class="nv">$sample</span>,R1<span class="o">=</span><span class="nv">$R1</span>,R2<span class="o">=</span><span class="nv">$R2</span> run_STARsolo.sh
+<span class="k">done</span>
+</pre></div>
+</div>
+</section>
+<section id="run-starsolo-sh">
+<h3>run_STARsolo.sh<a class="headerlink" href="#run-starsolo-sh" title="Permalink to this headline">#</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#PBS -l walltime=1336:00:00</span>
+<span class="c1">#PBS -l nodes=1:ppn=10,mem=60gb</span>
+<span class="c1">#PBS -j oe</span>
+<span class="c1">#PBS -q cv3</span>
+<span class="c1">#PBS -o ${sample}.log</span>
+<span class="c1">#PBS -V </span>
+<span class="nb">cd</span> <span class="nv">$PBS_O_WORKDIR</span>
+<span class="nv">id</span><span class="o">=</span><span class="sb">`</span>basename <span class="si">${</span><span class="nv">sample</span><span class="si">}</span><span class="sb">`</span>
+<span class="nv">id</span><span class="o">=</span><span class="si">${</span><span class="nv">id</span><span class="si">}</span>
+<span class="nv">R1</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$R1</span> <span class="p">|</span> sed <span class="s1">&#39;s/|/,/g&#39;</span><span class="sb">`</span>
+<span class="nv">R2</span><span class="o">=</span><span class="sb">`</span><span class="nb">echo</span> <span class="nv">$R2</span> <span class="p">|</span> sed <span class="s1">&#39;s/|/,/g&#39;</span><span class="sb">`</span>
+<span class="nv">output</span><span class="o">=</span>./<span class="nv">$id</span>/outs
+mkdir -p <span class="nv">$output</span>
+<span class="nv">star</span><span class="o">=</span>/public/jiazi/software/STAR-2.7.6a/source/STAR 
+<span class="nv">$star</span> --soloType Droplet <span class="se">\</span>
+     --soloFeatures Gene Velocyto<span class="se">\</span>
+     --runThreadN <span class="m">10</span> <span class="se">\</span>
+     --soloCBstart <span class="m">1</span> <span class="se">\</span>
+     --soloCBlen <span class="m">16</span> <span class="se">\</span>
+     --soloUMIstart <span class="m">17</span> <span class="se">\</span>
+     --soloUMIlen <span class="m">12</span> <span class="se">\</span>
+     --soloBarcodeReadLength <span class="m">0</span> <span class="se">\</span>
+     --readFilesCommand zcat <span class="se">\</span>
+     --outSAMtype BAM SortedByCoordinate <span class="se">\</span>
+     --outSAMattributes NH HI AS nM CR CY UR UY <span class="se">\</span>
+     --outFileNamePrefix <span class="nv">$output</span>/<span class="si">${</span><span class="nv">id</span><span class="si">}</span>_ <span class="se">\</span>
+     --soloCBmatchWLtype Exact <span class="se">\</span>
+     --soloUMIfiltering MultiGeneUMI <span class="se">\</span>
+     --genomeDir /public/jiazi/lhlin/mapping/star/reference/hg38/star-2.7.6 <span class="se">\</span>
+     --soloCBwhitelist /public/jiazi/lhlin/mapping/star/reference/whitelist/3M-february-2018.txt <span class="se">\</span>
+     --readFilesIn <span class="si">${</span><span class="nv">R2</span><span class="si">}</span> <span class="si">${</span><span class="nv">R1</span><span class="si">}</span>
+
+<span class="c1">############################## MUST READ ####################################</span>
+<span class="c1"># 10x kit v2: the soloUMIlen is 10, soloCBwhitelist is 737K-august-2016.txt #</span>
+<span class="c1"># 10x kit v3, the soloUMIlen is 12, soloCBwhitelist is 3M-february-2018.txt #</span>
+</pre></div>
+</div>
+<p>用法 <code class="docutils literal notranslate"><span class="pre">sh</span> <span class="pre">batch_starsolo</span> <span class="pre">原始目录</span> <span class="pre">目标目录</span></code><strong>这个脚本是在当前目录下生成比对结果的文件夹，所以要另开一个独立的目录</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh batch_starsolo.sh /public/home/hjfeng_gibh/Projects/CCLA/zhufeng/zhufeng_20201125_firstling/fastp_result/Cleandata
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/转录组分析"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">scRNAseq常规分析</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="scRNA_tutorial.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Single-Cell RNA Sequencing Analysis</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

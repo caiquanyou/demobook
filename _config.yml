@@ -1,0 +1,72 @@
+# Book settings
+# Learn more at https://jupyterbook.org/customize/config.html
+#######################################################################################
+# Book settings
+title                       : CJKLab bioinfo  # The title of the book. Will be placed in the left navbar.
+author                      : 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a>
+copyright                   : "2022"  # Copyright year to be placed in the footer
+logo                        : logo.png  # A path to the book logo
+only_build_toc_files          : true
+#######################################################################################
+# Execution settings
+execute:
+  execute_notebooks         : auto  # Whether to execute notebooks at build time. Must be one of ("auto", "force", "cache", "off")
+  stderr_output: remove
+#######################################################################################
+#交互式代码
+repository:
+  url                       : https://github.com/JiekaiLab/Jiekai_tw  # Online location of your book
+  branch                    : main # Which branch of the repository should be used when creating links (optional)
+  path_to_book              : ""
+#######################################################################################
+# HTML-specific settings
+html:
+  comments:
+    hypothesis: false
+  favicon                   : "logo.png"  # A path to a favicon image
+  use_edit_page_button      : false  # Whether to add an "edit this page" button to pages.
+  use_repository_button     : true  # Whether to add a link to your repository button
+  use_issues_button         : false  # Whether to add an "open an issue" button
+  extra_navbar              : Powered by <a href="https://jupyterbook.org">Jupyter Book</a>  # Will be displayed underneath the left navbar.
+  extra_footer              : ""  # Will be displayed underneath the footer.
+  home_page_in_navbar       : false  # Whether to include your home page in the left Navigation Bar
+#######################################################################################
+# Advanced and power-user settings
+parse:
+  myst_substitutions:
+      sub3: My _global_ value!
+  myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
+    - amsmath
+    - colon_fence
+    - deflist
+    - dollarmath
+    - html_admonition
+    - html_image
+    - linkify
+    - replacements
+    - smartquotes
+    - substitution
+#######################################################################################
+sphinx:
+  config:
+    myst_amsmath_enable: true
+    html_show_copyright: false
+    mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+    # html_theme: pydata_sphinx_theme
+    html_js_files:
+     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
+    nb_custom_formats:
+      .Rmd:
+        - jupytext.reads
+        - fmt: Rmd
+
+extra_extensions:
+    - sphinx_click.ext
+    - sphinx_inline_tabs
+    - sphinxext.rediraffe
+    - sphinx_proof
+    - myst_nb
+    - sphinx_thebe
+    - html_image
+    - sphinx_copybutton
+    - sphinx_panels

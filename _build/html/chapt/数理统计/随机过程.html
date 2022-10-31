@@ -1,0 +1,948 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>随机过程 &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="「文献阅读笔记」Cell2location 方法建模原理详解" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html" />
+    <link rel="prev" title="概率论与数理统计" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%AB%98%E7%AD%89%E6%95%B0%E5%AD%A6.html">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/JiekaiLab/Jiekai_tw/main?urlpath=tree/chapt/数理统计/随机过程.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/数理统计/随机过程.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   一、随机过程基本概念
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson">
+   二、Poisson过程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     （一）计数过程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     （二）泊松过程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     （三）呼叫泊松流
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     （四）泊松过程的汇合和分流
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   三、马尔可夫过程(离散时间)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     （一）马尔可夫链及其转移概率矩阵
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-k">
+     （二）C-K方程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     （三）极限分布和平稳条件
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     （四）鞅
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     （五）高斯过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>随机过程</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   一、随机过程基本概念
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#poisson">
+   二、Poisson过程
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     （一）计数过程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     （二）泊松过程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     （三）呼叫泊松流
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     （四）泊松过程的汇合和分流
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id7">
+   三、马尔可夫过程(离散时间)
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     （一）马尔可夫链及其转移概率矩阵
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#c-k">
+     （二）C-K方程
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     （三）极限分布和平稳条件
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     （四）鞅
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     （五）高斯过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>随机过程<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+<p>课程内容包括：</p>
+<ul class="simple">
+<li><p>随机过程的基本概念</p></li>
+<li><p>Poisson过程</p></li>
+<li><p>Markov过程</p></li>
+<li><p>随机采样与随机模拟</p></li>
+</ul>
+<section id="id2">
+<h2>一、随机过程基本概念<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h2>
+<ol class="simple">
+<li><p>随机变量：随机变量<span class="math notranslate nohighlight">\(X\)</span>是定义在样本空间<span class="math notranslate nohighlight">\(\Omega\)</span>上的函数，当x是<span class="math notranslate nohighlight">\(X\)</span>的观测值时，存在<span class="math notranslate nohighlight">\(\Omega\)</span>中的<span class="math notranslate nohighlight">\(w\)</span>使得<span class="math notranslate nohighlight">\(x=X(w)\)</span></p></li>
+<li><p>随机向量：随机向量<span class="math notranslate nohighlight">\((X_1,X_2,...,X_n)\)</span>是定义在样本空间<span class="math notranslate nohighlight">\(\Omega\)</span>上的n元函数，当<span class="math notranslate nohighlight">\((x_1,x_2,...,x_n)\)</span>是<span class="math notranslate nohighlight">\((X_1,X_2,...,X_n)\)</span>的观测值时，存在w使得<span class="math notranslate nohighlight">\((x_1,x_2,...,x_n) = (X_1(w),X_2(w),...,X_n(w))\)</span>，这时称<span class="math notranslate nohighlight">\((x_1,x_2,...,x_n)\)</span>为<span class="math notranslate nohighlight">\((X_1,X_2,...,X_n)\)</span>的一次观测或者一次实现。</p></li>
+<li><p>随机过程：设T为<span class="math notranslate nohighlight">\((-\infty,+\infty)\)</span>的子集，若对每个<span class="math notranslate nohighlight">\(t\in T\)</span>，<span class="math notranslate nohighlight">\(X_t\)</span>是随机变量，则称随机变量的集合<span class="math notranslate nohighlight">\(\{X_t|t\in T \}\)</span>是随机过程。当每个t都有一次观测，那么会形成一条曲线，则称这条曲线为一条轨道或一条轨迹。</p></li>
+<li><p>有限维分布：对于任何正整数m和T中互不相同的<span class="math notranslate nohighlight">\(t_1,...,t_m\)</span>，称<span class="math notranslate nohighlight">\((X_{t_1},...,X_{t_m})\)</span>的联合分布为随机过程<span class="math notranslate nohighlight">\(\{X_t|t\in T \}\)</span>的一个有限维分布，称全体的有限维分布为该随机过程的概率分布。</p></li>
+<li><p>随机过程的同分布：如果随机过程<span class="math notranslate nohighlight">\(\{X_t|t\in T \}\)</span>与随机过程<span class="math notranslate nohighlight">\(\{Y_t|t\in T \}\)</span>有相同的有限维分布，则称他们同分布。</p></li>
+<li><p>随机过程的独立：如果随机过程<span class="math notranslate nohighlight">\(\{X_t|t\in T \}\)</span>中任意选出来的<span class="math notranslate nohighlight">\((X_{t_1},...,X_{t_i})\)</span>与从<span class="math notranslate nohighlight">\(\{Y_t|t\in T \}\)</span>中选出来的<span class="math notranslate nohighlight">\((Y_{s_1},...,Y_{s_j})\)</span>是相互独立的，则称两个随机过程独立。</p></li>
+<li><p>随机序列：如果时间集合T是整数，就是一个随机序列（时间序列），记作<span class="math notranslate nohighlight">\(X_n\)</span></p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/31.png" /></p>
+</section>
+<section id="poisson">
+<h2>二、Poisson过程<a class="headerlink" href="#poisson" title="Permalink to this headline">#</a></h2>
+<section id="id3">
+<h3>（一）计数过程<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>计数过程：随机过程 <span class="math notranslate nohighlight">\(\{N(t), t \geqslant 0\}\)</span> 称为计数过程，如果 <span class="math notranslate nohighlight">\(N(t)\)</span> 表示从 0 到 <span class="math notranslate nohighlight">\(t\)</span> 时 刻某一特定事件 <span class="math notranslate nohighlight">\(A\)</span> 发生的次数，它具备以下两个特点:<br />
+(1) <span class="math notranslate nohighlight">\(N(t) \geqslant 0\)</span> 且取值为整数;<br />
+(2) 当 <span class="math notranslate nohighlight">\(s&lt;t\)</span> 时 <span class="math notranslate nohighlight">\(, \quad N(s) \leqslant N(t)\)</span>且 <span class="math notranslate nohighlight">\(N(t)-N(s)\)</span> 表示 <span class="math notranslate nohighlight">\((s, t]\)</span> 时间内事件 <span class="math notranslate nohighlight">\(A\)</span> 发生的 次数。</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/11.png" /></p>
+<ol class="simple">
+<li><p>独立增量性：如果在互不相交的时间段内发生事件的个数是相互独立的，则称相应的计数过程<span class="math notranslate nohighlight">\({N(t)}\)</span>具有独立增量性。即：对任意的正整数n和<span class="math notranslate nohighlight">\(0\le t_1&lt;t_2&lt;...&lt;t_n\)</span>，随机变量<span class="math notranslate nohighlight">\(N(0),N(0,t_1),N(t_1,t_2],...,N(t_{n-1},t_{n}]\)</span>是相互独立。</p></li>
+<li><p>平稳增量性：如果在长度相等的时间段内，事件发生的个数的概率分布是相同的，则称相应的计数过程具有平稳增量性。即：对于任意<span class="math notranslate nohighlight">\(s&gt;0,t_2&gt;t_1\ge 0\)</span>，随机变量<span class="math notranslate nohighlight">\(N(t_1+s,t_2+s]\)</span>与<span class="math notranslate nohighlight">\(N(t_1,t_2)\)</span>同分布，<strong>其主要的性质与起始点<span class="math notranslate nohighlight">\(t_1,t_2\)</span>无关，与时间间隔有关。</strong></p></li>
+<li><p>拓展思考：<br />
+（1）严平稳过程：如果随机过程 <span class="math notranslate nohighlight">\(\{X(t), t \in T\}\)</span> 对任意的 <span class="math notranslate nohighlight">\(t_{1}, t_{2}, \cdots, t_{n} \in T\)</span> 和任意的 <span class="math notranslate nohighlight">\(h\)</span>
+（使得 <span class="math notranslate nohighlight">\(\left.t_{i}+h \in T, i=1,2, \cdots, n\right)\)</span> 有 <span class="math notranslate nohighlight">\(\left(X\left(t_{1}+h\right), X\left(t_{2}+h\right), \cdots, X\left(t_{n}+h\right)\right)\)</span> 与
+<span class="math notranslate nohighlight">\(\left(X\left(t_{1}\right), X\left(t_{2}\right), \cdots, X\left(t_{n}\right)\right)\)</span> 具有相同的联合分布，记为:
+$<span class="math notranslate nohighlight">\(
+\left(X\left(t_{1}+h\right), X\left(t_{2}+h\right), \cdots, X\left(t_{n}+h\right)\right) \stackrel{\mathrm{d}}{=}\left(X\left(t_{1}\right), X\left(t_{2}\right), \cdots, X\left(t_{n}\right)\right)
+\)</span><span class="math notranslate nohighlight">\(
+则称 \)</span>{X(t), t \in T}<span class="math notranslate nohighlight">\( 为严平稳的。               
+（2）宽平稳过程：如果随机过程 \)</span>X(t)<span class="math notranslate nohighlight">\( 的所有二阶矩都存在，并且 \)</span>E[X(t)\rfloor=\mu,<span class="math notranslate nohighlight">\( 协方差函数 \)</span>\gamma(t, s)<span class="math notranslate nohighlight">\( 只与时间差 \)</span>t-s<span class="math notranslate nohighlight">\( 有关，则称 \)</span>{X(t), t \in T}$ 为宽平稳过程或二阶平稳过程。</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/21.png" /></p>
+<p>（3）独立增量过程：如果对任意 <span class="math notranslate nohighlight">\(t_{1}, t_{2}, \cdots, t_{n} \in T, t_{1}&lt;t_{2}&lt;\cdots&lt;t_{n},\)</span> 随机变量 <span class="math notranslate nohighlight">\(X\left(t_{2}\right)-\)</span>
+<span class="math notranslate nohighlight">\(X\left(t_{1}\right), X\left(t_{3}\right)-X\left(t_{2}\right), \cdots, X\left(t_{n}\right)-X\left(t_{n-1}\right)\)</span> 是相互独立的，则称 <span class="math notranslate nohighlight">\(\{X(t), t \in T\}\)</span> 是独立增量过程。<br />
+如果对任意 <span class="math notranslate nohighlight">\(t_{1}, t_{2},\)</span> 有 <span class="math notranslate nohighlight">\(X\left(t_{1}+h\right)-X\left(t_{1}\right) \stackrel{\mathrm{d}}{=} X\left(t_{2}+h\right)-X\left(t_{2}\right),\)</span> 则称 <span class="math notranslate nohighlight">\(\{X(t), t \in T\}\)</span> 是平稳增量过程。 兼有独立增量和平稳增量的过程称为平稳独立增量过程。</p>
+</section>
+<section id="id4">
+<h3>（二）泊松过程<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>泊松过程（定义一）：计数过程 <span class="math notranslate nohighlight">\(\{N(t), t \geqslant 0\}\)</span> 称为参数为 <span class="math notranslate nohighlight">\(\lambda(\lambda&gt;0)\)</span> 的 Poisson 过程， 如果<br />
+(1) <span class="math notranslate nohighlight">\(N(0)=0\)</span> ;<br />
+(2)过程有独立增量;<br />
+(3)在任一长度为 <span class="math notranslate nohighlight">\(t\)</span> 的时间区间中事件发生的次数服从均值为 <span class="math notranslate nohighlight">\(\lambda t\)</span> 的 Poisson 分 布，即对一切 <span class="math notranslate nohighlight">\(s \geqslant 0, t&gt;0,\)</span> 有：
+$<span class="math notranslate nohighlight">\(
+P\{N(t+s)-N(s)=n\}=\mathrm{e}^{-\lambda t} \frac{(\lambda t)^{n}}{n !}, \quad n=0,1,2, \cdots
+\)</span>$</p></li>
+</ol>
+<p>由上式可以看出，<span class="math notranslate nohighlight">\(\{N(t+s)-N(s)=n\}\)</span>与起始点s无关，只与时间间隔t有关，因此具有平稳增量性。设<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>是强度为<span class="math notranslate nohighlight">\(\lambda\)</span>的泊松过程，容易计算<span class="math notranslate nohighlight">\(E(N(t)) = \lambda t\)</span>，于是<span class="math notranslate nohighlight">\(\lambda = \frac{E(N(t))}{t}\)</span>是单位时间内事件发生的次数的平均数（强度）。</p>
+<p><img alt="jupyter" src="../../_images/41.png" /></p>
+<p>为什么实际中有这么多的现象可以用 Poisson 过程来反映呢? 其根据是小概率事件原理。我们在对概率论的学习中已经知道，Bernoulli 试验中每次试验成功的概率很 小，而试验的次数很多时，二项分布会逼近 Poisson 分布。这一想法很自然地推广到随机过程的情况。比如上面提到的事故发生的例子，在很短的时间内发生事故的概率 是很小的，但假如考虑很多个这样很短的时间的连接，事故的发生将会有一个大致稳定的速率，这很类似于 Bernoulli 试验以及二项分布逼近 Poisson 分布时的假定。</p>
+<ol class="simple">
+<li><p>泊松过程（定义二）：设<span class="math notranslate nohighlight">\(\lambda&gt;0\)</span>是一个常数，如果计数过程<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>满足以下条件，则称他为强度为<span class="math notranslate nohighlight">\(\lambda\)</span>的泊松过程：<br />
+（1）<span class="math notranslate nohighlight">\(N(0)=0\)</span>;<br />
+（2）<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>是独立增量过程，有平稳增量性；<br />
+（3）一般性：对任何<span class="math notranslate nohighlight">\(t\ge 0\)</span>，当正数h-&gt;0时，有：<span class="math notranslate nohighlight">\(P(N(h)=1)=\lambda h + o(h)\)</span>与<span class="math notranslate nohighlight">\(P(N(h)\ge 2) = o(h)\)</span></p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/51.png" /></p>
+</section>
+<section id="id5">
+<h3>（三）呼叫泊松流<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>呼叫流：设<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>是强度为<span class="math notranslate nohighlight">\(\lambda \)</span>的泊松过程，定义<span class="math notranslate nohighlight">\(S_0=0\)</span>，用<span class="math notranslate nohighlight">\(S_n\)</span>表示第n个事件发生的时刻，简称为第n个到达时刻或者第n个呼叫时，由于<span class="math notranslate nohighlight">\(S_0,S_1,...,S_n\)</span>依次到达，所以又称<span class="math notranslate nohighlight">\(\{S_t \}\)</span>为泊松过程<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>的呼叫流。</p></li>
+</ol>
+<p>基本关系：
+$<span class="math notranslate nohighlight">\(
+\{N(t)\ge n \} = \{S_n\le t \}\\
+\{N(t)= n \} = \{S_n\le t&lt;S_{n+1} \}
+\)</span>$</p>
+<ol class="simple">
+<li><p>等待间隔：设<span class="math notranslate nohighlight">\(\{S_n \}\)</span>是泊松过程<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>的呼叫流，引入<span class="math notranslate nohighlight">\(X_n=S_n-S_{n-1},n=1,2,...\)</span>，则<span class="math notranslate nohighlight">\(X_n\)</span>是第n-1个事件之后等待第n个事件发生的等待间隔，称为第n个等待间隔。</p></li>
+<li><p>泊松过程<span class="math notranslate nohighlight">\(\{N(t) \}\)</span>的等待间隔<span class="math notranslate nohighlight">\(X_1,...,X_n,...\)</span>是来自指数总体<span class="math notranslate nohighlight">\(\epsilon(\lambda)\)</span>的随机变量。<br />
+证明：首先考虑 <span class="math notranslate nohighlight">\(X_{1}\)</span> 的分布，注意到事件 <span class="math notranslate nohighlight">\(\left\{X_{1}&gt;t\right\}\)</span> 等价于事件 <span class="math notranslate nohighlight">\(\{N(t)=0\},\)</span> 即<span class="math notranslate nohighlight">\((0, t]\)</span> 时间内没有事件发生。因此
+$<span class="math notranslate nohighlight">\(
+P\left\{X_{1}&gt;t\right\}=P\{N(t)=0\}=\mathrm{e}^{-\lambda t}
+\)</span><span class="math notranslate nohighlight">\(
+从而
+\)</span><span class="math notranslate nohighlight">\(
+P\left\{X_{1} \leqslant t\right\}=1-\mathrm{e}^{-\lambda t}
+\)</span><span class="math notranslate nohighlight">\(
+再来看 \)</span>X_{2}:<span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+P\left\{X_{2}&gt;t \mid X_{1}=s\right\}=P\left\{N(s+t)-N(s)=0 \mid X_{1}=s\right\}
+\)</span><span class="math notranslate nohighlight">\(
+\)</span>=P{N(s+t)-N(s)=0}(<span class="math notranslate nohighlight">\( 独立增量性 \)</span>)<span class="math notranslate nohighlight">\(
+\)</span><span class="math notranslate nohighlight">\(
+=\mathrm{e}^{-\lambda t}
+\)</span><span class="math notranslate nohighlight">\(
+所以 \)</span>X_{2}<span class="math notranslate nohighlight">\( 与 \)</span>X_{1}<span class="math notranslate nohighlight">\( 独立，且都服从参数为 \)</span>\lambda$ 的指数分布。重复同样的推导，可得定理
+结论。</p></li>
+</ol>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span> 
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="c1"># 模拟泊松过程</span>
+<span class="k">def</span> <span class="nf">poisson_process</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">lmd</span><span class="p">,</span><span class="n">times</span><span class="p">):</span>
+    <span class="c1">## n是模拟的次数,lmd是泊松过程的强度,times是每次模拟发生的次数</span>
+    <span class="n">fin_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">y_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">mid_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">mid_list_y</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">for</span> <span class="n">time</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+            <span class="n">mid_ans</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">exponential</span><span class="p">(</span><span class="n">lmd</span><span class="p">)</span>
+            <span class="n">mid_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mid_ans</span><span class="p">)</span>
+            <span class="n">mid_list_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">+</span><span class="mi">1</span>
+        <span class="n">y_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mid_list_y</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">p</span><span class="p">,</span><span class="n">mid</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">mid_list</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">p</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">mid_list</span><span class="p">[</span><span class="n">p</span><span class="p">]</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span><span class="n">mid_list</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="n">p</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">fin_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">mid_list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">li</span><span class="p">,</span><span class="n">y_li</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">fin_list</span><span class="p">,</span><span class="n">y_list</span><span class="p">):</span>
+        <span class="n">li</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">y_li</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">li</span><span class="p">,</span><span class="n">y_li</span><span class="p">)</span>
+
+<span class="c1">## 开始模拟</span>
+<span class="n">poisson_process</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mf">0.05</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span>
+            
+        
+    
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/随机过程_11_1.png" src="../../_images/随机过程_11_1.png" />
+</div>
+</div>
+</section>
+<section id="id6">
+<h3>（四）泊松过程的汇合和分流<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>泊松过程的汇合：设随机过程<span class="math notranslate nohighlight">\(\{N_1(t) \}\)</span>与<span class="math notranslate nohighlight">\(\{N_2(t) \}\)</span>是相互独立的，强度为<span class="math notranslate nohighlight">\(\lambda_1\)</span>与<span class="math notranslate nohighlight">\(\lambda_2\)</span>的泊松过程，则：<span class="math notranslate nohighlight">\(N(t) = N_1(t) + N_2(t),t \ge 0\)</span>是强度为<span class="math notranslate nohighlight">\(\lambda = \lambda_1 + \lambda_2\)</span>的泊松过程。（多个也成立）</p></li>
+<li><p>泊松过程的分流：设{N(t)}是强度为<span class="math notranslate nohighlight">\(\lambda\)</span>的泊松过程，<span class="math notranslate nohighlight">\(\{Y_j \}\)</span>是独立同分布的随机序列，且<span class="math notranslate nohighlight">\(P\{Y_j = 1 \} = p,P\{Y_j = 0 \} = q\)</span>（两点分布），计数过程<span class="math notranslate nohighlight">\(\{N_1(t) \}\)</span>与<span class="math notranslate nohighlight">\(\{N_1(t) \}\)</span>分别由<span class="math notranslate nohighlight">\(N_1(t) = \sum\limits_{j=1}^{N(t)}Y_j\)</span>与<span class="math notranslate nohighlight">\(N_2(t) = \sum\limits_{j=1}^{N(t)}(1-Y_j)\)</span>定义，若<span class="math notranslate nohighlight">\(\{Y_j\}\)</span>与<span class="math notranslate nohighlight">\(\{N_1(t)\}\)</span>独立，则<span class="math notranslate nohighlight">\(\{N_1(t)\}\)</span>与<span class="math notranslate nohighlight">\(\{N_2(t)\}\)</span>相互独立，分别为强度<span class="math notranslate nohighlight">\(\lambda_1 = \lambda p,\lambda_2 = \lambda (1-p)\)</span>的泊松过程。</p></li>
+<li><p>例子：汽车按照泊松流驶入立体交叉桥，经过调查可以知道：由冬边每分钟驶入6辆，由南面驶入6.5辆，由西面驶入9辆，由北面驶入8.5辆汽车；在桥上，每辆车向左或者向右行驶的概率是0.3，直行的概率是0.35，掉头的概率是0.05，计算各个方向上的驶出汽车流的强度。（可以试试动态模拟这个立交桥的汽车行驶情况）</p></li>
+</ol>
+</section>
+</section>
+<section id="id7">
+<h2>三、马尔可夫过程(离散时间)<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<p>设<span class="math notranslate nohighlight">\(\{X_n|n = 0,1,2,... \}\)</span>是随机序列，若每个<span class="math notranslate nohighlight">\(X_n\)</span>都在S中取值，那么称S为<span class="math notranslate nohighlight">\(\{X_n|n = 0,1,2,... \}\)</span>的状态空间，称S中的元素为状态。</p>
+<section id="id8">
+<h3>（一）马尔可夫链及其转移概率矩阵<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>马尔可夫链：<span class="math notranslate nohighlight">\(\quad\)</span> 随机过程 <span class="math notranslate nohighlight">\(\left\{X_{n}, n=0,1,2, \cdots\right\}\)</span> 称为 Markov 链，若它只取有限或可 列个值（若不另外说明，以非负整数集 <span class="math notranslate nohighlight">\(\{0,1,2, \cdots\}\)</span> 来表示），并且对任意的 <span class="math notranslate nohighlight">\(n \geqslant 0\)</span>, 及任意状态 <span class="math notranslate nohighlight">\(i, j, i_{0}, i_{1}, \cdots, i_{n-1},\)</span> 有
+$<span class="math notranslate nohighlight">\(
+P\left\{X_{n+1}=j \mid X_{n}=i, X_{n-1}=i_{n-1}, \cdots, X_{1}=i_{1}, X_{0}=i_{0}\right\}=P\left\{X_{n+1}=j \mid X_{n}=i\right\}
+\)</span>$</p></li>
+</ol>
+<p>式中， <span class="math notranslate nohighlight">\(X_{n}=i\)</span> 表示过程在时刻 <span class="math notranslate nohighlight">\(n\)</span> 处于状态 <span class="math notranslate nohighlight">\(i,\)</span> 称 <span class="math notranslate nohighlight">\(\{0,1,2, \cdots\}\)</span> 为该过程的状态空间， 记为 S，式子刻画了 Markov 链的特性，称为 Markov 性。对 Markov 链，给 定过去的状态 <span class="math notranslate nohighlight">\(X_{0}, X_{1}, \cdots, X_{n-1}\)</span> 及现在的状态 <span class="math notranslate nohighlight">\(X_{n},\)</span> 将来的状态 <span class="math notranslate nohighlight">\(X_{n+1}\)</span> 的条件分布与 过去的状态独立，只依赖于现在的状态。</p>
+<p>直观理解：已知现在<span class="math notranslate nohighlight">\(B = \{X_n = i \}\)</span>，将来<span class="math notranslate nohighlight">\(A = X_{n+1} = j\)</span>与过去<span class="math notranslate nohighlight">\(C = \{X_{n-1}=i_{n-1},...,X_0 = i_0\}\)</span>独立。</p>
+<ol class="simple">
+<li><p>（一步）转移概率：<span class="math notranslate nohighlight">\(\left\{X_{n}, n=0,1,2, \cdots\right\}\)</span> 的一步转移概率，简称转移概率，记为 <span class="math notranslate nohighlight">\(p_{i j},\)</span> 它代表处于状态 <span class="math notranslate nohighlight">\(i\)</span> 的 过程下一步转移到状态 <span class="math notranslate nohighlight">\(j\)</span> 的概率。</p></li>
+<li><p>（一步）转移概率矩阵：<span class="math notranslate nohighlight">\(P = (p_{ij}) = (p_{ij})_{i,j \in I}\)</span></p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/61.png" /></p>
+</section>
+<section id="c-k">
+<h3>（二）C-K方程<a class="headerlink" href="#c-k" title="Permalink to this headline">#</a></h3>
+<ol class="simple">
+<li><p>C-K方程：<span class="math notranslate nohighlight">\(\quad\)</span> Chapman-Kolmogorov 方程，简称 C-K 方程 对一切 <span class="math notranslate nohighlight">\(n, m \geqslant 0, i, j \in S\)</span> 有<br />
+(1) <span class="math notranslate nohighlight">\(p_{i j}^{(m+n)}=\sum_{k \in S} p_{i k}^{(m)} p_{k j}^{(n)}\)</span><br />
+(2) <span class="math notranslate nohighlight">\(\boldsymbol{P}^{(n)}=\boldsymbol{P} \cdot \boldsymbol{P}^{(n-1)}=\boldsymbol{P} \cdot \boldsymbol{P} \cdot \boldsymbol{P}^{(n-2)}=\cdots=\boldsymbol{P}^{n}\)</span><br />
+证明：<br />
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+p_{i j}^{(m+n)} &amp;=P\left\{X_{m+n}=j \mid X_{0}=i\right\} \\
+&amp;=\frac{P\left\{X_{m+n}=j, X_{0}=i\right\}}{P\left\{X_{0}=i\right\}} \\
+&amp;=\sum_{k \in S} \frac{P\left\{X_{m+n}=j, X_{m}=k, X_{0}=i\right\}}{P\left\{X_{0}=i\right\}}\\
+&amp;=\sum_{k \in S} \frac{P\left\{X_{m+n}=j, X_{m}=k, X_{0}=i\right\}}{P\left\{X_{0}=i\right\}} \cdot \frac{P\left\{X_{m}=k, X_{0}=i\right\}}{P\left\{X_{m}=k, X_{0}=i\right\}} \\
+&amp;=\sum_{k \in S} P\left\{X_{m+n}=j \mid X_{m}=k, X_{0}=i\right\} P\left\{X_{m}=k \mid X_{0}=i\right\} \\
+&amp;=\sum_{k \in S} p_{i k}^{(m)} p_{k j}^{(n)}
+\end{aligned}
+\)</span>$</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/71.png" /></p>
+<p><img alt="jupyter" src="../../_images/8.png" /></p>
+<p><img alt="jupyter" src="../../_images/9.png" /></p>
+</section>
+<section id="id9">
+<h3>（三）极限分布和平稳条件<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h3>
+<p>我们举个例子看看什么是极限分布：</p>
+<p><img alt="jupyter" src="../../_images/10.png" /></p>
+<p><img alt="jupyter" src="../../_images/111.png" /></p>
+<ol class="simple">
+<li><p>极限分布：对于遍历的 Markov 链，极限
+$<span class="math notranslate nohighlight">\(
+\lim _{n \rightarrow \infty} p_{i j}^{(n)}=\pi_{j}, \quad j \in S
+\)</span>$
+称为 Markov 链的极限分布。</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/12.png" /></p>
+<p>作业：</p>
+<p><img alt="jupyter" src="../../_images/13.png" /></p>
+<ol class="simple">
+<li><p>平稳条件（细致平稳条件）：<span class="math notranslate nohighlight">\(\pi_iP_{i,j} = \pi_jP_{j,i}\)</span>（化学反应的动态平衡）</p></li>
+</ol>
+</section>
+<section id="id10">
+<h3>（四）鞅<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
+<p><img alt="jupyter" src="../../_images/14.png" /></p>
+<p><img alt="jupyter" src="../../_images/15.png" /></p>
+<p>作业：</p>
+<p><img alt="jupyter" src="../../_images/16.png" /></p>
+</section>
+<section id="id11">
+<h3>（五）高斯过程<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h3>
+<p>首先当随机变量是1维的时候，我们称之为一维高斯分布，概率密度函数 <span class="math notranslate nohighlight">\(p(x)=N\left(\mu, \sigma^{2}\right),\)</span> 当 随机变量的维度上升到有限的 <span class="math notranslate nohighlight">\(p\)</span> 维的时候，就称之为高维高斯分布, <span class="math notranslate nohighlight">\(p(x)=N\left(\mu, \Sigma_{p \times p}\right)\)</span> 。而 高斯过程则更进一步，他是一个定义在连续域上的无限多个高斯随机变量所组成的随机过程，换句话说，高斯过程是一个无限维的高斯分布。</p>
+<ol class="simple">
+<li><p>高斯过程：对于一个连续域 <span class="math notranslate nohighlight">\(T \quad\)</span> (假设他是一个时间轴），如果我们在连续域上任选 <span class="math notranslate nohighlight">\(n\)</span> 个时刻： <span class="math notranslate nohighlight">\(t_{1}, t_{2}, t_{3}, \ldots, t_{n} \in T,\)</span> 使得获得的一个 <span class="math notranslate nohighlight">\(n\)</span> 维向量 <span class="math notranslate nohighlight">\(\left\{\xi_{1}, \xi_{2}, \xi_{3}, \ldots, \xi_{n}\right\}\)</span> 都满足其是一个 <span class="math notranslate nohighlight">\(n\)</span>
+维高斯分布，那么这个 <span class="math notranslate nohighlight">\(\left\{\xi_{t}\right\}\)</span> 就是一个高斯过程。</p></li>
+</ol>
+<p><img alt="jupyter" src="../../_images/17.png" /></p>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/数理统计"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">概率论与数理统计</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">「文献阅读笔记」Cell2location 方法建模原理详解</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

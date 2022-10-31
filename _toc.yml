@@ -1,0 +1,82 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: 指引 📌
+  chapters:
+  - file: chapt/指引/使用说明
+- caption: 分析
+  chapters:
+#######################################################################################
+#chapt1
+  - title: 转录组分析
+    file: chapt/转录组分析/转录组分析
+    sections:
+    - title: RNAseq常规分析
+      file: chapt/转录组分析/RNAseq
+      sections:
+      - title: RNAseq常规分析1
+        file: chapt/转录组分析/RNAseq1
+      - title: RNAseq常规分析2
+        file: chapt/转录组分析/RNAseq2
+      - title: RNAseq常规分析3
+        file: chapt/转录组分析/RNAseq3
+    - title: scRNAseq常规分析
+      file: chapt/转录组分析/scRNAseq常规分析
+      sections:
+      - title: scRNAseq mapping
+        file: chapt/转录组分析/scRNA_mapping
+      - title: scRNAseq常规分析(R)
+        file: chapt/转录组分析/scRNA_tutorial
+    - title: 空间转录组分析
+      file: chapt/转录组分析/空间转录组
+#######################################################################################
+#chapt2
+  - title: 表观组分析
+    file: chapt/表观组分析/notebooks
+    sections:
+      - title: 表观组分析1
+        file: chapt/表观组分析/表观分析1
+      - title: 表观组分析2
+        file: chapt/表观组分析/表观分析2
+#######################################################################################
+- caption: 可视化
+  chapters:
+#chapt3
+  - title: 可视化图鉴
+    file: chapt/可视化/plot
+    sections:
+      - title: Python
+        file: chapt/可视化/python
+      - title: R
+        file: chapt/可视化/R
+#######################################################################################
+- caption: 实验/算法原理
+  chapters:
+#chapt4
+  - title: 数理统计基础
+    file: chapt/数理统计/数学分布
+    sections:
+      - title: 高等数学基础
+        file: chapt/数理统计/高等数学
+      - title: 概率论与数理统计
+        file: chapt/数理统计/概率论与数理统计
+      - title: 随机过程
+        file: chapt/数理统计/随机过程
+
+######################################################################################
+#chapt5
+- caption: 文献分享🚀
+  chapters:
+  - title: 文献1-Cell2location
+    file: chapt/文献/S1_Cell2location
+######################################################################################
+#chapt6
+- caption: 更多内容 🚀
+  chapters:
+  - title: Jupyter Notebook 进阶技巧
+    file: chapt/more/jupyter-notebook
+  - title: Myst syntax cheat sheet
+    file: chapt/more/cheatsheet

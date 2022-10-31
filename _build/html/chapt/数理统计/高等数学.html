@@ -1,0 +1,1444 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>高等数学基础 &#8212; CJKLab bioinfo</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/.ipynb_checkpoints/custom-checkpoint.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../../_static/togglebutton.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../../_static/custom.js"></script>
+    <script src="../../_static/.ipynb_checkpoints/custom-checkpoint.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../../_static/sphinx-thebe.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <link rel="shortcut icon" href="../../_static/logo.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="概率论与数理统计" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html" />
+    <link rel="prev" title="数学分布(汇总)" href="%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">CJKLab bioinfo</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  指引 📌
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%8C%87%E5%BC%95/%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E.html">
+   使用说明
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  分析
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90.html">
+   转录组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq.html">
+     RNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+    <label for="toctree-checkbox-2">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq1.html">
+       RNAseq常规分析1
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq2.html">
+       RNAseq常规分析2
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/RNAseq3.html">
+       RNAseq常规分析3
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2 has-children">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNAseq%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90.html">
+     scRNAseq常规分析
+    </a>
+    <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+    <label for="toctree-checkbox-3">
+     <i class="fas fa-chevron-down">
+     </i>
+    </label>
+    <ul>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_mapping.html">
+       scRNAseq mapping
+      </a>
+     </li>
+     <li class="toctree-l3">
+      <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/scRNA_tutorial.html">
+       scRNAseq常规分析(R)
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%BD%AC%E5%BD%95%E7%BB%84%E5%88%86%E6%9E%90/%E7%A9%BA%E9%97%B4%E8%BD%AC%E5%BD%95%E7%BB%84.html">
+     空间转录组分析
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/notebooks.html">
+   表观组分析
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%901.html">
+     表观组分析1
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E8%A1%A8%E8%A7%82%E7%BB%84%E5%88%86%E6%9E%90/%E8%A1%A8%E8%A7%82%E5%88%86%E6%9E%902.html">
+     表观组分析2
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  可视化
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/plot.html">
+   可视化图鉴
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/python.html">
+     Python
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../%E5%8F%AF%E8%A7%86%E5%8C%96/R.html">
+     R
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验/算法原理
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html">
+   数理统计基础
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-6" name="toctree-checkbox-6" type="checkbox"/>
+  <label for="toctree-checkbox-6">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     高等数学基础
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html">
+     概率论与数理统计
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="%E9%9A%8F%E6%9C%BA%E8%BF%87%E7%A8%8B.html">
+     随机过程
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  文献分享🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../%E6%96%87%E7%8C%AE/S1_Cell2location.html">
+   文献1-Cell2location
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  更多内容 🚀
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/jupyter-notebook.html">
+   Jupyter Notebook 进阶技巧
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../more/cheatsheet.html">
+   Myst syntax cheat sheet
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/JiekaiLab/Jiekai_tw/main?urlpath=tree/chapt/数理统计/高等数学.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+<a href="https://github.com/JiekaiLab/Jiekai_tw"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="bottom"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/chapt/数理统计/高等数学.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   高等数学基础
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.函数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 函数的定义
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 反函数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3 复合函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   2.导数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.1 引例
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.2 导数的定义
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.3 函数的求导法则
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.4 高阶导数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3.多元函数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.1 多元函数的相关概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.2 多元函数的偏导数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.3 梯度向量
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobian">
+     3.4 雅克比矩阵(Jacobian矩阵)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hessian">
+     3.5 海森矩阵(Hessian 矩阵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   4.函数的极值问题
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     4.1 函数的极值与最值的概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     4.2 最优性条件
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       一元函数框架下：
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       多元函数框架下
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     4.3 求带等式约束的优化问题(拉格朗日乘子法)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   5.泰勒公式
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   6.基于梯度的优化方法–梯度下降法
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   7.基于梯度的优化方法–牛顿迭代法
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>高等数学基础</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   高等数学基础
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   1.函数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     1.1 函数的定义
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     1.2 反函数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     1.3 复合函数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   2.导数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     2.1 引例
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     2.2 导数的定义
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     2.3 函数的求导法则
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     2.4 高阶导数
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id11">
+   3.多元函数
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     3.1 多元函数的相关概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     3.2 多元函数的偏导数
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     3.3 梯度向量
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#jacobian">
+     3.4 雅克比矩阵(Jacobian矩阵)
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#hessian">
+     3.5 海森矩阵(Hessian 矩阵)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id15">
+   4.函数的极值问题
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     4.1 函数的极值与最值的概念
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     4.2 最优性条件
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id18">
+       一元函数框架下：
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id19">
+       多元函数框架下
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     4.3 求带等式约束的优化问题(拉格朗日乘子法)
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id21">
+   5.泰勒公式
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id22">
+   6.基于梯度的优化方法–梯度下降法
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id23">
+   7.基于梯度的优化方法–牛顿迭代法
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>高等数学基础<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h1>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id2">
+<h1>1.函数<a class="headerlink" href="#id2" title="Permalink to this headline">#</a></h1>
+<section id="id3">
+<h2>1.1 函数的定义<a class="headerlink" href="#id3" title="Permalink to this headline">#</a></h2>
+<p>定义:设数集 <span class="math notranslate nohighlight">\(D \subset {\mathbf{R}}, \text { 则称映射 } f: D \rightarrow \mathbf{R} \text { 为定义在 } D \text { 上的函数,通常简记为 }\)</span>
+$<span class="math notranslate nohighlight">\(
+y=f(x), x \in D
+\)</span><span class="math notranslate nohighlight">\(
+函数定义中,对每个 \)</span>x \in D<span class="math notranslate nohighlight">\(,按对应法则 \)</span>f<span class="math notranslate nohighlight">\(,总有唯一确定的值 \)</span>y<span class="math notranslate nohighlight">\( 与之对应， 这个值称为函数 \)</span>f<span class="math notranslate nohighlight">\( 在 \)</span>x<span class="math notranslate nohighlight">\( 处的函数值,记作 \)</span>f(x),<span class="math notranslate nohighlight">\( 即 \)</span>y=f(x) .<span class="math notranslate nohighlight">\( 因变量 \)</span>y<span class="math notranslate nohighlight">\( 与自变量 \)</span>x<span class="math notranslate nohighlight">\( 之间的这种依赖关系,通常称为函数关系. 函数值 \)</span>f(x)<span class="math notranslate nohighlight">\( 的全体所构成的集合称为函数 \)</span>f<span class="math notranslate nohighlight">\( 的值域,记作 \)</span>R_{f}<span class="math notranslate nohighlight">\( 或 \)</span>f(D),<span class="math notranslate nohighlight">\( 即
+\)</span><span class="math notranslate nohighlight">\(
+R_{f}=f(D)=\{y \mid y=f(x), x \in D\}
+\)</span>$</p>
+<p>说白了，函数就是实数集到实数集的一个映射，如：
+$<span class="math notranslate nohighlight">\(
+y=|x|=\left\{\begin{array}{ll}
+x, &amp; x \geqslant 0 \\
+-x, &amp; x&lt;0
+\end{array}\right.
+\)</span><span class="math notranslate nohighlight">\(
+的定义域 \)</span>D=(-\infty,+\infty),<span class="math notranslate nohighlight">\( 值域 \)</span>R_{f}=[0,+\infty),$ 它的图形如下图所示.这函数称为绝对值函数。</p>
+<p><img alt="jupyter" src="../../_images/18.png" /></p>
+</section>
+<section id="id4">
+<h2>1.2 反函数<a class="headerlink" href="#id4" title="Permalink to this headline">#</a></h2>
+<p>设函数 <span class="math notranslate nohighlight">\(f: D \rightarrow f(D)\)</span> 是单射,则它存在逆映射 <span class="math notranslate nohighlight">\(f^{-1}: f(D) \rightarrow D,\)</span> 称此映射 <span class="math notranslate nohighlight">\(f^{-1}\)</span> 为函数 <span class="math notranslate nohighlight">\(f\)</span> 的反函数。按此定义,对每个 <span class="math notranslate nohighlight">\(y \in f(D),\)</span> 有唯一的 <span class="math notranslate nohighlight">\(x \in D,\)</span> 使得 <span class="math notranslate nohighlight">\(f(x)=y,\)</span> 于是有 <span class="math notranslate nohighlight">\(f^{-1}(y)=x\)</span><br />
+这就是说,反函数 <span class="math notranslate nohighlight">\(f^{-1}\)</span> 的对应法则是完全由函数 <span class="math notranslate nohighlight">\(f\)</span> 的对应法则所确定的. 例如,函数 <span class="math notranslate nohighlight">\(y=x^{3}, x \in \mathbf{R}\)</span> 是单射, 所以它的反函数存在,其反函数为
+<span class="math notranslate nohighlight">\(x=y^{\frac{1}{3}}, y \in \mathbf{R}\)</span><br />
+由于习惯上自变量用 <span class="math notranslate nohighlight">\(x\)</span> 表示,因变量用 <span class="math notranslate nohighlight">\(y\)</span> 表示,于是 <span class="math notranslate nohighlight">\(y=x^{3}, x \in \mathbf{R}\)</span> 的反函数通常写作 <span class="math notranslate nohighlight">\(y=x^{\frac{1}{3}}, x \in \mathbf{R}\)</span>。一般的, <span class="math notranslate nohighlight">\(y=f(x), x \in D\)</span> 的反函数记成 <span class="math notranslate nohighlight">\(y=f^{-1}(x), x \in f(D)\)</span>.</p>
+<p><img alt="jupyter" src="../../_images/22.png" /></p>
+</section>
+<section id="id5">
+<h2>1.3 复合函数<a class="headerlink" href="#id5" title="Permalink to this headline">#</a></h2>
+<p>设函数 <span class="math notranslate nohighlight">\(y=f(u)\)</span> 的定义城为 <span class="math notranslate nohighlight">\(D_{f},\)</span> 函数 <span class="math notranslate nohighlight">\(u=g(x)\)</span> 的定义域为 <span class="math notranslate nohighlight">\(D_{x},\)</span> 且其值域 <span class="math notranslate nohighlight">\(R_{g} \subset D_{t},\)</span> 则由下式确定的函数
+$<span class="math notranslate nohighlight">\(
+y=f[g(x)], \quad x \in D_{x}
+\)</span><span class="math notranslate nohighlight">\(
+称为由函数 \)</span>u=g(x)<span class="math notranslate nohighlight">\( 与函数 \)</span>y=f(u)<span class="math notranslate nohighlight">\( 构成的复合函数,它的定义域为 \)</span>D_{x}<span class="math notranslate nohighlight">\( ,变量\)</span>u$ 称为中间变量。</p>
+<p>例子：物体运动的动能为 <span class="math notranslate nohighlight">\(E=m v^{2} / 2,\)</span> 而自由落体的速度为 <span class="math notranslate nohighlight">\(v=g t,\)</span> 所以自由落体的动能是时间 <span class="math notranslate nohighlight">\(t\)</span> 的复合函数 :
+$<span class="math notranslate nohighlight">\(
+E=\frac{1}{2} m g^{2} t^{2}
+\)</span>$</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1>2.导数<a class="headerlink" href="#id6" title="Permalink to this headline">#</a></h1>
+<section id="id7">
+<h2>2.1 引例<a class="headerlink" href="#id7" title="Permalink to this headline">#</a></h2>
+<p>引例1：已知位移求瞬时速度<br />
+物体作变速直线运动，已知物体的位置与时间的关系是 <span class="math notranslate nohighlight">\(s=f(t),\)</span> 求物体在 <span class="math notranslate nohighlight">\(t=t_{0}\)</span> 时的瞬时速度为<span class="math notranslate nohighlight">\(v(t_0)\)</span><br />
+当时间由 <span class="math notranslate nohighlight">\(t_{0}\)</span> 变化到 <span class="math notranslate nohighlight">\(t_{0}+\Delta t\)</span> 时，<br />
+物体的位移 <span class="math notranslate nohighlight">\(\Delta \boldsymbol{s}=\boldsymbol{f}\left(\boldsymbol{t}_{0}+\Delta t\right)-\boldsymbol{f}\left(t_{0}\right)\)</span><br />
+所以物体在这段时间的平均速度 <span class="math notranslate nohighlight">\(\bar{v}=\frac{\Delta s}{\Delta t}\)</span>.<br />
+怎样把平均速度与瞬时速度联系起来？<br />
+因为在短时间内速度变化不大，所以可用物体在 <span class="math notranslate nohighlight">\(t_{0}\)</span> 附近的平均速度近似 <span class="math notranslate nohighlight">\(t_{0}\)</span> 时刻的瞬时速度.<br />
+即 <span class="math notranslate nohighlight">\(\boldsymbol{v}\left(\boldsymbol{t}_{0}\right) \approx \frac{\Delta \boldsymbol{s}}{\Delta \boldsymbol{t}} \quad(\Delta t\)</span>越小误差越小<span class="math notranslate nohighlight">\()\)</span><br />
+为了得到瞬时速度的精确概念，把瞬时速度理解成当时间段无限缩小时平均速度的极限。<br />
+即 <span class="math notranslate nohighlight">\(\boldsymbol{v}\left(\boldsymbol{t}_{0}\right)=\lim _{\Delta t \rightarrow 0} \frac{\Delta \boldsymbol{s}}{\Delta t}=\lim _{\Delta t \rightarrow 0} \frac{\boldsymbol{f}\left(\boldsymbol{t}_{0}+\Delta t\right)-\boldsymbol{f}\left(\boldsymbol{t}_{0}\right)}{\Delta \boldsymbol{t}}\)</span><br />
+所以瞬时速度是位移对时间的瞬时变化率。<br />
+引例2：曲线的切线<br />
+求曲线 <span class="math notranslate nohighlight">\(\boldsymbol{y}=\boldsymbol{f}(\boldsymbol{x})\)</span> 在点 <span class="math notranslate nohighlight">\(\boldsymbol{M}\left(\boldsymbol{x}_{0}, \boldsymbol{f}\left(\boldsymbol{x}_{0}\right)\right)\)</span> 处的切线方程：<br />
+在曲线上点 <span class="math notranslate nohighlight">\(M\)</span> 附近取一点 <span class="math notranslate nohighlight">\(N\)</span>, 作直线 <span class="math notranslate nohighlight">\(M N\)</span> (割线).
+当点N沿着曲线趋向于 <span class="math notranslate nohighlight">\(M\)</span> 时，如果割线 <span class="math notranslate nohighlight">\(M N\)</span>有一个极限位置,就把此极限位置理解为曲线在点M处的切线。</p>
+<p><img alt="jupyter" src="../../_images/32.png" /></p>
+<p>相应的，切线的斜率等于割线斜率的极限。割线 <span class="math notranslate nohighlight">\(M N\)</span> 的斜率为 <span class="math notranslate nohighlight">\(\frac{\Delta y}{\Delta x}=\frac{f\left(x_{0}+\Delta x\right)-f\left(x_{0}\right)}{\Delta x}\)</span><br />
+切线的斜率为
+$<span class="math notranslate nohighlight">\(
+\begin{aligned} k &amp;=\lim _{\Delta x \rightarrow 0} \frac{\Delta y}{\Delta x} \\ &amp;=\lim _{\Delta x \rightarrow 0} \frac{f\left(x_{0}+\Delta x\right)-f\left(x_{0}\right)}{\Delta x} \end{aligned}
+\)</span>$</p>
+</section>
+<section id="id8">
+<h2>2.2 导数的定义<a class="headerlink" href="#id8" title="Permalink to this headline">#</a></h2>
+<p>定义：设函数 <span class="math notranslate nohighlight">\(y=f(x)\)</span> 在点 <span class="math notranslate nohighlight">\(x_{0}\)</span> 的某个邻域内有定义,当自变量 <span class="math notranslate nohighlight">\(x\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处取得增量
+<span class="math notranslate nohighlight">\(\Delta x\)</span> ;如果 <span class="math notranslate nohighlight">\(\Delta y\)</span> 与 <span class="math notranslate nohighlight">\(\Delta x\)</span> 之比当 <span class="math notranslate nohighlight">\(\Delta x \rightarrow 0\)</span> 时的 极限存在, 则称函数 <span class="math notranslate nohighlight">\(y=\)</span> <span class="math notranslate nohighlight">\(f(x)\)</span> 在点 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处可导,并称这个极限为函数 <span class="math notranslate nohighlight">\(y=f(x)\)</span> 在点 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处的导数,记为 <span class="math notranslate nohighlight">\(f^{\prime}\left(x_{0}\right),\)</span> 即<br />
+$<span class="math notranslate nohighlight">\(
+f^{\prime}\left(x_{0}\right)=\lim _{\Delta, x \rightarrow 0} \frac{\Delta y}{\Delta x}=\lim _{\Delta x \rightarrow 0} \frac{f\left(x_{0}+\Delta x\right)-f\left(x_{0}\right)}{\Delta x}
+\)</span><span class="math notranslate nohighlight">\(
+也可记作 \)</span>\left.y^{\prime}\right|<em>{x=x</em>{0}}<span class="math notranslate nohighlight">\(,\)</span>\left.\frac{\mathrm{d} y}{\mathrm{~d} x}\right|<em>{x=x</em>{0}}<span class="math notranslate nohighlight">\( 或 \)</span>\left.\frac{\mathrm{d} f(x)}{\mathrm{d} x}\right|<em>{x=x</em>{0}} $。</p>
+<p>**简单的说，导数就是因变量的增量与自变量的增量之比的极限。**尝试使用函数导数的定义推导<span class="math notranslate nohighlight">\(y = x^2\)</span>的导数？</p>
+</section>
+<section id="id9">
+<h2>2.3 函数的求导法则<a class="headerlink" href="#id9" title="Permalink to this headline">#</a></h2>
+<p>(1) 函数的和差积商的求导法则：<br />
+$<span class="math notranslate nohighlight">\(
+[u(x) \pm v(x)]^{\prime}=u^{\prime}(x) \pm v^{\prime}(x)\\                 
+[u(x) v(x)]^{\prime}=u^{\prime}(x) v(x)+u(x) v^{\prime}(x) \\                        
+\left[\frac{u(x)}{v(x)}\right]^{\prime}=\frac{u^{\prime}(x) v(x)-u(x) v^{\prime}(x)}{v^{2}(x)}(v(x) \neq 0)
+\)</span>$</p>
+<p>例子：<br />
+求<span class="math notranslate nohighlight">\(y=2 x^{3}-5 x^{2}+3 x-7\)</span>的导数？<br />
+解：
+$<span class="math notranslate nohighlight">\(
+\begin{aligned}
+y^{\prime} &amp;=\left(2 x^{3}-5 x^{2}+3 x-7\right)^{\prime} \\
+&amp;=\left(2 x^{3}\right)^{\prime}-\left(5 x^{2}\right)^{\prime}+(3 x)^{\prime}-(7)^{\prime} \\
+&amp;=2 \cdot 3 x^{2}-5 \cdot 2 x+3-0=6 x^{2}-10 x+3
+\end{aligned}
+\)</span>$</p>
+<p>(2)复合函数的求导法则：<br />
+如果 <span class="math notranslate nohighlight">\(u=g(x)\)</span> 在点 <span class="math notranslate nohighlight">\(x\)</span> 可导, 而 <span class="math notranslate nohighlight">\(y=f(u)\)</span> 在点 <span class="math notranslate nohighlight">\(u=g(x)\)</span> 可导, 则：
+$<span class="math notranslate nohighlight">\(
+\frac{\mathrm{d} y}{\mathrm{~d} x}=f^{\prime}(u) \cdot g^{\prime}(x) \quad \text { 或 } \quad \frac{\mathrm{d} y}{\mathrm{~d} x}=\frac{\mathrm{d} y}{\mathrm{~d} u} \cdot \frac{\mathrm{d} u}{\mathrm{~d} x}
+\)</span>$</p>
+<p>例子：<br />
+<span class="math notranslate nohighlight">\(y=e^{x^{3}},\)</span> 求 <span class="math notranslate nohighlight">\(\frac{d y}{d x}\)</span>.<br />
+解 <span class="math notranslate nohighlight">\(y=\mathrm{e}^{x^{3}}\)</span> 可看作由 <span class="math notranslate nohighlight">\(y=\mathrm{e}^{\prime \prime}, u=x^{3}\)</span> 复合而成, 因此<br />
+$<span class="math notranslate nohighlight">\(
+\frac{\mathrm{d} y}{\mathrm{~d} x}=\frac{\mathrm{d} y}{\mathrm{~d} u} \cdot \frac{\mathrm{d} u}{\mathrm{~d} x}=\mathrm{e}^{u} \cdot 3 x^{2}=3 x^{2} \mathrm{e}^{x^{3}}
+\)</span>$</p>
+<p>(3)常用的初等函数导数：<br />
+$<span class="math notranslate nohighlight">\(
+(1) (C)^{\prime}=0,\;\;\;
+(2) \left(x^{\prime \prime}\right)^{\prime}=\mu x^{\prime \prime-1},\\
+(3) (\sin x)^{\prime}=\cos x,\;\;\;
+(4) (\cos x)^{\prime}=-\sin x,\\
+(5) (\tan x)^{\prime}=\sec ^{2} x,\;\;\;
+(6) (\cot x)^{\prime}=-\csc ^{2} x,\\
+(7) (\sec x)^{\prime}=\sec x \tan x,\;\;\;
+(8) (\csc x)^{\prime}=-\csc x \cot x,\\
+(9) \left(a^{x}\right)^{\prime}=a^{x} \ln a,\;\;\;
+(10)\left(\mathrm{e}^{x}\right)^{\prime}=\mathrm{e}^{x},\\
+(11)\left(\log _{a} x\right)^{\prime}=\frac{1}{x \ln a},\;\;\;
+(12) (\ln x)^{\prime}=\frac{1}{x},\\
+(13) (\arcsin x)^{\prime}=\frac{1}{\sqrt{1-x^{2}}},\;\;\;
+(14) (\arccos x)^{\prime}=-\frac{1}{\sqrt{1-x^{2}}},\\
+(15) (\arctan x)^{\prime}=\frac{1}{1+x^{2}},\;\;\;
+(16) (\operatorname{arccot} x)^{\prime}=-\frac{1}{1+x^{2}}\\
+\)</span>$</p>
+</section>
+<section id="id10">
+<h2>2.4 高阶导数<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h2>
+<p>若函数 <span class="math notranslate nohighlight">\(y=f(x)\)</span> 的导数 <span class="math notranslate nohighlight">\(y^{\prime}=f^{\prime}(x)\)</span> 可导，则称 <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span> 的导数为 <span class="math notranslate nohighlight">\(f(x)\)</span> 的二阶导数，记作 <span class="math notranslate nohighlight">\(y^{\prime \prime}\)</span> 或 <span class="math notranslate nohighlight">\(\frac{d^{2} y}{d x^{2}},\)</span> 即
+$<span class="math notranslate nohighlight">\(
+y^{\prime \prime}=\left(y^{\prime}\right)^{\prime} \text { 或 } \frac{d^{2} y}{d x^{2}}=\frac{d}{d x}\left(\frac{d y}{d x}\right)
+\)</span><span class="math notranslate nohighlight">\(
+类似地，二阶导数的导数称为三阶导数，依次类推。二阶和二阶以上的导数统称为高阶导数。                    
+例子：              
+求函数 \)</span>\ln (1+x)<span class="math notranslate nohighlight">\( 的 2 阶导数：                           
+解：              
+\)</span>y=\ln (1+x), y^{\prime}=\frac{1}{1+x}<span class="math notranslate nohighlight">\(，\)</span>y^{\prime \prime}=-\frac{1}{(1+x)^{2}},$</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id11">
+<h1>3.多元函数<a class="headerlink" href="#id11" title="Permalink to this headline">#</a></h1>
+<section id="id12">
+<h2>3.1 多元函数的相关概念<a class="headerlink" href="#id12" title="Permalink to this headline">#</a></h2>
+<p>(1)n维空间：<br />
+设 <span class="math notranslate nohighlight">\(n\)</span> 为取定的一个正整数,我们用 <span class="math notranslate nohighlight">\(\mathbf{R}^{n}\)</span> 表示 <span class="math notranslate nohighlight">\(n\)</span> 元有序实数组 <span class="math notranslate nohighlight">\(\left(x_{1}, x_{2}, \cdots,\right.\)</span>
+<span class="math notranslate nohighlight">\(\left.x_{n}\right)\)</span> 的全体所构成的集合, 即
+$<span class="math notranslate nohighlight">\(
+\mathbf{R}^{n}=\mathbf{R} \times \mathbf{R} \times \cdots \times \mathbf{R}=\left\{\left(x_{1}, x_{2}, \cdots, x_{n}\right) \mid x_{i} \in \mathbf{R}, i=1,2, \cdots, n\right\}
+\)</span><span class="math notranslate nohighlight">\(
+\)</span>\mathbf{R}^{n}<span class="math notranslate nohighlight">\( 中的元素 \)</span>\left(x_{1}, x_{2}, \cdots, x_{n}\right)<span class="math notranslate nohighlight">\( 有时也用单个字母 \)</span>\boldsymbol{x}<span class="math notranslate nohighlight">\( 来表示, 即 \)</span>\boldsymbol{x}=\left(x_{1}, x_{2}, \cdots,\right.<span class="math notranslate nohighlight">\(
+\)</span>\left.x_{n}\right) .<span class="math notranslate nohighlight">\( 当所有的 \)</span>x_{i}(i=1,2, \cdots, n)<span class="math notranslate nohighlight">\( 都为零时,称这样的元素为 \)</span>\mathbf{R}^{n}<span class="math notranslate nohighlight">\( 中的零元,记为
+0或 O. 在解析几何中,通过直角坐标系, \)</span>\mathbf{R}^{2}<span class="math notranslate nohighlight">\( (或 \)</span>\mathbf{R}^{3}<span class="math notranslate nohighlight">\( )中的元素分别与平面（或空间)中的点或向量建立一一对应。                 
+为了在集合 \)</span>\mathbf{R}^{n}<span class="math notranslate nohighlight">\( 中的元索之间建立联系,在 \)</span>\mathbf{R}^{n}$ 中定义线代运算如下：</p>
+<p>设 <span class="math notranslate nohighlight">\(x=\left(x_{1}, x_{2}, \cdots, x_{n}\right), y=\left(y_{1}, y_{2}, \cdots, y_{n}\right)\)</span> 为 <span class="math notranslate nohighlight">\(\mathbf{R}^{n}\)</span> 中任意两个元素 <span class="math notranslate nohighlight">\(, \lambda \in \mathbf{R}\)</span>规定：<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{l}
+x+y=\left(x_{1}+y_{1}, x_{2}+y_{2}, \cdots, x_{n}+y_{n}\right), \\
+\lambda x=\left(\lambda x_{1}, \lambda x_{2}, \cdots, \lambda x_{n}\right)
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+这样定义了线性运算的集合 \)</span>\mathbf{R}^{n}<span class="math notranslate nohighlight">\( 称为 \)</span>n<span class="math notranslate nohighlight">\( 维空间.                         
+\)</span>\mathbf{R}^{n}<span class="math notranslate nohighlight">\( 中点 \)</span>\boldsymbol{x}=\left(x_{1}, x_{2}, \cdots, x_{n}\right)<span class="math notranslate nohighlight">\( 和点 \)</span>\boldsymbol{y}=\left(y_{1}, y_{2}, \cdots, y_{n}\right)<span class="math notranslate nohighlight">\( 间的距离, 记作\)</span>\rho(x, y),<span class="math notranslate nohighlight">\( 规定
+\)</span><span class="math notranslate nohighlight">\(
+\rho(x, y)=\sqrt{\left(x_{1}-y_{1}\right)^{2}+\left(x_{2}-y_{2}\right)^{2}+\cdots+\left(x_{n}-y_{n}\right)^{2}}
+\)</span><span class="math notranslate nohighlight">\(
+(2)二元函数：                     
+设 \)</span>D<span class="math notranslate nohighlight">\( 是 \)</span>\mathbf{R}^{2}<span class="math notranslate nohighlight">\( 的一个非空子集,称映射 \)</span>f: D \rightarrow \mathbf{R}<span class="math notranslate nohighlight">\( 为定义在 \)</span>D<span class="math notranslate nohighlight">\( 上的二元函数,通常记为
+\)</span><span class="math notranslate nohighlight">\(
+z=f(x, y),(x, y) \in D
+\)</span><span class="math notranslate nohighlight">\(
+或
+\)</span><span class="math notranslate nohighlight">\(
+z=f(P), P \in D
+\)</span>$</p>
+<p><img alt="jupyter" src="../../_images/42.png" /></p>
+</section>
+<section id="id13">
+<h2>3.2 多元函数的偏导数<a class="headerlink" href="#id13" title="Permalink to this headline">#</a></h2>
+<p>定义：<br />
+设二元函数 <span class="math notranslate nohighlight">\(=f(x, y)\)</span> 在点 <span class="math notranslate nohighlight">\(\left(x_{0}, y_{0}\right)\)</span> 的某一邻域内有定义，当固定在 <span class="math notranslate nohighlight">\(y_{0}\)</span> 而x在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处有增量<span class="math notranslate nohighlight">\(\Delta x\)</span>时， 相应的函数有增量 <span class="math notranslate nohighlight">\(\Delta_{x} z=f\left(x_{0}+\Delta x, y_{0}\right)-f\left(x_{0}, y_{0}\right) .\)</span><br />
+如果 <span class="math notranslate nohighlight">\(\lim _{\Delta x \rightarrow 0} \frac{\Delta_{x} z}{\Delta x}\)</span> 存在，就称此极限为函数 <span class="math notranslate nohighlight">\(z=f(x, y)\)</span>
+在点( <span class="math notranslate nohighlight">\(\left.x_{0}, y_{0}\right)\)</span> 处对x的偏导数.<br />
+记作 <span class="math notranslate nohighlight">\(\frac{\partial z}{\partial x}\left|\left(x_{0}, y_{0}\right), \frac{\partial f}{\partial x}\right|\left(x_{0}, y_{0}\right)^{, z_{x} \mid\left(x_{0}, y_{0}\right)}, f_{x}\left(x_{0}, y_{0}\right) .\)</span><br />
+即 <span class="math notranslate nohighlight">\(\left.\frac{\partial z}{\partial x}\right|_{\left(x_{0}, y_{0}\right)}=\lim _{\Delta x \rightarrow 0} \frac{\Delta_{x} z}{\Delta x}=\lim _{\Delta x \rightarrow 0} \frac{f\left(x_{0}+\Delta x, y_{0}\right)-f\left(x_{0}, y_{0}\right)}{\Delta x}\)</span><br />
+例子：<br />
+求 <span class="math notranslate nohighlight">\(z=x^{2}+3 x y+y^{2}\)</span> 在点 (1,2) 处的偏导数.<br />
+解：<br />
+把 <span class="math notranslate nohighlight">\(y\)</span> 看做常数,得
+$<span class="math notranslate nohighlight">\(
+\frac{\partial z}{\partial x}=2 x+3 y
+\)</span><span class="math notranslate nohighlight">\(
+把 \)</span>x<span class="math notranslate nohighlight">\( 看做常数,得
+\)</span><span class="math notranslate nohighlight">\(
+\frac{\partial z}{\partial y}=3 x+2 y
+\)</span><span class="math notranslate nohighlight">\(
+将(1,2)代人上面的结果,就得
+\)</span><span class="math notranslate nohighlight">\(
+\begin{array}{l}
+\left.\frac{\partial z}{\partial x}\right|_{x=1 \atop y=2}=2 \cdot 1+3 \cdot 2=8 \\
+\left.\frac{\partial z}{\partial y}\right|_{x=1 \atop y=2}=3 \cdot 1+2 \cdot 2=7
+\end{array}
+\)</span>$</p>
+<p><img alt="jupyter" src="../../_images/52.png" /></p>
+</section>
+<section id="id14">
+<h2>3.3 梯度向量<a class="headerlink" href="#id14" title="Permalink to this headline">#</a></h2>
+<p>梯度的本意是一个向量（矢量），表示某一函数在该点处的方向导数沿着该方向取得最大值，即函数在该点处沿着该方向（此梯度的方向）变化最快，变化率最大（为该梯度的模）。<br />
+定义：设二元函数 <span class="math notranslate nohighlight">\(z=f(x, y)\)</span> 在平面区域D上具有一阶连续偏导数，则对于每一个点P（x, y）都可定出一个向量 <span class="math notranslate nohighlight">\(\left\{\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right\}=f_{x}(x, y) \bar{i}+f_{y}(x, y) \bar{j},\)</span> 该函数就称为函数 <span class="math notranslate nohighlight">\(z=f(x, y)\)</span> 在点P <span class="math notranslate nohighlight">\((\mathrm{x}, \mathrm{y})\)</span> 的梯度，记作gradf <span class="math notranslate nohighlight">\((\mathrm{x}, \mathrm{y})\)</span> 或
+<span class="math notranslate nohighlight">\(\nabla f(x, y)\)</span>,即有:
+$<span class="math notranslate nohighlight">\(
+\operatorname{gradf}(\mathrm{x}, \mathrm{y})=\nabla f(x, y)=\left\{\frac{\partial f}{\partial x}, \frac{\partial f}{\partial y}\right\}=f_{x}(x, y) \bar{i}+f_{y}(x, y) \bar{j}
+\)</span><span class="math notranslate nohighlight">\(
+其中 \)</span>\nabla=\frac{\partial}{\partial x} \bar{i}+\frac{\partial}{\partial y} \bar{j}<span class="math notranslate nohighlight">\( 称为（二维的）向量微分算子或Nabla算子, \)</span>\nabla f=\frac{\partial f}{\partial x} \bar{i}+\frac{\partial f}{\partial y} \bar{j}<span class="math notranslate nohighlight">\( 。                   
+例子：请你计算\)</span>f(x,y) = x^2 + y^2$的梯度向量。</p>
+</section>
+<section id="jacobian">
+<h2>3.4 雅克比矩阵(Jacobian矩阵)<a class="headerlink" href="#jacobian" title="Permalink to this headline">#</a></h2>
+<p>假设 <span class="math notranslate nohighlight">\(F: \mathbb{R}_{n} \rightarrow \mathbb{R}_{m}\)</span> 是一个从n维欧氏空间映射到到m维欧氏空间的函数。<br />
+这个函数由m个实函数组成:
+<span class="math notranslate nohighlight">\(y_{1}\left(x_{1}, \cdots, x_{n}\right), \cdots, y_{m}\left(x_{1}, \cdots, x_{n}\right)\)</span> 。这些函数的偏导数(如果存在)可以组成一个m行n列的矩阵，这个矩阵就是所谓的雅可 比矩阵:
+$<span class="math notranslate nohighlight">\(
+\left[\begin{array}{ccc}
+\frac{\partial y_{1}}{\partial x_{1}} &amp; \cdots &amp; \frac{\partial y_{1}}{\partial x_{n}} \\
+\vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial y_{m}}{\partial x_{1}} &amp; \cdots &amp; \frac{\partial y_{m}}{\partial x_{n}}
+\end{array}\right]
+\)</span><span class="math notranslate nohighlight">\(
+**可见，梯度向量是雅克比矩阵的特例！**                     
+例子：求\)</span>F=(f_1(x,y),f_(x,y))^T<span class="math notranslate nohighlight">\(的雅克比矩阵，其中\)</span>f_1(x,y) = 2x^2 + y^2,f_2(x,y) = x^2 + 3y^2$。</p>
+</section>
+<section id="hessian">
+<h2>3.5 海森矩阵(Hessian 矩阵)<a class="headerlink" href="#hessian" title="Permalink to this headline">#</a></h2>
+<p>黑塞矩阵（Hessian Matrix），又译作海森矩阵、海瑟矩阵、海塞矩阵等，是一个多元函数的二阶偏导数构成的方阵，描述了函数的局部曲率。<br />
+在数学中，海森矩阵（Hessian matrix 或 Hessian）是一个自变量为向量的实值函数的二阶偏导数组成的方块矩阵，假設有一实数函数
+$<span class="math notranslate nohighlight">\(
+f\left(x_{1}, x_{2}, \ldots, x_{n}\right)
+\)</span><span class="math notranslate nohighlight">\(
+如果 \)</span>f<span class="math notranslate nohighlight">\( 所有的二阶偏导数都存在，那么 \)</span>f<span class="math notranslate nohighlight">\( 的海森矩阵的第 \)</span>i j<span class="math notranslate nohighlight">\( 项，即：
+\)</span><span class="math notranslate nohighlight">\(
+H(f)_{i j}(x)=D_{i} D_{j} f(x)
+\)</span><span class="math notranslate nohighlight">\(
+其中 \)</span>x=\left(x_{1}, x_{2}, \ldots, x_{n}\right),<span class="math notranslate nohighlight">\( 即
+\)</span><span class="math notranslate nohighlight">\(
+H(f)=\left[\begin{array}{cccc}
+\frac{\partial^{2} f}{\partial x_{1}^{2}} &amp; \frac{\partial^{2} f}{\partial x_{1} \partial x_{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{1} \partial x_{n}} \\
+\frac{\partial^{2} f}{\partial x_{2} \partial x_{1}} &amp; \frac{\partial^{2} f}{\partial x_{2}^{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{2} \partial x_{n}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^{2} f}{\partial x_{n} \partial x_{1}} &amp; \frac{\partial^{2} f}{\partial x_{n} \partial x_{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{n}^{2}}
+\end{array}\right]
+\)</span><span class="math notranslate nohighlight">\(
+实际上，Hessian矩阵是梯度向量g(x)对自变量x的Jacobian矩阵。                            
+例子：求\)</span>f(x,y)=2x^2+y^2$的海森矩阵。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id15">
+<h1>4.函数的极值问题<a class="headerlink" href="#id15" title="Permalink to this headline">#</a></h1>
+<section id="id16">
+<h2>4.1 函数的极值与最值的概念<a class="headerlink" href="#id16" title="Permalink to this headline">#</a></h2>
+<p>极值：设函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 在点 <span class="math notranslate nohighlight">\(x_{0}\)</span> 的某邻域 <span class="math notranslate nohighlight">\(U\left(x_{0}\right)\)</span> 内有定义，如果对于去心邻域U <span class="math notranslate nohighlight">\(\left(x_{0}\right)\)</span> 内的任一 <span class="math notranslate nohighlight">\(x\)</span>, 有 A
+$<span class="math notranslate nohighlight">\(
+f(x)&lt;f\left(x_{0}\right) \text { 或 } f(x)&gt;f\left(x_{0}\right)
+\)</span><span class="math notranslate nohighlight">\(
+那么就称 \)</span>f\left(x_{0}\right)$ 是函数的一个极大值或极小值。函数的极大值和极小值统称为函数的极值, 使函数取得极值的点被称作极值点。</p>
+<p><img alt="jupyter" src="../../_images/1.jpg" /></p>
+<p>最值是函数在其定义域内取得最大值（或最小值）的点的函数值。极值是局部性的概念，而最值是全局性的概念。</p>
+</section>
+<section id="id17">
+<h2>4.2 最优性条件<a class="headerlink" href="#id17" title="Permalink to this headline">#</a></h2>
+<section id="id18">
+<h3>一元函数框架下：<a class="headerlink" href="#id18" title="Permalink to this headline">#</a></h3>
+<p>1.判定极值的一阶充分条件：<br />
+设函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处连续，且在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 的某去心邻域 <span class="math notranslate nohighlight">\(U\left(x_{0}, \delta\right)\)</span> 内可导<br />
+(1) 若 <span class="math notranslate nohighlight">\(x \in\left(x_{0}-\delta, x_{0}\right)\)</span> 时, <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0,\)</span> 而 <span class="math notranslate nohighlight">\(x \in\left(x_{0}, x_{0}+\delta\right)\)</span> 时， <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0,\)</span> 则 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处取得极大值;<br />
+(2) 若 <span class="math notranslate nohighlight">\(x \in\left(x_{0}-\delta, x_{0}\right)\)</span> 时， <span class="math notranslate nohighlight">\(f^{\prime}(x)&lt;0\)</span>,而 <span class="math notranslate nohighlight">\(x \in\left(x_{0}, x_{0}+\delta\right)\)</span> 时， <span class="math notranslate nohighlight">\(f^{\prime}(x)&gt;0\)</span>,则 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处取得极小值<br />
+(3) 若 <span class="math notranslate nohighlight">\(x \in \dot{U}\left(x_{0}, \delta\right)\)</span> 时, <span class="math notranslate nohighlight">\(f^{\prime}(x)\)</span> 的符号保持不变，则 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处没有极值</p>
+<p><img alt="jupyter" src="../../_images/62.png" /></p>
+<p>2.判定极值的二阶充分条件：
+设函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处具有二阶导数且 <span class="math notranslate nohighlight">\(f^{\prime}\left(x_{0}\right)=0, \quad f^{\prime \prime}\left(x_{0}\right) \neq 0\)</span> 那么：<br />
+(1) 当 <span class="math notranslate nohighlight">\(f^{\prime \prime}\left(x_{0}\right)&lt;0\)</span> 时，函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处取得极大值;<br />
+(2) 当 <span class="math notranslate nohighlight">\(f^{\prime \prime}\left(x_{0}\right)&gt;0\)</span> 时，函数 <span class="math notranslate nohighlight">\(f(x)\)</span> 在 <span class="math notranslate nohighlight">\(x_{0}\)</span> 处取得极小值.</p>
+</section>
+<section id="id19">
+<h3>多元函数框架下<a class="headerlink" href="#id19" title="Permalink to this headline">#</a></h3>
+<p>定理：（二元函数取得极值的充分条件）如果函数 <span class="math notranslate nohighlight">\(z=f(x, y)\)</span> 在点 <span class="math notranslate nohighlight">\(\left(x_{0}, y_{0}\right)\)</span> 的某邻域内具有连续的二阶偏导数, <span class="math notranslate nohighlight">\(\left(x_{0}, y_{0}\right)\)</span> 是它的驻点，令：<br />
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+A=f_{x x}\left(x_{0}, y_{0}\right), B=f_{x y}\left(x_{0}, y_{0}\right), C=f_{y y}\left(x_{0}, y_{0}\right) \\
+\Delta=B^{2}-A C
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+则:                      
+(1)当\)</span>\Delta&lt;0<span class="math notranslate nohighlight">\( 时， \)</span>f(x, y)<span class="math notranslate nohighlight">\( 在 \)</span>\left(x_{0}, y_{0}\right)<span class="math notranslate nohighlight">\( 取得极值. 其中 \)</span>A&gt;0<span class="math notranslate nohighlight">\( 时取极小值, \)</span>A&lt;0<span class="math notranslate nohighlight">\( 时取极大值.             
+(2)当 \)</span>\Delta&gt;0<span class="math notranslate nohighlight">\( 时, \)</span>f\left(x_{0}, y_{0}\right)<span class="math notranslate nohighlight">\( 不是极值.                
+(3)当 \)</span>\Delta=0$ 时, 不能确定，需进一步判断.</p>
+<p>更加严谨的表述：<br />
+设n多元实函数 <span class="math notranslate nohighlight">\(f\left(x_{1}, x_{2}, \cdots, x_{n}\right)\)</span> 在点 <span class="math notranslate nohighlight">\(M_{0}\left(a_{1}, a_{2}, \ldots, a_{n}\right)\)</span> 的邻域内有二阶连续偏导，若有:
+$<span class="math notranslate nohighlight">\(
+\left.\frac{\partial f}{\partial x_{j}}\right|_{\left(a_{1}, a_{2}, \ldots, a_{n}\right)}=0, j=1,2, \ldots, n
+\)</span><span class="math notranslate nohighlight">\(
+并且
+\)</span><span class="math notranslate nohighlight">\(
+A=\left[\begin{array}{cccc}
+\frac{\partial^{2} f}{\partial x_{1}^{2}} &amp; \frac{\partial^{2} f}{\partial x_{1} \partial x_{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{1} \partial x_{n}} \\
+\frac{\partial^{2} f}{\partial x_{2} \partial x_{1}} &amp; \frac{\partial^{2} f}{\partial x_{2}^{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{2} \partial x_{n}} \\
+\vdots &amp; \vdots &amp; \ddots &amp; \vdots \\
+\frac{\partial^{2} f}{\partial x_{n} \partial x_{1}} &amp; \frac{\partial^{2} f}{\partial x_{n} \partial x_{2}} &amp; \cdots &amp; \frac{\partial^{2} f}{\partial x_{n}^{2}}
+\end{array}\right]
+\)</span><span class="math notranslate nohighlight">\(
+则有如下结果:
+(1) 当A正定矩阵时, \)</span>f\left(x_{1}, x_{2}, \cdots, x_{n}\right)<span class="math notranslate nohighlight">\( 在 \)</span>M_{0}\left(a_{1}, a_{2}, \ldots, a_{n}\right)<span class="math notranslate nohighlight">\( 处是极小值;          
+(2) 当A负定矩阵时, \)</span>f\left(x_{1}, x_{2}, \cdots, x_{n}\right)<span class="math notranslate nohighlight">\( 在 \)</span>M_{0}\left(a_{1}, a_{2}, \ldots, a_{n}\right)<span class="math notranslate nohighlight">\( 处是极大值;              
+(3) 当A不定矩阵时, \)</span>M_{0}\left(a_{1}, a_{2}, \ldots, a_{n}\right)<span class="math notranslate nohighlight">\( 不是极值点。              
+(4) 当A为半正定矩阵或半负定矩阵时, \)</span>M_{0}\left(a_{1}, a_{2}, \ldots, a_{n}\right)$ 是“可疑”极值点，尚需要利用其他方法来判定。</p>
+<p>例子：求三元函数 <span class="math notranslate nohighlight">\(f(x, y, z)=x^{2}+y^{2}+z^{2}+2 x+4 y-6 z\)</span> 的极值。<br />
+解: 因为 <span class="math notranslate nohighlight">\(\frac{\partial f}{\partial x}=2 x+2, \frac{\partial f}{\partial y}=2 y+4, \frac{\partial f}{\partial z}=2 z-6,\)</span> 故该三元函数的驻点是 (-1,-2,3) 。<br />
+又因为 <span class="math notranslate nohighlight">\(\frac{\partial^{2} f}{\partial x^{2}}=2, \frac{\partial^{2} f}{\partial y^{2}}=2, \frac{\partial^{2} f}{\partial z^{2}}=2, \frac{\partial^{2} f}{\partial x \partial y}=0, \frac{\partial^{2} f}{\partial x \partial z}=0, \frac{\partial^{2} f}{\partial y \partial z}=0\)</span><br />
+故有: <span class="math notranslate nohighlight">\(A=\left(\begin{array}{ccc}2 &amp; 0 &amp; 0 \\ 0 &amp; 2 &amp; 0 \\ 0 &amp; 0 &amp; 2\end{array}\right)\)</span>
+因为A是正定矩阵，故 (-1,-2,3) 是极小值点，且极小值 <span class="math notranslate nohighlight">\(f(-1,-2,3)=-14\)</span> 。</p>
+</section>
+</section>
+<section id="id20">
+<h2>4.3 求带等式约束的优化问题(拉格朗日乘子法)<a class="headerlink" href="#id20" title="Permalink to this headline">#</a></h2>
+<p>引例：<br />
+求表面积为 <span class="math notranslate nohighlight">\(a^{2}\)</span> 市体积最大的长方体的体积。<br />
+方法(1)：化为无条件约束的优化问题，再使用4.2节的方法<br />
+设长方体的三棱的长为 <span class="math notranslate nohighlight">\(x, y, z,\)</span> 则体积<br />
+$<span class="math notranslate nohighlight">\(
+V=x y z
+\)</span><span class="math notranslate nohighlight">\(
+又因假定表面积为 \)</span>a^{2},<span class="math notranslate nohighlight">\( 所以自变量 \)</span>x, \quad y, \quad z<span class="math notranslate nohighlight">\( 还必须满足附加条件                           
+\)</span><span class="math notranslate nohighlight">\(
+2(x y+y z+x z)=a^{2}                      
+\)</span><span class="math notranslate nohighlight">\(
+像这种对自变量有附加条件的极值问题称为条件极值。而没有附加条件的问题就叫无条件极值。 有条件极值可以化为无条件极值，例如上述问题，可将条件2 \)</span>2(x y+y z+x z)=a^{2},<span class="math notranslate nohighlight">\( 用 \)</span>z<span class="math notranslate nohighlight">\( 表成 \)</span>x, \quad y<span class="math notranslate nohighlight">\( 的函数                     
+\)</span><span class="math notranslate nohighlight">\(
+z=\frac{a^{2}-2 x y}{2(x+y)}
+\)</span><span class="math notranslate nohighlight">\(
+再把它代人 \)</span>V=x y z<span class="math notranslate nohighlight">\( 中，于是问题就化为求                    
+\)</span><span class="math notranslate nohighlight">\(
+V=\frac{x y}{2}\left(\frac{a^{2}-2 x y}{x+y}\right)
+\)</span>$</p>
+<p>方法(2)：拉格朗日乘子法<br />
+问题：求函数 <span class="math notranslate nohighlight">\(z=f(x, y)\)</span> 在条件 <span class="math notranslate nohighlight">\(\varphi(x, y)=0\)</span> 下的极值。<br />
+引入拉格朗日函数 <span class="math notranslate nohighlight">\(L(x, y)=f(x, y)+\lambda \varphi(x, y)\)</span><br />
+则极值点满足： <span class="math notranslate nohighlight">\(\left\{\begin{array}{l}L_{x}\left(x_{0}, y_{0}\right)=0 \\ L_{y}\left(x_{0}, y_{0}\right)=0 \\ \varphi\left(x_{0}, y_{0}\right)=0\end{array}\right.\)</span></p>
+<p>回到之前求体积的例子，已知
+$<span class="math notranslate nohighlight">\(
+2(x y+{y} z+x z)=a^{2}
+\)</span><span class="math notranslate nohighlight">\(
+拉格朗日函数可以写成
+\)</span><span class="math notranslate nohighlight">\(
+L(x, y, z)=x y z+\lambda\left(2 x y+2 y z+2 x z-a^{2}\right)
+\)</span><span class="math notranslate nohighlight">\(
+求其对 \)</span>x, y, z<span class="math notranslate nohighlight">\( 的偏导数，并使之为零，得到
+\)</span><span class="math notranslate nohighlight">\(
+\begin{array}{l}
+y z+2 \lambda(y+z)=0 \\
+x z+2 \lambda(x+z)=0 \\
+x y+2 \lambda(y+x)=0
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+上面三个式子在与条件等式联立，可得
+\)</span><span class="math notranslate nohighlight">\(
+\frac{x}{y}=\frac{x+z}{y+z}, \frac{y}{z}=\frac{x+y}{x+z}
+\)</span><span class="math notranslate nohighlight">\(
+解得：\)</span>x=y=z=\sqrt[3]{V_{0}}$</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id21">
+<h1>5.泰勒公式<a class="headerlink" href="#id21" title="Permalink to this headline">#</a></h1>
+<p>泰勒公式就是用一个多项式函数去逼近一个给定的函数(即尽量使多项式函数图像拟合给定的函数图像)。如果一个非常复杂函数，想求其某点的值，直接求无法实现，这时候可以使用泰勒公式去近似的求该值，这是泰勒公式的应用之一。泰勒公式在机器学习中主要应用于梯度迭代。<br />
+定义：设 <span class="math notranslate nohighlight">\(n\)</span> 是一个正整数。如果定义在一个包含a的区间上的函数 <span class="math notranslate nohighlight">\(f\)</span> 在 <span class="math notranslate nohighlight">\(a\)</span> 点处 <span class="math notranslate nohighlight">\(n+1\)</span> 次可导，那么对于这个区间上的任意 <span class="math notranslate nohighlight">\(x\)</span> 都有:
+$<span class="math notranslate nohighlight">\(
+\begin{array}{c}
+f(x)=\frac{f(a)}{0 !}+\frac{f^{\prime}(a)}{1 !}(x-a)+\frac{f^{\prime \prime}(a)}{2 !}(x-a)^{2}+\cdots+\frac{f^{(n)}(a)}{n !}(x-a)^{n}+R_{n}(x) \\
+=\sum_{n=0}^{N} \frac{f^{(n)}(a)}{n !}(x-a)^{n}+R_{n}(x)
+\end{array}
+\)</span><span class="math notranslate nohighlight">\(
+其中的多项式称为函数在a处的泰勒展开式, \)</span>R_{n}(x)$ 是泰勒公式的余项。</p>
+<p><img alt="jupyter" src="../../_images/72.png" /></p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id22">
+<h1>6.基于梯度的优化方法–梯度下降法<a class="headerlink" href="#id22" title="Permalink to this headline">#</a></h1>
+<p>作业：使用梯度下降法求函数<span class="math notranslate nohighlight">\(y=cos(x)\)</span>在区间<span class="math notranslate nohighlight">\(x \in [0,2\pi]\)</span>的极小值点。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">d_f_1</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    求导数的方式1</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="mf">2.0</span> <span class="o">*</span> <span class="n">x</span>
+
+<span class="k">def</span> <span class="nf">d_f_2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">delta</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    求导数的第二种方法</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">delta</span><span class="p">)</span> <span class="o">-</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="o">-</span><span class="n">delta</span><span class="p">))</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">delta</span><span class="p">)</span>
+
+
+<span class="c1"># plot the function</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xs</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">xs</span><span class="p">))</span>
+
+
+<span class="n">learning_rate</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">max_loop</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="n">x_init</span> <span class="o">=</span> <span class="mf">10.0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x_init</span>
+<span class="n">lr</span> <span class="o">=</span> <span class="mf">0.1</span>
+<span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_loop</span><span class="p">):</span>
+    <span class="c1">#d_f_x = d_f_1(x)</span>
+    <span class="n">d_f_x</span> <span class="o">=</span> <span class="n">d_f_2</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">d_f_x</span>
+    <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x_list</span><span class="p">,</span><span class="n">f</span><span class="p">(</span><span class="n">x_list</span><span class="p">),</span><span class="n">c</span><span class="o">=</span><span class="s2">&quot;r&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;initial x =&#39;</span><span class="p">,</span> <span class="n">x_init</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;arg min f(x) of x =&#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;f(x) =&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../../_images/高等数学_26_1.png" src="../../_images/高等数学_26_1.png" />
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>initial x = 10.0
+arg min f(x) of x = 0.012379400392859128
+f(x) = 0.00015324955408672073
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id23">
+<h1>7.基于梯度的优化方法–牛顿迭代法<a class="headerlink" href="#id23" title="Permalink to this headline">#</a></h1>
+<p>作业：使用牛顿迭代法求函数<span class="math notranslate nohighlight">\(y=cos(x)\)</span>在区间<span class="math notranslate nohighlight">\(x \in [0,2\pi]\)</span>的极小值点。</p>
+<p>牛顿法：<br />
+首先牛顿法是求解函数值为0时的自变量取值的方法。<br />
+利用牛顿法求解目标函数的最小值其实是转化成求使目标函数的一阶导为0的参数值。这一转换的理论依据是，函数的极值点处的一阶导数为0.<br />
+其迭代过程是在当前位置x0求该函数的切线，该切线和x轴的交点x1，作为新的x0,重复这个过程，直到交点和函数的零点重合。此时的参数值就是使得目标函数取得极值的参数值。<br />
+其迭代过程如下：</p>
+<p><img alt="jupyter" src="../../_images/81.png" /></p>
+<p>迭代的公式如下:<br />
+$<span class="math notranslate nohighlight">\(
+\theta:=\theta-\alpha \frac{\ell^{\prime}(\theta)}{\ell^{\prime \prime}(\theta)}
+\)</span><span class="math notranslate nohighlight">\(
+当\)</span>\theta<span class="math notranslate nohighlight">\(是向量时, 牛顿法可以使用下面式子表示:                       
+\)</span><span class="math notranslate nohighlight">\(
+\theta:=\theta-\alpha H^{-1} \nabla_{\theta} \ell(\theta)
+\)</span><span class="math notranslate nohighlight">\(
+其中\)</span>H<span class="math notranslate nohighlight">\(叫做海森矩阵，其实就是目标函数对参数\)</span>\theta$的二阶导数。</p>
+<p>牛顿法和梯度下降法的比较</p>
+<p>1.牛顿法：是通过求解目标函数的一阶导数为0时的参数，进而求出目标函数最小值时的参数。</p>
+<p>收敛速度很快。</p>
+<p>海森矩阵的逆在迭代过程中不断减小，可以起到逐步减小步长的效果。</p>
+<p>缺点：海森矩阵的逆计算复杂，代价比较大，因此有了拟牛顿法。</p>
+<p>2.梯度下降法：是通过梯度方向和步长，直接求解目标函数的最小值时的参数。</p>
+<p>越接近最优值时，步长应该不断减小，否则会在最优值附近来回震荡。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
+<span class="k">class</span> <span class="nc">Rosenbrock</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.0001</span><span class="p">)</span>
+        <span class="c1">#self.x1, self.x2 = np.meshgrid(self.x1, self.x2)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">newton_times</span> <span class="o">=</span> <span class="mi">1000</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">answers</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">min_answer_z</span> <span class="o">=</span> <span class="p">[]</span>
+
+
+    <span class="c1"># 准备数据</span>
+    <span class="k">def</span> <span class="nf">data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">a</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="p">))</span>
+        <span class="c1">#print(z.shape)</span>
+        <span class="k">return</span> <span class="n">z</span>
+
+    <span class="c1"># 随机牛顿</span>
+    <span class="k">def</span> <span class="nf">snt</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">alpha</span><span class="p">):</span>
+        <span class="n">rand_init</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">x1_init</span><span class="p">,</span><span class="n">x2_init</span><span class="p">,</span><span class="n">z_init</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="n">rand_init</span><span class="p">],</span><span class="n">x2</span><span class="p">[</span><span class="n">rand_init</span><span class="p">],</span><span class="n">z</span><span class="p">[</span><span class="n">rand_init</span><span class="p">]</span>
+        <span class="n">x_0</span> <span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">x1_init</span><span class="p">,</span><span class="n">x2_init</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+        <span class="c1">#print(x_0)</span>
+
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">newton_times</span><span class="p">):</span>
+            <span class="n">x_i</span> <span class="o">=</span> <span class="n">x_0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">12</span><span class="o">*</span><span class="n">x2_init</span><span class="o">**</span><span class="mi">2</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x2_init</span><span class="o">+</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x1_init</span><span class="p">],[</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x1_init</span><span class="p">,</span><span class="mi">2</span><span class="p">]])),</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">4</span><span class="o">*</span><span class="n">x1_init</span><span class="o">**</span><span class="mi">3</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">x1_init</span><span class="o">*</span><span class="n">x2_init</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x1_init</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="o">*</span><span class="n">x1_init</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="mi">2</span><span class="o">*</span><span class="n">x2_init</span><span class="p">])</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+            <span class="n">x_0</span> <span class="o">=</span> <span class="n">x_i</span>
+            <span class="n">x1_init</span> <span class="o">=</span> <span class="n">x_0</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">x2_init</span> <span class="o">=</span> <span class="n">x_0</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">answer</span> <span class="o">=</span> <span class="n">x_0</span>
+        <span class="k">return</span> <span class="n">answer</span>
+
+
+    <span class="c1"># 绘图</span>
+    <span class="k">def</span> <span class="nf">plot_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">min_x1</span><span class="p">,</span><span class="n">min_x2</span><span class="p">,</span><span class="n">min_z</span><span class="p">):</span>
+        <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>
+        <span class="n">x1</span><span class="p">,</span> <span class="n">x2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">)</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">x1</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">square</span><span class="p">(</span><span class="n">x1</span><span class="p">))</span>
+        <span class="n">fig4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+        <span class="n">ax4</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axes</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;winter&#39;</span><span class="p">)</span>  <span class="c1"># 生成表面， alpha 用于控制透明度</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">zdir</span><span class="o">=</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=-</span><span class="mi">3</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;rainbow&quot;</span><span class="p">)</span>  <span class="c1"># 生成z方向投影，投到x-y平面</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">zdir</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=-</span><span class="mi">6</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;rainbow&quot;</span><span class="p">)</span>  <span class="c1"># 生成x方向投影，投到y-z平面</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">contour</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">zdir</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;rainbow&quot;</span><span class="p">)</span>  <span class="c1"># 生成y方向投影，投到x-z平面</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">contourf</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">z</span><span class="p">,</span> <span class="n">zdir</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;rainbow&quot;</span><span class="p">)</span>  <span class="c1"># 生成y方向投影填充，投到x-z平面，contourf()函数</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">min_x1</span><span class="p">,</span><span class="n">min_x2</span><span class="p">,</span><span class="n">min_z</span><span class="p">,</span><span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+        <span class="c1"># 设定显示范围</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;X&#39;</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Y&#39;</span><span class="p">)</span>
+        <span class="n">ax4</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s1">&#39;Z&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="c1"># 开始</span>
+    <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">times</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入需要随机优化的次数：&quot;</span><span class="p">))</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入随机优化的步长&quot;</span><span class="p">))</span>
+        <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+            <span class="n">answer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">snt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">x1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">x2</span><span class="p">,</span><span class="n">z</span><span class="p">,</span><span class="n">alpha</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">answers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">answer</span><span class="p">)</span>
+        <span class="n">min_answer</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">answers</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">times</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">min_answer_z</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="mi">1</span><span class="o">-</span><span class="n">min_answer</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="o">+</span><span class="p">(</span><span class="n">min_answer</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">min_answer</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">optimal_z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_answer_z</span><span class="p">))</span>
+        <span class="n">optimal_z_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argmin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_answer_z</span><span class="p">))</span>
+        <span class="n">optimal_x1</span><span class="p">,</span><span class="n">optimal_x2</span> <span class="o">=</span> <span class="n">min_answer</span><span class="p">[</span><span class="n">optimal_z_index</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">min_answer</span><span class="p">[</span><span class="n">optimal_z_index</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">running_time</span> <span class="o">=</span> <span class="n">end_time</span><span class="o">-</span><span class="n">start_time</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;优化的时间:</span><span class="si">%.2f</span><span class="s2">秒!&quot;</span> <span class="o">%</span> <span class="n">running_time</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">plot_data</span><span class="p">(</span><span class="n">optimal_x1</span><span class="p">,</span><span class="n">optimal_x2</span><span class="p">,</span><span class="n">optimal_z</span><span class="p">)</span>
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">snt</span> <span class="o">=</span> <span class="n">Rosenbrock</span><span class="p">()</span>
+    <span class="n">snt</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">StdinNotImplementedError</span><span class="g g-Whitespace">                  </span>Traceback (most recent call last)
+<span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">ipykernel_18795</span><span class="o">/</span><span class="mf">1257372207.</span><span class="n">py</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="g g-Whitespace">     </span><span class="mi">83</span> <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+<span class="g g-Whitespace">     </span><span class="mi">84</span>     <span class="n">snt</span> <span class="o">=</span> <span class="n">Rosenbrock</span><span class="p">()</span>
+<span class="ne">---&gt; </span><span class="mi">85</span>     <span class="n">snt</span><span class="o">.</span><span class="n">start</span><span class="p">()</span>
+
+<span class="nn">/tmp/ipykernel_18795/1257372207.py</span> in <span class="ni">start</span><span class="nt">(self)</span>
+<span class="g g-Whitespace">     </span><span class="mi">64</span>     <span class="c1"># 开始</span>
+<span class="g g-Whitespace">     </span><span class="mi">65</span>     <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="ne">---&gt; </span><span class="mi">66</span>         <span class="n">times</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入需要随机优化的次数：&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">67</span>         <span class="n">alpha</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;请输入随机优化的步长&quot;</span><span class="p">))</span>
+<span class="g g-Whitespace">     </span><span class="mi">68</span>         <span class="n">z</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">data</span><span class="p">()</span>
+
+<span class="nn">/opt/conda/lib/python3.9/site-packages/ipykernel/kernelbase.py</span> in <span class="ni">raw_input</span><span class="nt">(self, prompt)</span>
+<span class="g g-Whitespace">   </span><span class="mi">1001</span>         <span class="s2">&quot;&quot;&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1002</span><span class="s2">         if not self._allow_stdin:</span>
+<span class="ne">-&gt; </span><span class="mi">1003</span><span class="s2">             raise StdinNotImplementedError(</span>
+<span class="g g-Whitespace">   </span><span class="mi">1004</span><span class="s2">                 &quot;raw_input was called, but this frontend does not support input requests.&quot;</span>
+<span class="g g-Whitespace">   </span><span class="mi">1005</span><span class="s2">             )</span>
+
+<span class="ne">StdinNotImplementedError</span>: raw_input was called, but this frontend does not support input requests.
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./chapt/数理统计"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="%E6%95%B0%E5%AD%A6%E5%88%86%E5%B8%83.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">数学分布(汇总)</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="%E6%A6%82%E7%8E%87%E8%AE%BA%E4%B8%8E%E6%95%B0%E7%90%86%E7%BB%9F%E8%AE%A1.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">概率论与数理统计</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 谱系信息小组@<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"  style=" color:#333;">微信公众号:CJK Lab</a>｜<a href="https://mmbiz.qpic.cn/mmbiz_png/ibibfqibc8R5lRmlXo1ibhctiaTjC6gG1bTPzBpI0k4pHyMZicATSMxicsZyqUBXW3sdvPZkHKsZRaQgicV5qPvz1jJaOg/640?wx_fmt=png&wxfrom=5&wx_lazy=1&wx_co=1" target="_blank"><img src="https://img.shields.io/badge/微信公众号-1K%2B-green?logo=wechat&style=social" style="padding-bottom:0.2em;" /></a>&nbsp; <a href="https://github.com/JiekaiLab" target="_blank"><img src="https://img.shields.io/github/stars/JiekaiLab?style=social" style="padding-bottom:0.2em;" /></a><br/>
+  
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
